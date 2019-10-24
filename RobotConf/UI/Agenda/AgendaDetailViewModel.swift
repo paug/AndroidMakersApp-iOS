@@ -15,6 +15,7 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
         let startDate: Date
         let endDate: Date
         let description: String
+        let tags: [String]
         let speakers: [Speaker]
         let room: String
         let language: Language
@@ -25,7 +26,7 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
     private var talkRepo: TalkRepository
     private var disposables = Set<AnyCancellable>()
     
-    init(talkId: Int, talkRepo: TalkRepository = talkRepository) {
+    init(talkId: String, talkRepo: TalkRepository = talkRepository) {
         self.talkRepo = talkRepo
         talkRepo.getTalks().sink { [weak self] talks in
             guard let talk = talks.first(where: { $0.id == talkId }) else {
@@ -45,6 +46,7 @@ extension AgendaDetailViewModel.Content {
                   startDate: talk.startTime,
                   endDate: talk.startTime.addingTimeInterval(talk.duration),
                   description: talk.description,
+                  tags: ["Expert", "Begginer"],
                   speakers: talk.speakers,
                   room: talk.room,
                   language: talk.language)

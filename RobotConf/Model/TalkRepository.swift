@@ -14,14 +14,19 @@ let talkRepository = TalkRepository()
 class TalkRepository {
     @Published private var talks = [Talk]()
 
+    let dataProvider = DataProvider()
+
+    private var cancellables: Set<AnyCancellable> = []
+
     init() {
+        //dataProvider.getSessions()
         talks = [
-            Talk(id: 1, title: "Office Hours", description: "Lorem ipsum",
+            Talk(id: "1", title: "Office Hours", description: "Lorem ipsum",
                  duration: 40 * 60,
                  speakers: [Speaker(name: "Toto Toto", company: "", description: "")],
                  startTime: Date(timeIntervalSinceReferenceDate: 0),
                  room: "Blin", language: .french),
-            Talk(id: 2, title: "Lunch", description: """
+            Talk(id: "2", title: "Lunch", description: """
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Aenean tempor eros eu hendrerit feugiat. In pharetra, diam sed sollicitudin sollicitudin, elit eros
                 aliquet nunc, in convallis nisl ex nec lacus. Donec vitae nunc et nisi egestas dignissim.
@@ -43,12 +48,12 @@ class TalkRepository {
                  speakers: [Speaker(name: "Tato Tato", company: "", description: "")],
                  startTime: Date(timeIntervalSinceReferenceDate: 10 * 60),
                  room: "Blin", language: .french),
-            Talk(id: 3, title: "Workout your tasks with WorkManager", description: "Lorem ipsum",
+            Talk(id: "3", title: "Workout your tasks with WorkManager", description: "Lorem ipsum",
                  duration: 20 * 60,
                  speakers: [Speaker(name: "Magda Miu", company: "", description: "")],
                  startTime: Date(timeIntervalSinceReferenceDate: 0 * 60),
                  room: "Blin", language: .english),
-            Talk(id: 4, title: "Embarquez dans l'aventure Kotlin avec Advent Of Code", description: "Lorem ipsum",
+            Talk(id: "4", title: "Embarquez dans l'aventure Kotlin avec Advent Of Code", description: "Lorem ipsum",
                  duration: 60 * 60,
                  speakers: [Speaker(name: "Hugo Hache", company: "", description: "")],
                  startTime: Date(timeIntervalSinceReferenceDate: 20 * 60 * 60),
@@ -56,19 +61,26 @@ class TalkRepository {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.talks.append(contentsOf: [
-                Talk(id: 5, title: "New awesome talk", description: "Lorem ipsum",
+                Talk(id: "5", title: "New awesome talk", description: "Lorem ipsum",
                      duration: 30 * 60,
                      speakers: [Speaker(name: "Tato Tato", company: "", description: ""),
                                 Speaker(name: "Djavan Bertrand", company: "", description: "")],
                      startTime: Date(timeIntervalSinceReferenceDate: 10 * 60), room: "Room 2.04",
                      language: .all),
-                Talk(id: 6, title: "Recruteurs, développeurs, bonne humeur", description: "Lorem ipsum",
+                Talk(id: "6", title: "Recruteurs, développeurs, bonne humeur", description: "Lorem ipsum",
                      duration: 30 * 60,
                      speakers: [Speaker(name: "David Fournier", company: "", description: ""),
                                 Speaker(name: "Djavan Bertrand", company: "", description: "")],
                      startTime: Date(timeIntervalSinceReferenceDate: 0 * 60), room: "Room 2.04",
                      language: .all)])
         }
+
+        dataProvider.talksPublisher
+            .replaceError(with: [])
+            .sink { [unowned self] in
+                self.talks = $0
+        }
+        .store(in: &cancellables)
     }
 
     func getTalks() -> AnyPublisher<[Talk], Never> {

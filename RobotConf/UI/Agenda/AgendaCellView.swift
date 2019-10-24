@@ -46,7 +46,7 @@ struct AgendaCellView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AgendaCellView(talk: AgendaDayListViewModel.Content.Talk(
-                id: 1,
+                id: "1",
                 title: "The infinite loop", duration: 25 * 60,
                 speakers: [Speaker(name: "Toto", company: "", description: "")],
                 room: "Room 2.04", language: .french))

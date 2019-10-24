@@ -25,13 +25,13 @@ struct AgendaDetailView: View {
         return formatter
     }()
 
-    init(talkId: Int) {
+    init(talkId: String) {
         viewModel = AgendaDetailViewModel(talkId: talkId)
     }
 
     var body: some View {
         containedView()
-            .navigationBarTitle(Text("TOTO"), displayMode: .inline)
+            .navigationBarTitle(Text(viewModel.content?.title ?? ""), displayMode: .inline)
     }
 
     func containedView() -> AnyView {
@@ -46,20 +46,51 @@ struct AgendaDetailView: View {
                         .foregroundColor(.blue)
                         .font(.headline)
                         .padding(.bottom, 8)
+                        .padding(.top, 16)
                     Text("\(fullDateFormatter.string(from: content.startDate)) à " +
                         "\(timeFormatter.string(from: content.startDate)) - " +
                         "\(timeFormatter.string(from: content.endDate)), " +
                         "\(content.room)")
                         .padding(.bottom, 8)
                     Text(content.description)
+                    HStack {
+                        ForEach(content.tags, id: \.self) { tag in
+                            TagView(text: tag)
+                        }
+                    }
+                    Divider()
                     Spacer()
-                }.padding([.leading, .trailing], 8)
+                    ForEach(content.speakers, id: \.self) { speaker in
+                        SpeakerView(speaker: speaker)
+                    }
+                }.padding(.horizontal, 8)
         })
+    }
+}
+
+struct TagView: View {
+    var text: String
+
+    var body: some View {
+        Text(text)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
+            .background(Color.gray)
+            .foregroundColor(.black)
+            .clipShape(RoundedRectangle(cornerRadius: 35))
+    }
+}
+
+struct SpeakerView: View {
+    var speaker: Speaker
+
+    var body: some View {
+        Text(speaker.name)
     }
 }
 
 struct AgendaDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        AgendaDetailView(talkId: 1)
+        AgendaDetailView(talkId: "1")
     }
 }

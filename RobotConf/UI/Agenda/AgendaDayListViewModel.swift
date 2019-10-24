@@ -12,7 +12,7 @@ import Combine
 class AgendaDayListViewModel: ObservableObject, Identifiable {
     struct Content {
         struct Talk: Hashable {
-            let id: Int
+            let id: String
             let title: String
             let duration: TimeInterval
             let speakers: [Speaker]
