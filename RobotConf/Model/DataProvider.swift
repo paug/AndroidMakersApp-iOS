@@ -37,7 +37,8 @@ class DataProvider {
             for (sessionId, session) in sessions {
                 let sessionSpeakers = session.speakers?.compactMap { speakerId -> Speaker? in
                     if let speaker = speakers[speakerId] {
-                        return Speaker(name: speaker.name ?? "", company: speaker.company ?? "", description: speaker.bio ?? "")
+                        return Speaker(name: speaker.name ?? "", photoUrl: speaker.photo,
+                                       company: speaker.company ?? "", description: speaker.bio ?? "")
                     }
                     // else raise an error
 

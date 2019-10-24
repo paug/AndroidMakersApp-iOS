@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,7 @@
 		B2CD426723578D81009FE6B0 /* SessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD426623578D81009FE6B0 /* SessionProvider.swift */; };
 		B2CD426923578FBD009FE6B0 /* QueryDocumentSnapshot+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD426823578FBD009FE6B0 /* QueryDocumentSnapshot+Decodable.swift */; };
 		B2CD426B23579A36009FE6B0 /* SpeakersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD426A23579A36009FE6B0 /* SpeakersProvider.swift */; };
+		B2CD426E2362281A009FE6B0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = B2CD426D2362281A009FE6B0 /* URLImage */; };
 		B83891F623C17BE3B86C039E /* Pods_RobotConf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05750C6DD6C4C74AB517F79B /* Pods_RobotConf.framework */; };
 		BE30A17E3BB5248CE13B5D2F /* Pods_RobotConfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C298435E1FD022C97E2462 /* Pods_RobotConfTests.framework */; };
 		C15E9DEF1BB86AF3BE8D0307 /* Pods_RobotConf_RobotConfUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39EAD04C7867B0526F8A774 /* Pods_RobotConf_RobotConfUITests.framework */; };
@@ -98,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2CD426E2362281A009FE6B0 /* URLImage in Frameworks */,
 				B83891F623C17BE3B86C039E /* Pods_RobotConf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +273,9 @@
 			dependencies = (
 			);
 			name = RobotConf;
+			packageProductDependencies = (
+				B2CD426D2362281A009FE6B0 /* URLImage */,
+			);
 			productName = RobotConf;
 			productReference = B2CD272B234D06530016AA02 /* RobotConf.app */;
 			productType = "com.apple.product-type.application";
@@ -346,6 +351,9 @@
 				Base,
 			);
 			mainGroup = B2CD2722234D06530016AA02;
+			packageReferences = (
+				B2CD426C2362281A009FE6B0 /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = B2CD272C234D06530016AA02 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -834,6 +842,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B2CD426C2362281A009FE6B0 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B2CD426D2362281A009FE6B0 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2CD426C2362281A009FE6B0 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B2CD2723234D06530016AA02 /* Project object */;
 }

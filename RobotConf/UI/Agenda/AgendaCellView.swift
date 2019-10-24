@@ -48,7 +48,8 @@ struct AgendaCellView_Previews: PreviewProvider {
             AgendaCellView(talk: AgendaDayListViewModel.Content.Talk(
                 id: "1",
                 title: "The infinite loop", duration: 25 * 60,
-                speakers: [Speaker(name: "Toto", company: "", description: "")],
+                speakers: [Speaker(name: "Toto", photoUrl: "/images/people/florent_champigny.jpg",
+                                   company: "", description: "")],
                 room: "Room 2.04", language: .french))
         }
         .previewLayout(.fixed(width: 300, height: 70))

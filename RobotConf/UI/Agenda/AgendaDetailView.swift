@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct AgendaDetailView: View {
 
@@ -58,7 +59,7 @@ struct AgendaDetailView: View {
                             TagView(text: tag)
                         }
                     }
-                    Divider()
+                    Divider().padding(.top, 8)
                     Spacer()
                     ForEach(content.speakers, id: \.self) { speaker in
                         SpeakerView(speaker: speaker)
@@ -83,9 +84,23 @@ struct TagView: View {
 
 struct SpeakerView: View {
     var speaker: Speaker
+    let url = URL(string: "https://androidmakers.fr")!
 
     var body: some View {
-        Text(speaker.name)
+        HStack(alignment: .top) {
+            URLImage(URL(string: "https://androidmakers.fr\(speaker.photoUrl ?? "")")!) { proxy in
+                proxy.image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .clipShape(Circle())
+            }.frame(width: 64, height: 64)
+            VStack(alignment: .leading) {
+                Text(speaker.name)
+                    .padding(.vertical, 24)
+                Text(speaker.description)
+            }
+        }
+        .padding(.vertical, 8)
     }
 }
 
