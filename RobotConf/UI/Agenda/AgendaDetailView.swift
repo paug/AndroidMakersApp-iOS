@@ -22,7 +22,7 @@ struct AgendaDetailView: View {
 
     var fullDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE DD MMM YYYY"
+        formatter.dateFormat = "EEEE dd MMM YYYY"
         return formatter
     }()
 

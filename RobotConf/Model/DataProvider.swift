@@ -15,24 +15,27 @@ class DataProvider {
 
     var talksPublisher = PassthroughSubject<[Talk], Error>()
 
-    private let sessionProvider: SessionProvider
+    private let sessionsProvider: SessionsProvider
     private let speakersProvider: SpeakersProvider
+    private let slotsProvider: SlotsProvider
 
     private var cancellables: Set<AnyCancellable> = []
 
     init() {
         let db = Firestore.firestore()
-        sessionProvider = SessionProvider(db: db)
+        sessionsProvider = SessionsProvider(db: db)
         speakersProvider = SpeakersProvider(db: db)
+        slotsProvider = SlotsProvider(db: db)
 
         computeTalks()
     }
 
     private func computeTalks() {
-        sessionProvider.sessionPublisher.combineLatest(speakersProvider.speakersPublisher)
+        sessionsProvider.sessionsPublisher
+            .combineLatest(speakersProvider.speakersPublisher, slotsProvider.slotsPublisher)
             .sink(receiveCompletion: { error in
             print("Dja EEERRRROR \(error)")
-        }) { [unowned self] (sessions, speakers) in
+        }) { [unowned self] (sessions, speakers, slots) in
             var talks = [Talk]()
             for (sessionId, session) in sessions {
                 let sessionSpeakers = session.speakers?.compactMap { speakerId -> Speaker? in
@@ -44,14 +47,36 @@ class DataProvider {
 
                     return nil
                 } ?? []
+                guard let slot = slots.first(where: { $0.sessionId == sessionId }) else {
+                    // if no slot, no need to get the session
+                    continue
+                }
+                let duration = slot.endDate.timeIntervalSince(slot.startDate)
                 let talk = Talk(
                     id: sessionId, title: session.title, description: session.description,
-                    duration: 40 * 60, speakers: sessionSpeakers,
-                    startTime: Date(timeIntervalSinceReferenceDate: Double(Int.random(in: 0..<5) * 60 * 60)),
-                    room: "Blin", language: .french)
+                    duration: duration, speakers: sessionSpeakers,
+                    startTime: slot.startDate,
+                    room: slot.roomId.capitalized, language: Language(from: session.language))
                 talks.append(talk)
             }
             self.talksPublisher.send(talks)
         }.store(in: &cancellables)
+    }
+}
+
+extension Language {
+    init(from str: String?) {
+        guard let str = str else {
+            self = .all
+            return
+        }
+        var language: Language = []
+        if str.localizedCaseInsensitiveContains("english") {
+            language.formUnion(.english)
+        }
+        if str.localizedCaseInsensitiveContains("french") {
+            language.formUnion(.french)
+        }
+        self = language
     }
 }

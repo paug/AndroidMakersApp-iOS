@@ -10,7 +10,7 @@ import Foundation
 import FirebaseFirestore
 import Combine
 
-class SessionProvider {
+class SessionsProvider {
     struct Session: Decodable {
         let complexity: String?
         let speakers: [String]?
@@ -21,23 +21,23 @@ class SessionProvider {
         let videoURL: String?
     }
 
-    var sessionPublisher = PassthroughSubject<[String: Session], Error>()
+    var sessionsPublisher = PassthroughSubject<[String: Session], Error>()
 
     init(db: Firestore) {
         db.collection("sessions").getDocuments() { [weak self] (querySnapshot, err) in
             guard let self = self else { return }
             if let err = err {
                 print("Error getting documents: \(err)")
-                self.sessionPublisher.send(completion: .failure(err))
+                self.sessionsPublisher.send(completion: .failure(err))
             } else {
                 do {
                     var sessions = [String: Session]()
                     for document in querySnapshot!.documents {
                         sessions[document.documentID] = try document.decoded()
                     }
-                    self.sessionPublisher.send(sessions)
+                    self.sessionsPublisher.send(sessions)
                 } catch let e {
-                    self.sessionPublisher.send(completion: .failure(e))
+                    self.sessionsPublisher.send(completion: .failure(e))
                 }
             }
         }

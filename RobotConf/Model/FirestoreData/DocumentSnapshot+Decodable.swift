@@ -9,9 +9,9 @@
 import Foundation
 import FirebaseFirestore
 
-extension QueryDocumentSnapshot {
+extension DocumentSnapshot {
     func decoded<T: Decodable>() throws -> T {
-        let jsonData = try JSONSerialization.data(withJSONObject: data())
+        let jsonData = try JSONSerialization.data(withJSONObject: data() ?? [:])
         let decoder = JSONDecoder()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:sszzz"
