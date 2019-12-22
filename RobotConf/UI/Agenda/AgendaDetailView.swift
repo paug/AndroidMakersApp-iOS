@@ -45,22 +45,24 @@ struct AgendaDetailView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(content.title)
                         .foregroundColor(.blue)
-                        .font(.headline)
+                        .font(.title)
                         .padding(.bottom, 8)
                         .padding(.top, 16)
                     Text("\(fullDateFormatter.string(from: content.startDate)) à " +
                         "\(timeFormatter.string(from: content.startDate)) - " +
                         "\(timeFormatter.string(from: content.endDate)), " +
                         "\(content.room)")
+                        .bold()
+                        .font(.headline)
                         .padding(.bottom, 8)
                     Text(content.description)
+                        .font(.body)
                     HStack {
                         ForEach(content.tags, id: \.self) { tag in
                             TagView(text: tag)
                         }
                     }
                     Divider().padding(.top, 8)
-                    Spacer()
                     ForEach(content.speakers, id: \.self) { speaker in
                         SpeakerView(speaker: speaker)
                     }
@@ -74,9 +76,10 @@ struct TagView: View {
 
     var body: some View {
         Text(text)
+            .font(.caption)
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
-            .background(Color.gray)
+            .background(Color("colors/tag"))
             .foregroundColor(.black)
             .clipShape(RoundedRectangle(cornerRadius: 35))
     }
@@ -95,7 +98,8 @@ struct SpeakerView: View {
                     .clipShape(Circle())
             }.frame(width: 64, height: 64)
             VStack(alignment: .leading) {
-                Text(speaker.name)
+                Text("\(speaker.name), \(speaker.company)")
+                    .bold()
                     .padding(.vertical, 24)
                 Text(speaker.description)
             }
