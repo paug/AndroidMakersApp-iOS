@@ -26,6 +26,7 @@ struct AgendaDayListView: View {
     }()
 
     var body: some View {
+        NavigationView {
         List {
             ForEach(viewModel.content.sections, id: \.self) { section in
                 Section(header: Text("\(self.sectionDateFormatter.string(from: section.date)), \(self.sectionTimeFormatter.string(from: section.date))")) {
@@ -36,6 +37,7 @@ struct AgendaDayListView: View {
                     }
                 }
             }
+            }.navigationBarTitle(Text("Android Makers 20²"), displayMode: .large)
         }
     }
 }

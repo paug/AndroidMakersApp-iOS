@@ -102,6 +102,7 @@ struct SpeakerView: View {
                     .bold()
                     .padding(.vertical, 24)
                 Text(speaker.description)
+                    .padding(.trailing, 8)
             }
         }
         .padding(.vertical, 8)

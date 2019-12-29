@@ -12,30 +12,28 @@ struct ContentView: View {
     @State private var selection = 0
  
     var body: some View {
-        NavigationView {
-            TabView(selection: $selection) {
-                AgendaDayListView(viewModel: AgendaDayListViewModel())
-                    .tabItem {
-                        VStack {
-                            Image("first")
-                            Text("Agenda")
-                        }
-                }.tag(0)
-                Text("TODO Lieu")
-                    .tabItem {
-                        VStack {
-                            Image("second")
-                            Text("Lieu")
-                        }
-                }.tag(1)
-                Text("TODO A propos")
-                    .tabItem {
-                        VStack {
-                            Image("second")
-                            Text("A propos")
-                        }
-                }.tag(2)
-            }.navigationBarTitle(Text("Android Makers 20²"), displayMode: .large)
+        TabView(selection: $selection) {
+            AgendaDayListView(viewModel: AgendaDayListViewModel())
+                .tabItem {
+                    VStack {
+                        Image("first")
+                        Text("Agenda")
+                    }
+            }.tag(0)
+            Text("TODO Lieu")
+                .tabItem {
+                    VStack {
+                        Image("second")
+                        Text("Lieu")
+                    }
+            }.tag(1)
+            Text("TODO A propos")
+                .tabItem {
+                    VStack {
+                        Image("second")
+                        Text("A propos")
+                    }
+            }.tag(2)
         }
     }
 }
