@@ -16,22 +16,22 @@ struct ContentView: View {
             AgendaDayListView(viewModel: AgendaDayListViewModel())
                 .tabItem {
                     VStack {
-                        Image("first")
+                        Image("agenda")
                         Text("Agenda")
                     }
             }.tag(0)
             Text("TODO Lieu")
                 .tabItem {
                     VStack {
-                        Image("second")
-                        Text("Lieu")
+                        Image("location")
+                        Text("Location")
                     }
             }.tag(1)
             Text("TODO A propos")
                 .tabItem {
                     VStack {
-                        Image("second")
-                        Text("A propos")
+                        Image("about")
+                        Text("About")
                     }
             }.tag(2)
         }
