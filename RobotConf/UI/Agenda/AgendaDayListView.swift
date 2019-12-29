@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 struct AgendaDayListView: View {
-    @ObservedObject var viewModel: AgendaDayListViewModel
+    @ObservedObject private var viewModel = AgendaDayListViewModel()
 
     var sectionTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -27,16 +27,16 @@ struct AgendaDayListView: View {
 
     var body: some View {
         NavigationView {
-        List {
-            ForEach(viewModel.content.sections, id: \.self) { section in
-                Section(header: Text("\(self.sectionDateFormatter.string(from: section.date)), \(self.sectionTimeFormatter.string(from: section.date))")) {
-                    ForEach(section.talks, id: \.self) { talk in
-                        NavigationLink(destination: AgendaDetailView(talkId: talk.id)) {
-                            AgendaCellView(talk: talk)
+            List {
+                ForEach(viewModel.content.sections, id: \.self) { section in
+                    Section(header: Text("\(self.sectionDateFormatter.string(from: section.date)), \(self.sectionTimeFormatter.string(from: section.date))")) {
+                        ForEach(section.talks, id: \.self) { talk in
+                            NavigationLink(destination: AgendaDetailView(talkId: talk.id)) {
+                                AgendaCellView(talk: talk)
+                            }
                         }
                     }
                 }
-            }
             }.navigationBarTitle(Text("Android Makers 20²"), displayMode: .large)
         }
     }
@@ -45,7 +45,7 @@ struct AgendaDayListView: View {
 #if DEBUG
 struct AgendaDayListView_Previews: PreviewProvider {
     static var previews: some View {
-        AgendaDayListView(viewModel: AgendaDayListViewModel())
+        AgendaDayListView()
     }
 }
 #endif

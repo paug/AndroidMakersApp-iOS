@@ -33,7 +33,7 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
     private var talkRepo: TalkRepository
     private var disposables = Set<AnyCancellable>()
     
-    init(talkRepo: TalkRepository = talkRepository) {
+    init(talkRepo: TalkRepository = model.talkRepository) {
         self.talkRepo = talkRepo
         talkRepo.getTalks().sink { [weak self] in
             self?.talksChanged(talks: $0)

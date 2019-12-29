@@ -26,7 +26,7 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
     private var talkRepo: TalkRepository
     private var disposables = Set<AnyCancellable>()
     
-    init(talkId: String, talkRepo: TalkRepository = talkRepository) {
+    init(talkId: String, talkRepo: TalkRepository = model.talkRepository) {
         self.talkRepo = talkRepo
         talkRepo.getTalks().sink { [weak self] talks in
             guard let talk = talks.first(where: { $0.id == talkId }) else {
@@ -40,7 +40,7 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
     }
 }
 
-extension AgendaDetailViewModel.Content {
+private extension AgendaDetailViewModel.Content {
     init(from talk: Talk) {
         self.init(title: talk.title,
                   startDate: talk.startTime,

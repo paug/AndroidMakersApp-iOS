@@ -9,15 +9,19 @@
 import Foundation
 import FirebaseFirestore
 import Combine
+import CoreLocation
 
 class DataProvider {
     let db = Firestore.firestore()
 
     var talksPublisher = PassthroughSubject<[Talk], Error>()
+    var confVenuePublisher = PassthroughSubject<Venue, Error>()
+    var partyVenuePublisher = PassthroughSubject<Venue, Error>()
 
     private let sessionsProvider: SessionsProvider
     private let speakersProvider: SpeakersProvider
     private let slotsProvider: SlotsProvider
+    private let venuesProvider: VenuesProvider
 
     private var cancellables: Set<AnyCancellable> = []
 
@@ -26,15 +30,17 @@ class DataProvider {
         sessionsProvider = SessionsProvider(db: db)
         speakersProvider = SpeakersProvider(db: db)
         slotsProvider = SlotsProvider(db: db)
+        venuesProvider = VenuesProvider(db: db)
 
         computeTalks()
+        computeVenues()
     }
 
     private func computeTalks() {
         sessionsProvider.sessionsPublisher
             .combineLatest(speakersProvider.speakersPublisher, slotsProvider.slotsPublisher)
             .sink(receiveCompletion: { error in
-            print("Dja EEERRRROR \(error)")
+                print("Dja EEERRRROR \(error)")
         }) { [unowned self] (sessions, speakers, slots) in
             var talks = [Talk]()
             for (sessionId, session) in sessions {
@@ -62,6 +68,32 @@ class DataProvider {
             self.talksPublisher.send(talks)
         }.store(in: &cancellables)
     }
+
+    private func computeVenues() {
+        venuesProvider.confVenuePublisher
+            .sink(receiveCompletion: { error in
+                print("Dja EEERRRROR \(error)")
+            }) { [unowned self] venue in
+                guard let confVenue = Venue(from: venue) else {
+                    //self.confVenuePublisher.send(completion: .failure())
+                    return
+                }
+
+                self.confVenuePublisher.send(confVenue)
+        }.store(in: &cancellables)
+
+        venuesProvider.partyVenuePublisher
+            .sink(receiveCompletion: { error in
+                print("Dja EEERRRROR \(error)")
+            }) { [unowned self] venue in
+                guard let partyVenue = Venue(from: venue) else {
+                    //self.partyVenuePublisher.send(completion: .failure())
+                    return
+                }
+
+                self.partyVenuePublisher.send(partyVenue)
+        }.store(in: &cancellables)
+    }
 }
 
 extension Language {
@@ -78,5 +110,23 @@ extension Language {
             language.formUnion(.french)
         }
         self = language
+    }
+}
+
+private extension Venue {
+    init?(from venue: VenuesProvider.Venue) {
+        let coords = venue.coordinates.split(separator: ",")
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.numberStyle = .decimal
+        guard coords.count == 2,
+            let latitude = formatter.number(from: String(coords[0]))?.doubleValue,
+            let longitude = formatter.number(from: String(coords[1]))?.doubleValue else {
+            return nil
+        }
+        self = Venue(name: venue.name, description: venue.description, descriptionFr: venue.descriptionFr,
+                     address: venue.address,
+                     coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+                     imageUrl: venue.imageUrl)
     }
 }

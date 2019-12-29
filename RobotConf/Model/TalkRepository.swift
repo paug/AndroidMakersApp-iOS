@@ -9,16 +9,12 @@
 import Foundation
 import Combine
 
-let talkRepository = TalkRepository()
-
 class TalkRepository {
     @Published private var talks = [Talk]()
 
-    let dataProvider = DataProvider()
-
     private var cancellables: Set<AnyCancellable> = []
 
-    init() {
+    init(dataProvider: DataProvider) {
         //dataProvider.getSessions()
 //        talks = [
 //            Talk(id: "1", title: "Office Hours", description: "Lorem ipsum",

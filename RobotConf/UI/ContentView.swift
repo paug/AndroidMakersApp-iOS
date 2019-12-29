@@ -13,20 +13,22 @@ struct ContentView: View {
  
     var body: some View {
         TabView(selection: $selection) {
-            AgendaDayListView(viewModel: AgendaDayListViewModel())
+            AgendaDayListView()
                 .tabItem {
                     VStack {
                         Image("agenda")
                         Text("Agenda")
                     }
             }.tag(0)
-            Text("TODO Lieu")
+
+            LocationListView()
                 .tabItem {
                     VStack {
                         Image("location")
                         Text("Location")
                     }
             }.tag(1)
+
             Text("TODO A propos")
                 .tabItem {
                     VStack {
