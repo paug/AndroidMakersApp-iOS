@@ -10,6 +10,10 @@
 		B207015E2353324400F8E2AF /* AgendaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B207015D2353324400F8E2AF /* AgendaDetailView.swift */; };
 		B20701602353372800F8E2AF /* AgendaDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B207015F2353372800F8E2AF /* AgendaDetailViewModel.swift */; };
 		B2229A0123A39D6F00F50750 /* SlotsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2229A0023A39D6F00F50750 /* SlotsProvider.swift */; };
+		B258187323C2354200E1B0F0 /* PartnersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187223C2354200E1B0F0 /* PartnersProvider.swift */; };
+		B258187523C2374D00E1B0F0 /* PartnerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187423C2374D00E1B0F0 /* PartnerRepository.swift */; };
+		B258187723C2379600E1B0F0 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187623C2379600E1B0F0 /* Partner.swift */; };
+		B258187923C23E7800E1B0F0 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187823C23E7800E1B0F0 /* AboutViewModel.swift */; };
 		B2A0669323521AC00062383A /* Language+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A0669223521AC00062383A /* Language+UI.swift */; };
 		B2BC0B7923B902BF00C85F69 /* VenuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC0B7823B902BF00C85F69 /* VenuesProvider.swift */; };
 		B2BC0B7B23B905B800C85F69 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC0B7A23B905B800C85F69 /* Venue.swift */; };
@@ -19,6 +23,7 @@
 		B2BC0B8423B91D2100C85F69 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC0B8323B91D2100C85F69 /* Model.swift */; };
 		B2BC0B8623B91E0800C85F69 /* VenueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC0B8523B91E0800C85F69 /* VenueRepository.swift */; };
 		B2BC0B8823B933ED00C85F69 /* LocationPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC0B8723B933ED00C85F69 /* LocationPlanView.swift */; };
+		B2BC0B8B23BB66EF00C85F69 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC0B8A23BB66EF00C85F69 /* AboutView.swift */; };
 		B2CD272F234D06530016AA02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD272E234D06530016AA02 /* AppDelegate.swift */; };
 		B2CD2731234D06530016AA02 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD2730234D06530016AA02 /* SceneDelegate.swift */; };
 		B2CD2733234D06530016AA02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD2732234D06530016AA02 /* ContentView.swift */; };
@@ -70,6 +75,10 @@
 		B207015D2353324400F8E2AF /* AgendaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaDetailView.swift; sourceTree = "<group>"; };
 		B207015F2353372800F8E2AF /* AgendaDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaDetailViewModel.swift; sourceTree = "<group>"; };
 		B2229A0023A39D6F00F50750 /* SlotsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotsProvider.swift; sourceTree = "<group>"; };
+		B258187223C2354200E1B0F0 /* PartnersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersProvider.swift; sourceTree = "<group>"; };
+		B258187423C2374D00E1B0F0 /* PartnerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerRepository.swift; sourceTree = "<group>"; };
+		B258187623C2379600E1B0F0 /* Partner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
+		B258187823C23E7800E1B0F0 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		B2A0669223521AC00062383A /* Language+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Language+UI.swift"; sourceTree = "<group>"; };
 		B2BC0B7823B902BF00C85F69 /* VenuesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenuesProvider.swift; sourceTree = "<group>"; };
 		B2BC0B7A23B905B800C85F69 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
@@ -79,6 +88,7 @@
 		B2BC0B8323B91D2100C85F69 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B2BC0B8523B91E0800C85F69 /* VenueRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueRepository.swift; sourceTree = "<group>"; };
 		B2BC0B8723B933ED00C85F69 /* LocationPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPlanView.swift; sourceTree = "<group>"; };
+		B2BC0B8A23BB66EF00C85F69 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		B2CD272B234D06530016AA02 /* RobotConf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RobotConf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CD272E234D06530016AA02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2CD2730234D06530016AA02 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +185,15 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		B2BC0B8923BB66D000C85F69 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				B2BC0B8A23BB66EF00C85F69 /* AboutView.swift */,
+				B258187823C23E7800E1B0F0 /* AboutViewModel.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		B2CD2722234D06530016AA02 = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +264,7 @@
 				B2CD2732234D06530016AA02 /* ContentView.swift */,
 				B2CD2761234D08530016AA02 /* Agenda */,
 				B2BC0B7C23B90B3500C85F69 /* Location */,
+				B2BC0B8923BB66D000C85F69 /* About */,
 				B2A0669223521AC00062383A /* Language+UI.swift */,
 			);
 			path = UI;
@@ -269,9 +289,11 @@
 				B2CD426523578D59009FE6B0 /* FirestoreData */,
 				B2CD2767234D12500016AA02 /* TalkRepository.swift */,
 				B2BC0B8523B91E0800C85F69 /* VenueRepository.swift */,
+				B258187423C2374D00E1B0F0 /* PartnerRepository.swift */,
 				B2CD2765234D116A0016AA02 /* Talk.swift */,
 				B2CD2769234D12980016AA02 /* Speaker.swift */,
 				B2BC0B7A23B905B800C85F69 /* Venue.swift */,
+				B258187623C2379600E1B0F0 /* Partner.swift */,
 				B2CD276B234D13380016AA02 /* Language.swift */,
 				B2CD4263235789B5009FE6B0 /* DataProvider.swift */,
 			);
@@ -282,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				B2CD426623578D81009FE6B0 /* SessionsProvider.swift */,
+				B258187223C2354200E1B0F0 /* PartnersProvider.swift */,
 				B2BC0B7823B902BF00C85F69 /* VenuesProvider.swift */,
 				B2229A0023A39D6F00F50750 /* SlotsProvider.swift */,
 				B2CD426A23579A36009FE6B0 /* SpeakersProvider.swift */,
@@ -538,7 +561,9 @@
 			files = (
 				B2CD272F234D06530016AA02 /* AppDelegate.swift in Sources */,
 				B2BC0B7B23B905B800C85F69 /* Venue.swift in Sources */,
+				B258187723C2379600E1B0F0 /* Partner.swift in Sources */,
 				B2CD2731234D06530016AA02 /* SceneDelegate.swift in Sources */,
+				B258187323C2354200E1B0F0 /* PartnersProvider.swift in Sources */,
 				B2CD2768234D12500016AA02 /* TalkRepository.swift in Sources */,
 				B2CD426923578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift in Sources */,
 				B2CD276C234D13380016AA02 /* Language.swift in Sources */,
@@ -547,6 +572,8 @@
 				B2BC0B7923B902BF00C85F69 /* VenuesProvider.swift in Sources */,
 				B2229A0123A39D6F00F50750 /* SlotsProvider.swift in Sources */,
 				B2BC0B8023B90DE100C85F69 /* LocationVenueView.swift in Sources */,
+				B258187523C2374D00E1B0F0 /* PartnerRepository.swift in Sources */,
+				B258187923C23E7800E1B0F0 /* AboutViewModel.swift in Sources */,
 				B2A0669323521AC00062383A /* Language+UI.swift in Sources */,
 				B2CD426B23579A36009FE6B0 /* SpeakersProvider.swift in Sources */,
 				B2CD276E234D18450016AA02 /* AgendaDayListViewModel.swift in Sources */,
@@ -558,6 +585,7 @@
 				B2CD4264235789B5009FE6B0 /* DataProvider.swift in Sources */,
 				B2CD275F234D079B0016AA02 /* AgendaDayListView.swift in Sources */,
 				B20701602353372800F8E2AF /* AgendaDetailViewModel.swift in Sources */,
+				B2BC0B8B23BB66EF00C85F69 /* AboutView.swift in Sources */,
 				B2BC0B7E23B90B6C00C85F69 /* LocationListView.swift in Sources */,
 				B2CD426723578D81009FE6B0 /* SessionsProvider.swift in Sources */,
 				B2BC0B8223B91C5B00C85F69 /* LocationVenueViewModel.swift in Sources */,

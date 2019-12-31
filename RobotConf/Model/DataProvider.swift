@@ -17,11 +17,13 @@ class DataProvider {
     var talksPublisher = PassthroughSubject<[Talk], Error>()
     var confVenuePublisher = PassthroughSubject<Venue, Error>()
     var partyVenuePublisher = PassthroughSubject<Venue, Error>()
+    var partnerPublisher = PassthroughSubject<[PartnerCategory], Error>()
 
     private let sessionsProvider: SessionsProvider
     private let speakersProvider: SpeakersProvider
     private let slotsProvider: SlotsProvider
     private let venuesProvider: VenuesProvider
+    private let partnersProvider: PartnersProvider
 
     private var cancellables: Set<AnyCancellable> = []
 
@@ -31,9 +33,11 @@ class DataProvider {
         speakersProvider = SpeakersProvider(db: db)
         slotsProvider = SlotsProvider(db: db)
         venuesProvider = VenuesProvider(db: db)
+        partnersProvider = PartnersProvider(db: db)
 
         computeTalks()
         computeVenues()
+        computePartners()
     }
 
     private func computeTalks() {
@@ -94,6 +98,15 @@ class DataProvider {
                 self.partyVenuePublisher.send(partyVenue)
         }.store(in: &cancellables)
     }
+
+    private func computePartners() {
+        partnersProvider.partnersPublisher
+            .sink(receiveCompletion: { error in
+                print("Dja EEERRRROR \(error)")
+            }) { [unowned self] partnerCategories in
+                self.partnerPublisher.send([PartnerCategory](from: partnerCategories))
+        }.store(in: &cancellables)
+    }
 }
 
 extension Language {
@@ -128,5 +141,28 @@ private extension Venue {
                      address: venue.address,
                      coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
                      imageUrl: venue.imageUrl)
+    }
+}
+
+private extension Array where Element == PartnerCategory {
+    init(from partnerCategories: [PartnersProvider.PartnerCategory]) {
+        self = partnerCategories
+            .sorted { $0.order < $1.order }
+            .compactMap { category in
+                let partners = category.partners.compactMap { Partner(from: $0) }
+                guard !partners.isEmpty else { return nil }
+                return PartnerCategory(categoryName: category.category, partners: partners)
+        }
+    }
+}
+
+private extension Partner {
+    init?(from partner: PartnersProvider.Partner) {
+        let logoUrlStr = partner.logoUrl
+            .replacingOccurrences(of: "..", with: "")
+            .replacingOccurrences(of: ".svg", with: ".png")
+        guard let logoUrl = URL(string: "https://androidmakers.fr\(logoUrlStr)"),
+            let url = URL(string: partner.url) else { return nil }
+        self.init(name: partner.name, logoUrl: logoUrl, url: url)
     }
 }

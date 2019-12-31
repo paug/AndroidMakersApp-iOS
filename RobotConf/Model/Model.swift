@@ -14,9 +14,11 @@ class Model {
     private let dataProvider = DataProvider() // A strong ref on the data provider must be kept
     let talkRepository: TalkRepository
     let venueRepository: VenueRepository
+    let partnerRepository: PartnerRepository
 
     init() {
         talkRepository = TalkRepository(dataProvider: dataProvider)
         venueRepository = VenueRepository(dataProvider: dataProvider)
+        partnerRepository = PartnerRepository(dataProvider: dataProvider)
     }
 }

@@ -29,7 +29,7 @@ struct ContentView: View {
                     }
             }.tag(1)
 
-            Text("TODO A propos")
+            AboutView()
                 .tabItem {
                     VStack {
                         Image("about")
