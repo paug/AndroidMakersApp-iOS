@@ -32,11 +32,6 @@ struct AgendaCellView: View {
                 Spacer()
             }
             Spacer()
-            VStack {
-                Spacer()
-                Button("Fav") { }
-                    .padding(.bottom, 10)
-            }
         }
     }
 }
