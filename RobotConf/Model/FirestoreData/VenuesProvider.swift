@@ -10,6 +10,7 @@ import Foundation
 import FirebaseFirestore
 import Combine
 
+/// Object that provides server venues
 class VenuesProvider {
     struct Venue: Decodable {
         let address: String

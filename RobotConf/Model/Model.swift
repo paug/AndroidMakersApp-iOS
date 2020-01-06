@@ -8,8 +8,10 @@
 
 import Foundation
 
+/// Singleton model
 let model = Model()
 
+/// The model API object
 class Model {
     private let dataProvider = DataProvider() // A strong ref on the data provider must be kept
     let talkRepository: TalkRepository

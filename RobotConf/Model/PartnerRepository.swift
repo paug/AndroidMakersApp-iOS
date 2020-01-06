@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 
+/// Partner list API
 class PartnerRepository {
     @Published private var partners = [PartnerCategory]()
 

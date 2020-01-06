@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 
+/// Venue API
 class VenueRepository {
     @Published private var conferenceVenue: Venue?
     @Published private var partyVenue: Venue?

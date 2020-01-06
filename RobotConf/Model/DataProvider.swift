@@ -11,6 +11,7 @@ import FirebaseFirestore
 import Combine
 import CoreLocation
 
+/// Object that transforms and provides model data from server data
 class DataProvider {
     let db = Firestore.firestore()
 

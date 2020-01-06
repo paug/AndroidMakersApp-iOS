@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseFirestore
 
+/// Extension of Firestore `DocumentSnapshot` that adds a way to decode it into a Decodable object
 extension DocumentSnapshot {
     func decoded<T: Decodable>() throws -> T {
         let jsonData = try JSONSerialization.data(withJSONObject: data() ?? [:])

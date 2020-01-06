@@ -10,6 +10,7 @@ import Foundation
 import FirebaseFirestore
 import Combine
 
+/// Object that provides server sessions
 class SessionsProvider {
     struct Session: Decodable {
         let complexity: String?

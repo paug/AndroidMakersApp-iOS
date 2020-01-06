@@ -10,6 +10,7 @@ import Foundation
 import FirebaseFirestore
 import Combine
 
+/// Object that provides server partner
 class PartnersProvider {
     struct Partner: Decodable {
         let logoUrl: String

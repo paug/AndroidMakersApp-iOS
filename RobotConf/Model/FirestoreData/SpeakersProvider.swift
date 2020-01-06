@@ -10,6 +10,7 @@ import Foundation
 import FirebaseFirestore
 import Combine
 
+/// Object that provides server slots
 class SpeakersProvider {
     struct Speaker: Decodable {
         //let badges: Array<String>?

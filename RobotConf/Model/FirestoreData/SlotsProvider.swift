@@ -10,6 +10,7 @@ import Foundation
 import FirebaseFirestore
 import Combine
 
+/// Object that provides server slots
 class SlotsProvider {
     struct Slot: Decodable {
         let sessionId: String
