@@ -14,6 +14,9 @@
 		B258187523C2374D00E1B0F0 /* PartnerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187423C2374D00E1B0F0 /* PartnerRepository.swift */; };
 		B258187723C2379600E1B0F0 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187623C2379600E1B0F0 /* Partner.swift */; };
 		B258187923C23E7800E1B0F0 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187823C23E7800E1B0F0 /* AboutViewModel.swift */; };
+		B26E853623D49187006C2C9E /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */; };
+		B26E853823D49242006C2C9E /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26E853723D49242006C2C9E /* AttributedTextView.swift */; };
+		B26E853B23D49D8B006C2C9E /* SwiftRichString in Frameworks */ = {isa = PBXBuildFile; productRef = B26E853A23D49D8B006C2C9E /* SwiftRichString */; };
 		B2A0669323521AC00062383A /* Language+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A0669223521AC00062383A /* Language+UI.swift */; };
 		B2BC0B7923B902BF00C85F69 /* VenuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC0B7823B902BF00C85F69 /* VenuesProvider.swift */; };
 		B2BC0B7B23B905B800C85F69 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC0B7A23B905B800C85F69 /* Venue.swift */; };
@@ -79,6 +82,8 @@
 		B258187423C2374D00E1B0F0 /* PartnerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerRepository.swift; sourceTree = "<group>"; };
 		B258187623C2379600E1B0F0 /* Partner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		B258187823C23E7800E1B0F0 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
+		B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
+		B26E853723D49242006C2C9E /* AttributedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextView.swift; sourceTree = "<group>"; };
 		B2A0669223521AC00062383A /* Language+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Language+UI.swift"; sourceTree = "<group>"; };
 		B2BC0B7823B902BF00C85F69 /* VenuesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenuesProvider.swift; sourceTree = "<group>"; };
 		B2BC0B7A23B905B800C85F69 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
@@ -128,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2CD426E2362281A009FE6B0 /* URLImage in Frameworks */,
+				B26E853B23D49D8B006C2C9E /* SwiftRichString in Frameworks */,
 				B83891F623C17BE3B86C039E /* Pods_RobotConf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +178,15 @@
 				D6DD4AC8617114BC85DA24AA /* Pods-RobotConfTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B26E853423D4913C006C2C9E /* FormattedText */ = {
+			isa = PBXGroup;
+			children = (
+				B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */,
+				B26E853723D49242006C2C9E /* AttributedTextView.swift */,
+			);
+			path = FormattedText;
 			sourceTree = "<group>";
 		};
 		B2BC0B7C23B90B3500C85F69 /* Location */ = {
@@ -265,6 +280,7 @@
 				B2CD2761234D08530016AA02 /* Agenda */,
 				B2BC0B7C23B90B3500C85F69 /* Location */,
 				B2BC0B8923BB66D000C85F69 /* About */,
+				B26E853423D4913C006C2C9E /* FormattedText */,
 				B2A0669223521AC00062383A /* Language+UI.swift */,
 			);
 			path = UI;
@@ -333,6 +349,7 @@
 			name = RobotConf;
 			packageProductDependencies = (
 				B2CD426D2362281A009FE6B0 /* URLImage */,
+				B26E853A23D49D8B006C2C9E /* SwiftRichString */,
 			);
 			productName = RobotConf;
 			productReference = B2CD272B234D06530016AA02 /* RobotConf.app */;
@@ -411,6 +428,7 @@
 			mainGroup = B2CD2722234D06530016AA02;
 			packageReferences = (
 				B2CD426C2362281A009FE6B0 /* XCRemoteSwiftPackageReference "url-image" */,
+				B26E853923D49D8B006C2C9E /* XCRemoteSwiftPackageReference "SwiftRichString" */,
 			);
 			productRefGroup = B2CD272C234D06530016AA02 /* Products */;
 			projectDirPath = "";
@@ -560,6 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2CD272F234D06530016AA02 /* AppDelegate.swift in Sources */,
+				B26E853823D49242006C2C9E /* AttributedTextView.swift in Sources */,
 				B2BC0B7B23B905B800C85F69 /* Venue.swift in Sources */,
 				B258187723C2379600E1B0F0 /* Partner.swift in Sources */,
 				B2CD2731234D06530016AA02 /* SceneDelegate.swift in Sources */,
@@ -567,6 +586,7 @@
 				B2CD2768234D12500016AA02 /* TalkRepository.swift in Sources */,
 				B2CD426923578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift in Sources */,
 				B2CD276C234D13380016AA02 /* Language.swift in Sources */,
+				B26E853623D49187006C2C9E /* NSAttributedString+HTML.swift in Sources */,
 				B2CD276A234D12980016AA02 /* Speaker.swift in Sources */,
 				B2BC0B8823B933ED00C85F69 /* LocationPlanView.swift in Sources */,
 				B2BC0B7923B902BF00C85F69 /* VenuesProvider.swift in Sources */,
@@ -916,6 +936,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B26E853923D49D8B006C2C9E /* XCRemoteSwiftPackageReference "SwiftRichString" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftRichString";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.6.0;
+			};
+		};
 		B2CD426C2362281A009FE6B0 /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
@@ -927,6 +955,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B26E853A23D49D8B006C2C9E /* SwiftRichString */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B26E853923D49D8B006C2C9E /* XCRemoteSwiftPackageReference "SwiftRichString" */;
+			productName = SwiftRichString;
+		};
 		B2CD426D2362281A009FE6B0 /* URLImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B2CD426C2362281A009FE6B0 /* XCRemoteSwiftPackageReference "url-image" */;

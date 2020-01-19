@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "SwiftRichString",
+        "repositoryURL": "https://github.com/malcommac/SwiftRichString",
+        "state": {
+          "branch": null,
+          "revision": "f81aa4c0e21b234261d1a9cf84e258c46ba0f3c9",
+          "version": "3.6.0"
+        }
+      },
+      {
         "package": "URLImage",
         "repositoryURL": "https://github.com/dmytro-anokhin/url-image.git",
         "state": {

@@ -41,7 +41,9 @@ struct LocationVenueView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 8)
 
-                    Text(content.description)
+                    // Set the width to 320 because it is the smallest width of the iPhones. This is a really dirty hack
+                    // but using a geometry destroys the UI.
+                    AttributedLabel(attributedText: content.description.asHtmlAttributedString, width: 320)
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 8)
 
