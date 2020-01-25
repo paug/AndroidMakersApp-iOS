@@ -22,6 +22,7 @@ struct AboutView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             Text(L10n.About.explanation)
+                                .foregroundColor(Color.black)
                             HStack(spacing: 24) {
                                 Button(L10n.About.faq) {
                                     self.viewModel.openFaqPage()
@@ -72,6 +73,7 @@ struct AboutView: View {
                             ForEach(self.viewModel.partnerCategories, id: \.self) { category in
                                 VStack {
                                     Text(category.categoryName)
+                                        .foregroundColor(Color.black)
                                         .bold()
                                         .padding(16)
                                     ForEach(category.partners, id: \.self) { partner in
@@ -92,7 +94,7 @@ struct AboutView: View {
                 .frame(minWidth: 0, maxWidth: .infinity)
             }
             .padding(0)
-            .background(Color(Asset.Colors.tag.color))
+            .background(Color(Asset.Colors.backgroundSecondary.color))
             .navigationBarTitle(Text(L10n.About.navTitle), displayMode: .inline)
         }
     }
@@ -105,7 +107,7 @@ struct Card<Content: View>: View {
         VStack {
             content()
         }.frame(minWidth: 0, maxWidth: .infinity)
-            .background(Color.white)
+            .background(Color(Asset.Colors.cardBackground.color))
             .cornerRadius(8)
             .padding(8)
     }
