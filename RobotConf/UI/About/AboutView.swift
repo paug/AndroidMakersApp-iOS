@@ -21,27 +21,12 @@ struct AboutView: View {
                            Image("logo_oneline_black_text")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            Text(
-"""
-Android Makers Paris is a two day event held on April 23rd and 24th, 2019 at Le Beffroi de Montrouge, in Paris, France.
-
-Join us in tackling the present and future of Android with the hottest experts of the domain.
-There\'ll be technical sessions, workshops, debates, networking, plus a chance to demo your project in the Makers Area.
-Android Makers gathers 4 events in 1.
-
-∙ Conferences : 40min Tech Talks by awesome speakers and 20min Lightning Talks on the future of Android.
-∙ Workshop : Get trained on new methods, discover and build your app during the workshops.
-∙ Makers Area : Walk around, play and discover the latest innovation in hardware and software developed by the makers.
-∙ Party! : Let’s meet, talk, drink and party!
-
-All the Talks will be recorded, and uploaded on the Youtube channel.
-"""
-                            )
+                            Text(L10n.About.explanation)
                             HStack(spacing: 24) {
-                                Button("FAQ") {
+                                Button(L10n.About.faq) {
                                     self.viewModel.openFaqPage()
                                 }
-                                Button("Code of conduct") {
+                                Button(L10n.About.coc) {
                                     self.viewModel.openCodeOfConductPage()
                                 }
                             }.padding(8)
@@ -49,7 +34,7 @@ All the Talks will be recorded, and uploaded on the Youtube channel.
                     }
                     Card {
                         VStack {
-                            Text("Social")
+                            Text(L10n.About.social)
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                                 .foregroundColor(.blue)
                             Button(action: {
@@ -81,7 +66,7 @@ All the Talks will be recorded, and uploaded on the Youtube channel.
                     }
                     Card {
                         VStack(spacing: 16) {
-                            Text("Sponsors")
+                            Text(L10n.About.sponsors)
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                                 .foregroundColor(.blue)
                             ForEach(self.viewModel.partnerCategories, id: \.self) { category in
@@ -108,7 +93,7 @@ All the Talks will be recorded, and uploaded on the Youtube channel.
             }
             .padding(0)
             .background(Color("colors/tag"))
-            .navigationBarTitle(Text("About AM 20²"), displayMode: .inline)
+            .navigationBarTitle(Text(L10n.About.navTitle), displayMode: .inline)
         }
     }
 }

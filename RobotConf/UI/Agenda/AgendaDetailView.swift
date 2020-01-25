@@ -48,10 +48,10 @@ struct AgendaDetailView: View {
                         .font(.title)
                         .padding(.bottom, 8)
                         .padding(.top, 16)
-                    Text("\(fullDateFormatter.string(from: content.startDate)) à " +
-                        "\(timeFormatter.string(from: content.startDate)) - " +
-                        "\(timeFormatter.string(from: content.endDate)), " +
-                        "\(content.room)")
+                    Text(L10n.Agenda.Detail.summary(fullDateFormatter.string(from: content.startDate),
+                                                    timeFormatter.string(from: content.startDate),
+                                                    timeFormatter.string(from: content.endDate),
+                                                    content.room))
                         .bold()
                         .font(.headline)
                         .padding(.bottom, 8)

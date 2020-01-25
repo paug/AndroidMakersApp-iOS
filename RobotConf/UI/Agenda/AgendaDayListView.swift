@@ -38,7 +38,7 @@ struct AgendaDayListView: View {
                         }
                     }
                 }
-            }.navigationBarTitle(Text("Android Makers 20²"), displayMode: .large)
+            }.navigationBarTitle(Text(L10n.Agenda.navTitle), displayMode: .large)
         }
     }
 }

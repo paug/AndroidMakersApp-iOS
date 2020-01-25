@@ -13,15 +13,15 @@ struct LocationListView: View {
         NavigationView {
             List {
                 NavigationLink(destination: LocationVenueView(kind: .conference)) {
-                    Text("Conference")
+                    Text(L10n.Locations.conference)
                 }
                 NavigationLink(destination: LocationVenueView(kind: .party)) {
-                    Text("After party")
+                    Text(L10n.Locations.party)
                 }
                 NavigationLink(destination: LocationPlanView()) {
-                    Text("Plan")
+                    Text(L10n.Locations.plan)
                 }
-            }.navigationBarTitle(Text("Locations"), displayMode: .large)
+            }.navigationBarTitle(Text(L10n.Locations.navTitle), displayMode: .large)
         }
     }
 }

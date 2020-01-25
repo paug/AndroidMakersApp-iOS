@@ -13,7 +13,7 @@ struct LocationPlanView: View {
         Image("plan")
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .navigationBarTitle(Text("Plan"), displayMode: .inline)
+            .navigationBarTitle(Text(L10n.Locations.plan), displayMode: .inline)
     }
 }
 

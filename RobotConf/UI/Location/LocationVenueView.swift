@@ -24,7 +24,7 @@ struct LocationVenueView: View {
 
     func containedView() -> AnyView {
         guard let content = viewModel.content else {
-            return AnyView(Text("Loading..."))
+            return AnyView(Text(L10n.Common.loading))
         }
 
         return AnyView(
@@ -47,7 +47,7 @@ struct LocationVenueView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 8)
 
-                    Button("Directions") {
+                    Button(L10n.Locations.directions) {
                         let placemark = MKPlacemark(coordinate: content.coordinates)
                         let mapItem = MKMapItem(placemark: placemark)
                         mapItem.name = content.name
