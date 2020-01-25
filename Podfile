@@ -9,6 +9,9 @@ target 'RobotConf' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
 
+  pod 'SwiftGen'
+  pod 'SwiftLint'
+
   target 'RobotConfTests' do
     inherit! :search_paths
     # Pods for testing

@@ -32,8 +32,8 @@ class PartnersProvider {
 
     var partnersPublisher = PassthroughSubject<[PartnerCategory], Error>()
 
-    init(db: Firestore) {
-        db.collection("partners").getDocuments() { [weak self] (querySnapshot, err) in
+    init(database: Firestore) {
+        database.collection("partners").getDocuments { [weak self] (querySnapshot, err) in
             guard let self = self else { return }
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -45,8 +45,8 @@ class PartnersProvider {
                         partnerCategories.append(try document.decoded())
                     }
                     self.partnersPublisher.send(partnerCategories)
-                } catch let e {
-                    self.partnersPublisher.send(completion: .failure(e))
+                } catch let error {
+                    self.partnersPublisher.send(completion: .failure(error))
                 }
             }
         }

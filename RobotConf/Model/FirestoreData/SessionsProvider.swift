@@ -24,8 +24,8 @@ class SessionsProvider {
 
     var sessionsPublisher = PassthroughSubject<[String: Session], Error>()
 
-    init(db: Firestore) {
-        db.collection("sessions").getDocuments() { [weak self] (querySnapshot, err) in
+    init(database: Firestore) {
+        database.collection("sessions").getDocuments { [weak self] (querySnapshot, err) in
             guard let self = self else { return }
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -37,8 +37,8 @@ class SessionsProvider {
                         sessions[document.documentID] = try document.decoded()
                     }
                     self.sessionsPublisher.send(sessions)
-                } catch let e {
-                    self.sessionsPublisher.send(completion: .failure(e))
+                } catch let error {
+                    self.sessionsPublisher.send(completion: .failure(error))
                 }
             }
         }

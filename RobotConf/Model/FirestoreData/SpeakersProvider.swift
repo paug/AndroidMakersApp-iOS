@@ -28,8 +28,8 @@ class SpeakersProvider {
 
     var speakersPublisher = PassthroughSubject<[String: Speaker], Error>()
 
-    init(db: Firestore) {
-        db.collection("speakers").getDocuments() { [weak self] (querySnapshot, err) in
+    init(database: Firestore) {
+        database.collection("speakers").getDocuments { [weak self] (querySnapshot, err) in
             guard let self = self else { return }
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -41,8 +41,8 @@ class SpeakersProvider {
                         speakers[document.documentID] = try document.decoded()
                     }
                     self.speakersPublisher.send(speakers)
-                } catch let e {
-                    self.speakersPublisher.send(completion: .failure(e))
+                } catch let error {
+                    self.speakersPublisher.send(completion: .failure(error))
                 }
             }
         }

@@ -48,6 +48,10 @@
 		B2CD426923578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD426823578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift */; };
 		B2CD426B23579A36009FE6B0 /* SpeakersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD426A23579A36009FE6B0 /* SpeakersProvider.swift */; };
 		B2CD426E2362281A009FE6B0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = B2CD426D2362281A009FE6B0 /* URLImage */; };
+		B2F270CA23DC7E2600FD6823 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2F270C823DC7E2600FD6823 /* Localizable.strings */; };
+		B2F270D423DC816B00FD6823 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = B2F270D323DC816B00FD6823 /* swiftgen.yml */; };
+		B2F270D623DC82BB00FD6823 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F270D523DC82BB00FD6823 /* Strings.swift */; };
+		B2F270DB23DC869300FD6823 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B2F270DA23DC869300FD6823 /* .swiftlint.yml */; };
 		B83891F623C17BE3B86C039E /* Pods_RobotConf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05750C6DD6C4C74AB517F79B /* Pods_RobotConf.framework */; };
 		BE30A17E3BB5248CE13B5D2F /* Pods_RobotConfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C298435E1FD022C97E2462 /* Pods_RobotConfTests.framework */; };
 		C15E9DEF1BB86AF3BE8D0307 /* Pods_RobotConf_RobotConfUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39EAD04C7867B0526F8A774 /* Pods_RobotConf_RobotConfUITests.framework */; };
@@ -100,7 +104,6 @@
 		B2CD2732234D06530016AA02 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B2CD2734234D06560016AA02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2CD2737234D06560016AA02 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B2CD273A234D06560016AA02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2CD273C234D06560016AA02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2CD2741234D06560016AA02 /* RobotConfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RobotConfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CD2745234D06560016AA02 /* RobotConfTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotConfTests.swift; sourceTree = "<group>"; };
@@ -120,6 +123,12 @@
 		B2CD426623578D81009FE6B0 /* SessionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsProvider.swift; sourceTree = "<group>"; };
 		B2CD426823578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentSnapshot+Decodable.swift"; sourceTree = "<group>"; };
 		B2CD426A23579A36009FE6B0 /* SpeakersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakersProvider.swift; sourceTree = "<group>"; };
+		B2F270CC23DC7E9200FD6823 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B2F270CD23DC7EBC00FD6823 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B2F270CE23DC7ECF00FD6823 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B2F270D323DC816B00FD6823 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		B2F270D523DC82BB00FD6823 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		B2F270DA23DC869300FD6823 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B39EAD04C7867B0526F8A774 /* Pods_RobotConf_RobotConfUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RobotConf_RobotConfUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6DD4AC8617114BC85DA24AA /* Pods-RobotConfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RobotConfTests.release.xcconfig"; path = "Target Support Files/Pods-RobotConfTests/Pods-RobotConfTests.release.xcconfig"; sourceTree = "<group>"; };
 		F87BB7759059171EE46F89B4 /* Pods-RobotConf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RobotConf.debug.xcconfig"; path = "Target Support Files/Pods-RobotConf/Pods-RobotConf.debug.xcconfig"; sourceTree = "<group>"; };
@@ -238,8 +247,10 @@
 				B2CD2730234D06530016AA02 /* SceneDelegate.swift */,
 				B2CD2760234D08400016AA02 /* UI */,
 				B2CD2764234D11460016AA02 /* Model */,
+				B2F270D223DC816B00FD6823 /* SwiftGen */,
 				B2CD2734234D06560016AA02 /* Assets.xcassets */,
 				B2CD2739234D06560016AA02 /* LaunchScreen.storyboard */,
+				B2F270DA23DC869300FD6823 /* .swiftlint.yml */,
 				B2CD273C234D06560016AA02 /* Info.plist */,
 				B2CD42612357876C009FE6B0 /* GoogleService-Info.plist */,
 				B2CD2736234D06560016AA02 /* Preview Content */,
@@ -282,6 +293,7 @@
 				B2BC0B8923BB66D000C85F69 /* About */,
 				B26E853423D4913C006C2C9E /* FormattedText */,
 				B2A0669223521AC00062383A /* Language+UI.swift */,
+				B2F270BF23DC7B7200FD6823 /* Resources */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -329,6 +341,23 @@
 			path = FirestoreData;
 			sourceTree = "<group>";
 		};
+		B2F270BF23DC7B7200FD6823 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B2F270C823DC7E2600FD6823 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B2F270D223DC816B00FD6823 /* SwiftGen */ = {
+			isa = PBXGroup;
+			children = (
+				B2F270D523DC82BB00FD6823 /* Strings.swift */,
+				B2F270D323DC816B00FD6823 /* swiftgen.yml */,
+			);
+			path = SwiftGen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -337,6 +366,8 @@
 			buildConfigurationList = B2CD2755234D06560016AA02 /* Build configuration list for PBXNativeTarget "RobotConf" */;
 			buildPhases = (
 				50C5FC63A5759A2B64B2EE8B /* [CP] Check Pods Manifest.lock */,
+				B2F270CF23DC7EFF00FD6823 /* SwiftGen */,
+				B2F270D723DC848100FD6823 /* SwiftLint */,
 				B2CD2727234D06530016AA02 /* Sources */,
 				B2CD2728234D06530016AA02 /* Frameworks */,
 				B2CD2729234D06530016AA02 /* Resources */,
@@ -423,7 +454,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				fr,
 			);
 			mainGroup = B2CD2722234D06530016AA02;
 			packageReferences = (
@@ -446,10 +477,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2F270CA23DC7E2600FD6823 /* Localizable.strings in Resources */,
 				B2CD273B234D06560016AA02 /* LaunchScreen.storyboard in Resources */,
 				B2CD42622357876C009FE6B0 /* GoogleService-Info.plist in Resources */,
+				B2F270DB23DC869300FD6823 /* .swiftlint.yml in Resources */,
 				B2CD2738234D06560016AA02 /* Preview Assets.xcassets in Resources */,
 				B2CD2735234D06560016AA02 /* Assets.xcassets in Resources */,
+				B2F270D423DC816B00FD6823 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +565,42 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RobotConf-RobotConfUITests/Pods-RobotConf-RobotConfUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B2F270CF23DC7EFF00FD6823 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen config run --config \"$PROJECT_DIR\"/RobotConf/SwiftGen/swiftgen.yml\n";
+		};
+		B2F270D723DC848100FD6823 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		BE80F1BF4819644040584EF7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -589,6 +659,7 @@
 				B26E853623D49187006C2C9E /* NSAttributedString+HTML.swift in Sources */,
 				B2CD276A234D12980016AA02 /* Speaker.swift in Sources */,
 				B2BC0B8823B933ED00C85F69 /* LocationPlanView.swift in Sources */,
+				B2F270D623DC82BB00FD6823 /* Strings.swift in Sources */,
 				B2BC0B7923B902BF00C85F69 /* VenuesProvider.swift in Sources */,
 				B2229A0123A39D6F00F50750 /* SlotsProvider.swift in Sources */,
 				B2BC0B8023B90DE100C85F69 /* LocationVenueView.swift in Sources */,
@@ -648,9 +719,18 @@
 		B2CD2739234D06560016AA02 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B2CD273A234D06560016AA02 /* Base */,
+				B2F270CE23DC7ECF00FD6823 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B2F270C823DC7E2600FD6823 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2F270CC23DC7E9200FD6823 /* fr */,
+				B2F270CD23DC7EBC00FD6823 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -660,6 +740,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -720,6 +801,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

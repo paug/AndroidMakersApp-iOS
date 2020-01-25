@@ -12,7 +12,7 @@ import Combine
 class AgendaDayListViewModel: ObservableObject, Identifiable {
     struct Content {
         struct Talk: Hashable {
-            let id: String
+            let uid: String
             let title: String
             let duration: TimeInterval
             let speakers: [Speaker]
@@ -24,15 +24,15 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
             let date: Date
             var talks: [Talk]
         }
-        
+
         var sections: [Section]
     }
-    
+
     @Published var content: Content = Content(sections: [])
-    
+
     private var talkRepo: TalkRepository
     private var disposables = Set<AnyCancellable>()
-    
+
     init(talkRepo: TalkRepository = model.talkRepository) {
         self.talkRepo = talkRepo
         talkRepo.getTalks().sink { [weak self] in
@@ -57,7 +57,7 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
 
 extension AgendaDayListViewModel.Content.Talk {
     init(from talk: Talk) {
-        self.init(id: talk.id,
+        self.init(uid: talk.uid,
                   title: talk.title,
                   duration: talk.duration,
                   speakers: talk.speakers,

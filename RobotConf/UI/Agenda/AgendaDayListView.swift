@@ -29,9 +29,10 @@ struct AgendaDayListView: View {
         NavigationView {
             List {
                 ForEach(viewModel.content.sections, id: \.self) { section in
+                    // swiftlint:disable:next line_length
                     Section(header: Text("\(self.sectionDateFormatter.string(from: section.date)), \(self.sectionTimeFormatter.string(from: section.date))")) {
                         ForEach(section.talks, id: \.self) { talk in
-                            NavigationLink(destination: AgendaDetailView(talkId: talk.id)) {
+                            NavigationLink(destination: AgendaDetailView(talkId: talk.uid)) {
                                 AgendaCellView(talk: talk)
                             }
                         }

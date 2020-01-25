@@ -24,8 +24,8 @@ class VenuesProvider {
     let confVenuePublisher = PassthroughSubject<Venue, Error>()
     let partyVenuePublisher = PassthroughSubject<Venue, Error>()
 
-    init(db: Firestore) {
-        db.collection("venues").document("conference").getDocument { [weak self] (document, err) in
+    init(database: Firestore) {
+        database.collection("venues").document("conference").getDocument { [weak self] (document, err) in
             guard let self = self else { return }
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -33,13 +33,13 @@ class VenuesProvider {
             } else {
                 do {
                     self.confVenuePublisher.send(try document!.decoded())
-                } catch let e {
-                    self.confVenuePublisher.send(completion: .failure(e))
+                } catch let error {
+                    self.confVenuePublisher.send(completion: .failure(error))
                 }
             }
         }
 
-        db.collection("venues").document("afterparty").getDocument { [weak self] (document, err) in
+        database.collection("venues").document("afterparty").getDocument { [weak self] (document, err) in
             guard let self = self else { return }
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -47,8 +47,8 @@ class VenuesProvider {
             } else {
                 do {
                     self.partyVenuePublisher.send(try document!.decoded())
-                } catch let e {
-                    self.partyVenuePublisher.send(completion: .failure(e))
+                } catch let error {
+                    self.partyVenuePublisher.send(completion: .failure(error))
                 }
             }
         }

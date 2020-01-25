@@ -9,7 +9,7 @@
 import Foundation
 
 struct Talk {
-    let id: String
+    let uid: String
     let title: String
     let description: String
     let duration: TimeInterval

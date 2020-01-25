@@ -105,10 +105,14 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.10.0)
+  - SwiftGen (6.1.0)
+  - SwiftLint (0.38.2)
 
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Firestore
+  - SwiftGen
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -130,6 +134,8 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+    - SwiftGen
+    - SwiftLint
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
@@ -150,7 +156,9 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
+  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
+  SwiftLint: 8f5d2f903e1c9bcbc832fd16771e80a263ac6cbb
 
-PODFILE CHECKSUM: 248ade8a292424ecbf7b7ce9059fa4d8f55b88eb
+PODFILE CHECKSUM: 0476119d2e613c2673babdf00c94450a81eb3995
 
 COCOAPODS: 1.8.3

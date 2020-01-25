@@ -1,0 +1,5 @@
+strings:
+  inputs: ${PROJECT_DIR}/RobotConf/UI/Resources/en.lproj
+  outputs:
+    templateName: structured-swift4
+    output: Strings.swift

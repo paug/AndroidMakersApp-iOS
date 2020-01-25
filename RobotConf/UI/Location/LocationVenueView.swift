@@ -16,7 +16,7 @@ struct LocationVenueView: View {
     init(kind: LocationVenueViewModel.VenueKind) {
         viewModel = LocationVenueViewModel(kind: kind)
     }
-    
+
     var body: some View {
         containedView()
             .navigationBarTitle(Text(viewModel.content?.name ?? ""), displayMode: .inline)

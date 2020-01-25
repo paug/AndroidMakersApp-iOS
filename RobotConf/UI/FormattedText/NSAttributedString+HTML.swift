@@ -23,15 +23,15 @@ extension String {
         }
 
         let boldStyle = Style {
-            $0.font = UIFont.boldSystemFont(ofSize:  UIFont.systemFontSize)
+            $0.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
         }
 
         let italicStyle = Style {
-            $0.font = UIFont.italicSystemFont(ofSize:  UIFont.systemFontSize)
+            $0.font = UIFont.italicSystemFont(ofSize: UIFont.systemFontSize)
         }
 
         // A group container includes all the style defined.
-        return StyleXML(base: baseStyle, ["b" : boldStyle, "i": italicStyle])
+        return StyleXML(base: baseStyle, ["b": boldStyle, "i": italicStyle])
     }
 
     /// Get the string as an attributed string constructed by evaluating the string as an html string

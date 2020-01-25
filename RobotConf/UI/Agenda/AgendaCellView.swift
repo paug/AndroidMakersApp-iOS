@@ -25,6 +25,7 @@ struct AgendaCellView: View {
                     .foregroundColor(.blue)
                     .font(.headline)
                     .padding(.bottom, 4)
+                // swiftlint:disable:next line_length
                 Text("\(durationFormatter.string(from: talk.duration)!) / \(talk.room) / \(talk.language.flagDescription)")
                     .font(.footnote)
                 Text(talk.speakers.map { $0.name }.joined(separator: ", "))
@@ -41,7 +42,7 @@ struct AgendaCellView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AgendaCellView(talk: AgendaDayListViewModel.Content.Talk(
-                id: "1",
+                uid: "1",
                 title: "The infinite loop", duration: 25 * 60,
                 speakers: [Speaker(name: "Toto", photoUrl: "/images/people/florent_champigny.jpg",
                                    company: "", description: "")],

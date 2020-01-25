@@ -13,8 +13,6 @@ import CoreLocation
 
 /// Object that transforms and provides model data from server data
 class DataProvider {
-    let db = Firestore.firestore()
-
     var talksPublisher = PassthroughSubject<[Talk], Error>()
     var confVenuePublisher = PassthroughSubject<Venue, Error>()
     var partyVenuePublisher = PassthroughSubject<Venue, Error>()
@@ -29,12 +27,12 @@ class DataProvider {
     private var cancellables: Set<AnyCancellable> = []
 
     init() {
-        let db = Firestore.firestore()
-        sessionsProvider = SessionsProvider(db: db)
-        speakersProvider = SpeakersProvider(db: db)
-        slotsProvider = SlotsProvider(db: db)
-        venuesProvider = VenuesProvider(db: db)
-        partnersProvider = PartnersProvider(db: db)
+        let database = Firestore.firestore()
+        sessionsProvider = SessionsProvider(database: database)
+        speakersProvider = SpeakersProvider(database: database)
+        slotsProvider = SlotsProvider(database: database)
+        venuesProvider = VenuesProvider(database: database)
+        partnersProvider = PartnersProvider(database: database)
 
         computeTalks()
         computeVenues()
@@ -64,7 +62,7 @@ class DataProvider {
                 }
                 let duration = slot.endDate.timeIntervalSince(slot.startDate)
                 let talk = Talk(
-                    id: sessionId, title: session.title, description: session.description,
+                    uid: sessionId, title: session.title, description: session.description,
                     duration: duration, speakers: sessionSpeakers,
                     startTime: slot.startDate,
                     room: slot.roomId.capitalized, language: Language(from: session.language))
