@@ -52,6 +52,7 @@
 		B2F270D423DC816B00FD6823 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = B2F270D323DC816B00FD6823 /* swiftgen.yml */; };
 		B2F270D623DC82BB00FD6823 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F270D523DC82BB00FD6823 /* Strings.swift */; };
 		B2F270DB23DC869300FD6823 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B2F270DA23DC869300FD6823 /* .swiftlint.yml */; };
+		B2F270DE23DC944800FD6823 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F270DD23DC944800FD6823 /* Assets.swift */; };
 		B83891F623C17BE3B86C039E /* Pods_RobotConf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05750C6DD6C4C74AB517F79B /* Pods_RobotConf.framework */; };
 		BE30A17E3BB5248CE13B5D2F /* Pods_RobotConfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C298435E1FD022C97E2462 /* Pods_RobotConfTests.framework */; };
 		C15E9DEF1BB86AF3BE8D0307 /* Pods_RobotConf_RobotConfUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39EAD04C7867B0526F8A774 /* Pods_RobotConf_RobotConfUITests.framework */; };
@@ -129,6 +130,7 @@
 		B2F270D323DC816B00FD6823 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		B2F270D523DC82BB00FD6823 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		B2F270DA23DC869300FD6823 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		B2F270DD23DC944800FD6823 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		B39EAD04C7867B0526F8A774 /* Pods_RobotConf_RobotConfUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RobotConf_RobotConfUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6DD4AC8617114BC85DA24AA /* Pods-RobotConfTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RobotConfTests.release.xcconfig"; path = "Target Support Files/Pods-RobotConfTests/Pods-RobotConfTests.release.xcconfig"; sourceTree = "<group>"; };
 		F87BB7759059171EE46F89B4 /* Pods-RobotConf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RobotConf.debug.xcconfig"; path = "Target Support Files/Pods-RobotConf/Pods-RobotConf.debug.xcconfig"; sourceTree = "<group>"; };
@@ -248,8 +250,6 @@
 				B2CD2760234D08400016AA02 /* UI */,
 				B2CD2764234D11460016AA02 /* Model */,
 				B2F270D223DC816B00FD6823 /* SwiftGen */,
-				B2CD2734234D06560016AA02 /* Assets.xcassets */,
-				B2CD2739234D06560016AA02 /* LaunchScreen.storyboard */,
 				B2F270DA23DC869300FD6823 /* .swiftlint.yml */,
 				B2CD273C234D06560016AA02 /* Info.plist */,
 				B2CD42612357876C009FE6B0 /* GoogleService-Info.plist */,
@@ -344,6 +344,8 @@
 		B2F270BF23DC7B7200FD6823 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B2CD2739234D06560016AA02 /* LaunchScreen.storyboard */,
+				B2CD2734234D06560016AA02 /* Assets.xcassets */,
 				B2F270C823DC7E2600FD6823 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -352,6 +354,7 @@
 		B2F270D223DC816B00FD6823 /* SwiftGen */ = {
 			isa = PBXGroup;
 			children = (
+				B2F270DD23DC944800FD6823 /* Assets.swift */,
 				B2F270D523DC82BB00FD6823 /* Strings.swift */,
 				B2F270D323DC816B00FD6823 /* swiftgen.yml */,
 			);
@@ -655,6 +658,7 @@
 				B258187323C2354200E1B0F0 /* PartnersProvider.swift in Sources */,
 				B2CD2768234D12500016AA02 /* TalkRepository.swift in Sources */,
 				B2CD426923578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift in Sources */,
+				B2F270DE23DC944800FD6823 /* Assets.swift in Sources */,
 				B2CD276C234D13380016AA02 /* Language.swift in Sources */,
 				B26E853623D49187006C2C9E /* NSAttributedString+HTML.swift in Sources */,
 				B2CD276A234D12980016AA02 /* Speaker.swift in Sources */,

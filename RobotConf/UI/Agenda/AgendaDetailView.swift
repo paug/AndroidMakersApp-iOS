@@ -79,7 +79,7 @@ struct TagView: View {
             .font(.caption)
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
-            .background(Color("colors/tag"))
+            .background(Color(Asset.Colors.tag.color))
             .foregroundColor(.black)
             .clipShape(RoundedRectangle(cornerRadius: 35))
     }

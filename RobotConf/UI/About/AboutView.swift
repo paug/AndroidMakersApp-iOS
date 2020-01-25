@@ -50,7 +50,7 @@ struct AboutView: View {
                                     Image("twitter")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                    // TODO add .foregroundColor(Color.twitter)
+                                        .foregroundColor(Color(Asset.Colors.twitter.color))
                                 }
                                 Button(action: {
                                     self.viewModel.openYoutubePage()
@@ -92,7 +92,7 @@ struct AboutView: View {
                 .frame(minWidth: 0, maxWidth: .infinity)
             }
             .padding(0)
-            .background(Color("colors/tag"))
+            .background(Color(Asset.Colors.tag.color))
             .navigationBarTitle(Text(L10n.About.navTitle), displayMode: .inline)
         }
     }
