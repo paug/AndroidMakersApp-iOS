@@ -24,6 +24,7 @@ internal enum Asset {
 
     internal static let backgroundSecondary = ColorAsset(name: "colors/backgroundSecondary")
     internal static let cardBackground = ColorAsset(name: "colors/cardBackground")
+    internal static let currentTalk = ColorAsset(name: "colors/currentTalk")
     internal static let tag = ColorAsset(name: "colors/tag")
     internal static let twitter = ColorAsset(name: "colors/twitter")
   }

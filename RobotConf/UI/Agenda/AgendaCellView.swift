@@ -46,7 +46,7 @@ struct AgendaCellView_Previews: PreviewProvider {
                 title: "The infinite loop", duration: 25 * 60,
                 speakers: [Speaker(name: "Toto", photoUrl: "/images/people/florent_champigny.jpg",
                                    company: "", description: "")],
-                room: "Room 2.04", language: .french))
+                room: "Room 2.04", language: .french, isCurrent: false))
         }
         .previewLayout(.fixed(width: 300, height: 70))
     }

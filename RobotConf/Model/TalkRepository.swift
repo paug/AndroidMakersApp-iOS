@@ -11,7 +11,7 @@ import Combine
 
 /// Talk API
 class TalkRepository {
-    @Published private var talks = [Talk]()
+    @Published private(set) var talks = [Talk]()
 
     private var cancellables: Set<AnyCancellable> = []
 
