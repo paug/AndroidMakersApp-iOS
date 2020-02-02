@@ -35,7 +35,7 @@ struct AgendaDayListView: View {
                             NavigationLink(destination: AgendaDetailView(talkId: talk.uid)) {
                                 AgendaCellView(talk: talk)
                             }
-                            .listRowBackground(talk.isCurrent ?
+                            .listRowBackground(talk.state != .none ?
                                 Color(Asset.Colors.currentTalk.color) : Color(UIColor.systemBackground))
                         }
                     }

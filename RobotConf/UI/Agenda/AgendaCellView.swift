@@ -19,7 +19,7 @@ struct AgendaCellView: View {
     }()
 
     var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             VStack(alignment: .leading) {
                 Text(talk.title)
                     .foregroundColor(.blue)
@@ -33,6 +33,19 @@ struct AgendaCellView: View {
                 Spacer()
             }
             Spacer()
+            Text(talk.state.localizedDescription)
+                .font(.footnote)
+                .bold()
+        }
+    }
+}
+
+extension AgendaDayListViewModel.Content.Talk.State {
+    var localizedDescription: String {
+        switch self {
+        case .current:  return L10n.Agenda.Detail.State.current
+        case .isComing: return L10n.Agenda.Detail.State.isComing
+        case .none:     return ""
         }
     }
 }
@@ -46,9 +59,9 @@ struct AgendaCellView_Previews: PreviewProvider {
                 title: "The infinite loop", duration: 25 * 60,
                 speakers: [Speaker(name: "Toto", photoUrl: "/images/people/florent_champigny.jpg",
                                    company: "", description: "")],
-                room: "Room 2.04", language: .french, isCurrent: false))
+                room: "Room 2.04", language: .french, state: .current))
         }
-        .previewLayout(.fixed(width: 300, height: 70))
+        .previewLayout(.fixed(width: 300, height: 100))
     }
 }
 #endif
