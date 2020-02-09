@@ -5,6 +5,8 @@
 
 /* Info about the session. It is `date` at `start time` - `end time`, `room` */
 "agenda.detail.summary" = "%@ à %@ - %@, %@";
+"agenda.detail.state.isComing" = "Bientot";
+"agenda.detail.state.current" = "En cours";
 
 "locations.tabTitle" = "Lieux";
 "locations.navTitle" = "Lieux";

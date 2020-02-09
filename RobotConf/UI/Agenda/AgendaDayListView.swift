@@ -35,10 +35,16 @@ struct AgendaDayListView: View {
                             NavigationLink(destination: AgendaDetailView(talkId: talk.uid)) {
                                 AgendaCellView(talk: talk)
                             }
+                            .listRowBackground(talk.state != .none ?
+                                Color(Asset.Colors.currentTalk.color) : Color(UIColor.systemBackground))
                         }
                     }
                 }
             }.navigationBarTitle(Text(L10n.Agenda.navTitle), displayMode: .large)
+        }.onAppear {
+            self.viewModel.viewAppeared()
+        }.onDisappear {
+            self.viewModel.viewDisappeared()
         }
     }
 }
