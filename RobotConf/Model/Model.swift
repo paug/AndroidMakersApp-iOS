@@ -17,10 +17,13 @@ class Model {
     let talkRepository: TalkRepository
     let venueRepository: VenueRepository
     let partnerRepository: PartnerRepository
+    let feedbackRepository: FeedbackRepository
 
     init() {
         talkRepository = TalkRepository(dataProvider: dataProvider)
         venueRepository = VenueRepository(dataProvider: dataProvider)
         partnerRepository = PartnerRepository(dataProvider: dataProvider)
+
+        feedbackRepository = FeedbackRepository(dataProvider: dataProvider)
     }
 }

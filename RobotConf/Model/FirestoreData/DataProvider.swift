@@ -17,12 +17,15 @@ class DataProvider {
     var confVenuePublisher = PassthroughSubject<Venue, Error>()
     var partyVenuePublisher = PassthroughSubject<Venue, Error>()
     var partnerPublisher = PassthroughSubject<[PartnerCategory], Error>()
+    var votesPublisher = PassthroughSubject<[String: TalkVote], Error>()
 
     private let sessionsProvider: SessionsProvider
     private let speakersProvider: SpeakersProvider
     private let slotsProvider: SlotsProvider
     private let venuesProvider: VenuesProvider
     private let partnersProvider: PartnersProvider
+
+    private let openFeedbackSynchronizer = OpenFeedbackSynchronizer()
 
     private var cancellables: Set<AnyCancellable> = []
 
@@ -37,6 +40,21 @@ class DataProvider {
         computeTalks()
         computeVenues()
         computePartners()
+        computeVotes()
+    }
+
+    func vote(_ proposition: TalkVote.Proposition, for talkId: String) {
+        guard let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid }) else {
+            return
+        }
+        openFeedbackSynchronizer.vote(voteItm, for: talkId)
+    }
+
+    func removeVote(_ proposition: TalkVote.Proposition, for talkId: String) {
+        guard let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid }) else {
+            return
+        }
+        openFeedbackSynchronizer.deleteVote(voteItm, of: talkId)
     }
 
     private func computeTalks() {
@@ -106,6 +124,41 @@ class DataProvider {
                 self.partnerPublisher.send([PartnerCategory](from: partnerCategories))
         }.store(in: &cancellables)
     }
+
+    private func computeVotes() {
+        openFeedbackSynchronizer.configPublisher
+            .combineLatest(openFeedbackSynchronizer.sessionVotesPublisher,
+                           openFeedbackSynchronizer.userVotesPublisher)
+            .sink(receiveCompletion: { error in
+                print("Dja EEERRRROR \(error)")
+            }) { [unowned self] config, sessionVotes, userVotes in
+                var propositions = config.voteItems.sorted { $0.position ?? 0 > $1.position ?? 0 }
+                    .compactMap { TalkVote.Proposition(from: $0) }
+                if propositions.count % 2 == 0 { // TODO Djavan remove that
+                    propositions.removeLast()
+                }
+                let propositionDict = Dictionary(uniqueKeysWithValues: propositions.map { ($0.uid, $0) })
+                let colors = config.chipColors.map { UIColor(hexString: $0) }
+
+                var talkVotes = [String: TalkVote]()
+                sessionVotes.forEach { talkId, votes in
+                    var infos = [TalkVote.Proposition: TalkVote.PropositionInfo]()
+                    votes.forEach { vote in
+                        if let proposition = propositionDict[vote.key] {
+                            let identifier = OpenFeedbackSynchronizer.UserVoteIdentifier(
+                                talkId: talkId, voteItemId: vote.key)
+                            let hasVoted = userVotes[identifier]?.status == .active
+                            infos[proposition] = TalkVote.PropositionInfo(numberOfVotes: vote.value,
+                                                                          userHasVoted: hasVoted)
+                        }
+                    }
+                    let talkVote = TalkVote(talkId: talkId, colors: colors, propositions: propositions,
+                                            propositionInfos: infos)
+                    talkVotes[talkId] = talkVote
+                }
+                self.votesPublisher.send(talkVotes)
+        }.store(in: &cancellables)
+    }
 }
 
 extension Language {
@@ -163,5 +216,12 @@ private extension Partner {
         guard let logoUrl = URL(string: "https://androidmakers.fr\(logoUrlStr)"),
             let url = URL(string: partner.url) else { return nil }
         self.init(name: partner.name, logoUrl: logoUrl, url: url)
+    }
+}
+
+private extension TalkVote.Proposition {
+    init?(from voteItem: OpenFeedbackSynchronizer.Config.VoteItem) {
+        guard voteItem.type == "boolean" else { return nil }
+        self = TalkVote.Proposition(uid: voteItem.id, text: voteItem.name)
     }
 }

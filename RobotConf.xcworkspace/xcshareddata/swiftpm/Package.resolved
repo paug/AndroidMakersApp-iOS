@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "CodableFirebase",
+        "repositoryURL": "https://github.com/alickbass/CodableFirebase",
+        "state": {
+          "branch": "master",
+          "revision": "a3fadfdc9f862fedeb12ac5d0f9218fd84566a95",
+          "version": null
+        }
+      },
+      {
         "package": "SwiftRichString",
         "repositoryURL": "https://github.com/malcommac/SwiftRichString",
         "state": {
           "branch": null,
-          "revision": "f81aa4c0e21b234261d1a9cf84e258c46ba0f3c9",
-          "version": "3.6.0"
+          "revision": "d2fd671674a86cd53afdaf2485f4575ce92e4da6",
+          "version": "3.7.1"
         }
       },
       {
@@ -15,8 +24,8 @@
         "repositoryURL": "https://github.com/dmytro-anokhin/url-image.git",
         "state": {
           "branch": null,
-          "revision": "f3f116f33845eec99431702819afa267da1dd9cc",
-          "version": "0.9.7"
+          "revision": "dc913391b6fc0c9de283ef111eb90d0e9abf4c36",
+          "version": "0.9.10"
         }
       }
     ]
