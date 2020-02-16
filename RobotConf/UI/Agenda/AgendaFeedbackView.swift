@@ -55,7 +55,6 @@ struct AgendaFeedbackChoicePairView: View {
     let vote: TalkVote
     let index: Int
     var isAlone: Bool {
-        print("\(vote.propositions.count) <= \(index+1) = \(vote.propositions.count <= index+1)")
         return vote.propositions.count <= index+1
     }
 

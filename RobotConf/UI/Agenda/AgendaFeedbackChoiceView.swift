@@ -29,20 +29,21 @@ struct AgendaFeedbackChoiceView: View {
 
     var body: some View {
         ZStack {
-            ForEach(0..<viewModel.content.votes.count) { index in
+            ForEach(0..<viewModel.content.votePositions.count, id: \.self) { index in
                 Circle()
                     .foregroundColor(self.color(for: index))
-                    .position(self.viewModel.content.votes[index].point(
+                    .position(self.viewModel.content.votePositions[index].point(
                         forWidth: self.width, height: self.height))
                     .frame(width: 20, height: 20)
             }
             Text(self.viewModel.content.title)
                 .lineLimit(3)
-
+            TappableView { location in
+                self.viewModel.voteOrUnvote(triggeredFrom: AgendaFeedbackChoiceViewModel.Content.RatioPosition(
+                    horizontalRatio: Double(location.x / self.width) * 2 - 1,
+                    verticalRatio: Double(location.y / self.height) * 2 - 1))
+            }
         }
-        .gesture(TapGesture(count: 1).onEnded {
-            self.viewModel.voteOrUnvote()
-        })
         .frame(width: width, height: height, alignment: .center)
         .background(viewModel.content.userHasVoted ?
             Color(Asset.Colors.feedbackSelectedColor.color) : Color(Asset.Colors.feedbackColor.color))
@@ -66,6 +67,38 @@ extension AgendaFeedbackChoiceViewModel.Content.RatioPosition {
         return CGPoint(x: (CGFloat(horizontalRatio) * width / 2) + 10,
                        y: (CGFloat(verticalRatio) * height / 2) + 10)
     }
+}
+
+struct TappableView: UIViewRepresentable {
+    var tappedCallback: ((CGPoint) -> Void)
+
+    func makeUIView(context: UIViewRepresentableContext<TappableView>) -> UIView {
+        let view = UIView(frame: .zero)
+        let gesture = UITapGestureRecognizer(target: context.coordinator,
+                                             action: #selector(Coordinator.tapped))
+        view.addGestureRecognizer(gesture)
+        return view
+    }
+
+    class Coordinator: NSObject {
+        var tappedCallback: ((CGPoint) -> Void)
+        init(tappedCallback: @escaping ((CGPoint) -> Void)) {
+            self.tappedCallback = tappedCallback
+        }
+        @objc func tapped(gesture: UITapGestureRecognizer) {
+            let point = gesture.location(in: gesture.view)
+            self.tappedCallback(point)
+        }
+    }
+
+    func makeCoordinator() -> TappableView.Coordinator {
+        return Coordinator(tappedCallback: self.tappedCallback)
+    }
+
+    func updateUIView(_ uiView: UIView,
+                      context: UIViewRepresentableContext<TappableView>) {
+    }
+
 }
 
 struct AgendaFeedbackChoiceView_Previews: PreviewProvider {
