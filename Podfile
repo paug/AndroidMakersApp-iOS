@@ -8,6 +8,7 @@ target 'RobotConf' do
   # Pods for RobotConf
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
 
   pod 'SwiftGen'
   pod 'SwiftLint'

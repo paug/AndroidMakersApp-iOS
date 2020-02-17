@@ -5,3 +5,7 @@ disabled_rules:
   - todo
   # It is sometimes usefull to have nested types
   - nesting
+
+identifier_name:
+  excluded: # excluded via string array
+  - id

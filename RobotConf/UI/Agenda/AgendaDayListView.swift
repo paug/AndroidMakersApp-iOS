@@ -41,10 +41,11 @@ struct AgendaDayListView: View {
                     }
                 }
             }.navigationBarTitle(Text(L10n.Agenda.navTitle), displayMode: .large)
-        }.onAppear {
-            self.viewModel.viewAppeared()
-        }.onDisappear {
-            self.viewModel.viewDisappeared()
+            .onAppear {
+                self.viewModel.viewAppeared()
+            }.onDisappear {
+                self.viewModel.viewDisappeared()
+            }
         }
     }
 }

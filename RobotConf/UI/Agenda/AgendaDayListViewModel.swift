@@ -87,23 +87,13 @@ extension AgendaDayListViewModel.Content.Talk {
 }
 
 private extension AgendaDayListViewModel.Content.Talk.State {
-    // In debug, consider the launch of the app as the 23 avril 2019 11h59 16s GMT+2
-    #if DEBUG
-    private static let fakeDate = Date(timeIntervalSince1970: 1556013588) // 23 avril 2019 11h59 16s GMT+2
-    private static let realDate = Date()
-    #endif
-
     // Time before a session to be considered as coming
     private static let timeGapBeforeToCome = -5 * 60.0
     // Time after a session to be still considered as current
     private static let timeGapAfterCurrent = 2.5 * 60.0
 
     init(from talk: Talk) {
-        #if DEBUG
-        let currentDate = Self.fakeDate.addingTimeInterval(Date().timeIntervalSince(Self.realDate))
-        #else
-        let currentDate = Date()
-        #endif
+        let currentDate = TimeProvider.instance.currentTime
 
         let startToNow = currentDate.timeIntervalSince(talk.startTime)
         switch startToNow {

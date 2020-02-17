@@ -11,6 +11,7 @@ import Combine
 
 class AgendaDetailViewModel: ObservableObject, Identifiable {
     struct Content {
+        let talkId: String
         let title: String
         let startDate: Date
         let endDate: Date
@@ -42,7 +43,8 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
 
 private extension AgendaDetailViewModel.Content {
     init(from talk: Talk) {
-        self.init(title: talk.title,
+        self.init(talkId: talk.uid,
+                  title: talk.title,
                   startDate: talk.startTime,
                   endDate: talk.startTime.addingTimeInterval(talk.duration),
                   description: talk.description,
