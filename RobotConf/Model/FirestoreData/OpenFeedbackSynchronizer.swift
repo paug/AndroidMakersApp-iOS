@@ -110,7 +110,7 @@ class OpenFeedbackSynchronizer {
     }
 
     private func getUserFeedbacks(user: User) {
-        database.collection("projects/SiXwNLJ0Nrbj5UXvyFpJ/userVotes").whereField("userId", isEqualTo: user.uid)
+        database.collection("projects/\(Self.projectId)/userVotes").whereField("userId", isEqualTo: user.uid)
             .addSnapshotListener { [weak self] (querySnapshot, err) in
                 guard let self = self else { return }
                 if let err = err {
@@ -185,7 +185,7 @@ class OpenFeedbackSynchronizer {
         }
         let uid = database.collection("projects/\(Self.projectId)/userVotes").document().documentID
         let date = Date()
-        database.collection("projects/SiXwNLJ0Nrbj5UXvyFpJ/userVotes").document(uid).setData([
+        database.collection("projects/\(Self.projectId)/userVotes").document(uid).setData([
             "createdAt": date,
             "id": uid,
             "projectId": Self.projectId,

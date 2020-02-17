@@ -70,11 +70,9 @@ class AgendaFeedbackChoiceViewModel: ObservableObject, Identifiable {
 
     func voteOrUnvote(triggeredFrom ratioPosition: Content.RatioPosition) {
         if content.userHasVoted {
-            print("Unvote called")
             feedbackRepo.removeVote(proposition, for: talkFeedback.talkId)
             content.userVote = nil
         } else {
-            print("Vote called")
             feedbackRepo.vote(proposition, for: talkFeedback.talkId)
             content.userVote = ratioPosition
         }

@@ -132,11 +132,8 @@ class DataProvider {
             .sink(receiveCompletion: { error in
                 print("Dja EEERRRROR \(error)")
             }) { [unowned self] config, sessionVotes, userVotes, slots in
-                var propositions = config.voteItems.sorted { $0.position ?? 0 > $1.position ?? 0 }
+                let propositions = config.voteItems.sorted { $0.position ?? 0 > $1.position ?? 0 }
                     .compactMap { TalkFeedback.Proposition(from: $0) }
-                if propositions.count % 2 == 0 { // TODO Djavan remove that
-                    propositions.removeLast()
-                }
                 let propositionDict = Dictionary(uniqueKeysWithValues: propositions.map { ($0.uid, $0) })
                 let colors = config.chipColors.map { UIColor(hexString: $0) }
 
@@ -144,7 +141,6 @@ class DataProvider {
                 slots.forEach { slot in
                     let talkId = slot.sessionId
                     let votes = sessionVotes[talkId] ?? [:]
-                //sessionVotes.forEach { talkId, votes in
                     var infos = [TalkFeedback.Proposition: TalkFeedback.PropositionInfo]()
                     votes.forEach { vote in
                         if let proposition = propositionDict[vote.key] {
