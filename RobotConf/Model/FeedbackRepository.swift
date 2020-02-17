@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 class FeedbackRepository {
-    @Published private(set) var feedbacks = [String: TalkVote]()
+    @Published private(set) var feedbacks = [String: TalkFeedback]()
 
     private var cancellables: Set<AnyCancellable> = []
     private let dataProvider: DataProvider
@@ -25,15 +25,15 @@ class FeedbackRepository {
         .store(in: &cancellables)
     }
 
-    func vote(_ proposition: TalkVote.Proposition, for talkId: String) {
+    func vote(_ proposition: TalkFeedback.Proposition, for talkId: String) {
         dataProvider.vote(proposition, for: talkId)
     }
 
-    func removeVote(_ proposition: TalkVote.Proposition, for talkId: String) {
+    func removeVote(_ proposition: TalkFeedback.Proposition, for talkId: String) {
         dataProvider.removeVote(proposition, for: talkId)
     }
 
-    func getFeedbacks() -> AnyPublisher<[String: TalkVote], Never> {
+    func getFeedbacks() -> AnyPublisher<[String: TalkFeedback], Never> {
         return $feedbacks.eraseToAnyPublisher()
     }
 }

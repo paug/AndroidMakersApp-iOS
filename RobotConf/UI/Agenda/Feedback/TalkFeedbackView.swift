@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-struct AgendaFeedbackView: View {
-    @ObservedObject private var viewModel: AgendaFeedbackViewModel
+struct TalkFeedbackView: View {
+    @ObservedObject private var viewModel: TalkFeedbackViewModel
 
     init(talkId: String) {
-        viewModel = AgendaFeedbackViewModel(talkId: talkId)
+        viewModel = TalkFeedbackViewModel(talkId: talkId)
     }
 
     var body: some View {
@@ -33,7 +33,7 @@ struct AgendaFeedbackView: View {
                 VStack {
                     ForEach(0..<rowsCount(feedback: feedback)) { index in
                         HStack {
-                            AgendaFeedbackChoicePairView(vote: feedback, index: index*2)
+                            AgendaFeedbackChoicePairView(feedback: feedback, index: index*2)
                         }
                     }
                     Text("Powered by Openfeedback")
@@ -45,24 +45,24 @@ struct AgendaFeedbackView: View {
         }
     }
 
-    private func rowsCount(feedback: TalkVote) -> Int {
+    private func rowsCount(feedback: TalkFeedback) -> Int {
         return Int(ceil(Double(feedback.propositions.count) / 2))
     }
 }
 
 struct AgendaFeedbackChoicePairView: View {
 
-    let vote: TalkVote
+    let feedback: TalkFeedback
     let index: Int
     var isAlone: Bool {
-        return vote.propositions.count <= index+1
+        return feedback.propositions.count <= index+1
     }
 
     var body: some View {
         HStack {
-            AgendaFeedbackChoiceView(vote: vote, index: index, isAlone: isAlone)
+            AgendaFeedbackChoiceView(talkFeedback: feedback, index: index, isAlone: isAlone)
             if !isAlone {
-                AgendaFeedbackChoiceView(vote: vote, index: index+1, isAlone: false)
+                AgendaFeedbackChoiceView(talkFeedback: feedback, index: index+1, isAlone: false)
             } else {
                 Spacer()
             }
@@ -70,8 +70,8 @@ struct AgendaFeedbackChoicePairView: View {
     }
 }
 
-struct AgendaFeedbackView_Previews: PreviewProvider {
+struct TalkFeedbackView_Previews: PreviewProvider {
     static var previews: some View {
-        AgendaFeedbackView(talkId: "XEB-2115")
+        TalkFeedbackView(talkId: "XEB-2115")
     }
 }

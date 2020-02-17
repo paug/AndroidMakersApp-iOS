@@ -10,6 +10,7 @@
 		B207015E2353324400F8E2AF /* AgendaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B207015D2353324400F8E2AF /* AgendaDetailView.swift */; };
 		B20701602353372800F8E2AF /* AgendaDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B207015F2353372800F8E2AF /* AgendaDetailViewModel.swift */; };
 		B2229A0123A39D6F00F50750 /* SlotsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2229A0023A39D6F00F50750 /* SlotsProvider.swift */; };
+		B225422123FB27FE00C5A83E /* TimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B225422023FB27FE00C5A83E /* TimeProvider.swift */; };
 		B258187323C2354200E1B0F0 /* PartnersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187223C2354200E1B0F0 /* PartnersProvider.swift */; };
 		B258187523C2374D00E1B0F0 /* PartnerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187423C2374D00E1B0F0 /* PartnerRepository.swift */; };
 		B258187723C2379600E1B0F0 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258187623C2379600E1B0F0 /* Partner.swift */; };
@@ -17,7 +18,7 @@
 		B265B04223F02D3800EA363D /* OpenFeedbackSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265B04123F02D3800EA363D /* OpenFeedbackSynchronizer.swift */; };
 		B265B04423F05CFE00EA363D /* Timestamp+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265B04323F05CFE00EA363D /* Timestamp+Codable.swift */; };
 		B265B04723F0691400EA363D /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = B265B04623F0691400EA363D /* CodableFirebase */; };
-		B265B04923F1ECA200EA363D /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265B04823F1ECA200EA363D /* Vote.swift */; };
+		B265B04923F1ECA200EA363D /* TalkFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265B04823F1ECA200EA363D /* TalkFeedback.swift */; };
 		B265B04B23F32A8700EA363D /* AgendaFeedbackChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265B04A23F32A8700EA363D /* AgendaFeedbackChoiceView.swift */; };
 		B265B04D23F47E1D00EA363D /* AgendaFeedbackChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265B04C23F47E1C00EA363D /* AgendaFeedbackChoiceViewModel.swift */; };
 		B26E853623D49187006C2C9E /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */; };
@@ -55,8 +56,8 @@
 		B2CD426B23579A36009FE6B0 /* SpeakersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD426A23579A36009FE6B0 /* SpeakersProvider.swift */; };
 		B2CD426E2362281A009FE6B0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = B2CD426D2362281A009FE6B0 /* URLImage */; };
 		B2EF3CF523E89FC90078019F /* FeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF3CF423E89FC90078019F /* FeedbackRepository.swift */; };
-		B2EF3CF923E8A4C30078019F /* AgendaFeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF3CF823E8A4C30078019F /* AgendaFeedbackViewModel.swift */; };
-		B2EF3CFB23E8A8020078019F /* AgendaFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF3CFA23E8A8020078019F /* AgendaFeedbackView.swift */; };
+		B2EF3CF923E8A4C30078019F /* TalkFeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF3CF823E8A4C30078019F /* TalkFeedbackViewModel.swift */; };
+		B2EF3CFB23E8A8020078019F /* TalkFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF3CFA23E8A8020078019F /* TalkFeedbackView.swift */; };
 		B2F270CA23DC7E2600FD6823 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2F270C823DC7E2600FD6823 /* Localizable.strings */; };
 		B2F270D423DC816B00FD6823 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = B2F270D323DC816B00FD6823 /* swiftgen.yml */; };
 		B2F270D623DC82BB00FD6823 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F270D523DC82BB00FD6823 /* Strings.swift */; };
@@ -92,13 +93,14 @@
 		B207015D2353324400F8E2AF /* AgendaDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaDetailView.swift; sourceTree = "<group>"; };
 		B207015F2353372800F8E2AF /* AgendaDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaDetailViewModel.swift; sourceTree = "<group>"; };
 		B2229A0023A39D6F00F50750 /* SlotsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotsProvider.swift; sourceTree = "<group>"; };
+		B225422023FB27FE00C5A83E /* TimeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeProvider.swift; sourceTree = "<group>"; };
 		B258187223C2354200E1B0F0 /* PartnersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersProvider.swift; sourceTree = "<group>"; };
 		B258187423C2374D00E1B0F0 /* PartnerRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerRepository.swift; sourceTree = "<group>"; };
 		B258187623C2379600E1B0F0 /* Partner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		B258187823C23E7800E1B0F0 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		B265B04123F02D3800EA363D /* OpenFeedbackSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFeedbackSynchronizer.swift; sourceTree = "<group>"; };
 		B265B04323F05CFE00EA363D /* Timestamp+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timestamp+Codable.swift"; sourceTree = "<group>"; };
-		B265B04823F1ECA200EA363D /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
+		B265B04823F1ECA200EA363D /* TalkFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkFeedback.swift; sourceTree = "<group>"; };
 		B265B04A23F32A8700EA363D /* AgendaFeedbackChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFeedbackChoiceView.swift; sourceTree = "<group>"; };
 		B265B04C23F47E1C00EA363D /* AgendaFeedbackChoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFeedbackChoiceViewModel.swift; sourceTree = "<group>"; };
 		B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
@@ -139,8 +141,8 @@
 		B2CD426823578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentSnapshot+Decodable.swift"; sourceTree = "<group>"; };
 		B2CD426A23579A36009FE6B0 /* SpeakersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakersProvider.swift; sourceTree = "<group>"; };
 		B2EF3CF423E89FC90078019F /* FeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRepository.swift; sourceTree = "<group>"; };
-		B2EF3CF823E8A4C30078019F /* AgendaFeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFeedbackViewModel.swift; sourceTree = "<group>"; };
-		B2EF3CFA23E8A8020078019F /* AgendaFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFeedbackView.swift; sourceTree = "<group>"; };
+		B2EF3CF823E8A4C30078019F /* TalkFeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkFeedbackViewModel.swift; sourceTree = "<group>"; };
+		B2EF3CFA23E8A8020078019F /* TalkFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkFeedbackView.swift; sourceTree = "<group>"; };
 		B2F270CC23DC7E9200FD6823 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2F270CD23DC7EBC00FD6823 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2F270CE23DC7ECF00FD6823 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -207,6 +209,25 @@
 				D6DD4AC8617114BC85DA24AA /* Pods-RobotConfTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B225421E23FB22C200C5A83E /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				B2EF3CF823E8A4C30078019F /* TalkFeedbackViewModel.swift */,
+				B2EF3CFA23E8A8020078019F /* TalkFeedbackView.swift */,
+				B265B04A23F32A8700EA363D /* AgendaFeedbackChoiceView.swift */,
+				B265B04C23F47E1C00EA363D /* AgendaFeedbackChoiceViewModel.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		B225421F23FB27ED00C5A83E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B225422023FB27FE00C5A83E /* TimeProvider.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		B26E853423D4913C006C2C9E /* FormattedText */ = {
@@ -310,6 +331,7 @@
 				B2BC0B7C23B90B3500C85F69 /* Location */,
 				B2BC0B8923BB66D000C85F69 /* About */,
 				B26E853423D4913C006C2C9E /* FormattedText */,
+				B225421F23FB27ED00C5A83E /* Utils */,
 				B2A0669223521AC00062383A /* Language+UI.swift */,
 				B2F270BF23DC7B7200FD6823 /* Resources */,
 			);
@@ -324,10 +346,7 @@
 				B207015F2353372800F8E2AF /* AgendaDetailViewModel.swift */,
 				B2CD2762234D08820016AA02 /* AgendaCellView.swift */,
 				B207015D2353324400F8E2AF /* AgendaDetailView.swift */,
-				B2EF3CF823E8A4C30078019F /* AgendaFeedbackViewModel.swift */,
-				B2EF3CFA23E8A8020078019F /* AgendaFeedbackView.swift */,
-				B265B04A23F32A8700EA363D /* AgendaFeedbackChoiceView.swift */,
-				B265B04C23F47E1C00EA363D /* AgendaFeedbackChoiceViewModel.swift */,
+				B225421E23FB22C200C5A83E /* Feedback */,
 			);
 			path = Agenda;
 			sourceTree = "<group>";
@@ -346,7 +365,7 @@
 				B2BC0B7A23B905B800C85F69 /* Venue.swift */,
 				B258187623C2379600E1B0F0 /* Partner.swift */,
 				B2CD276B234D13380016AA02 /* Language.swift */,
-				B265B04823F1ECA200EA363D /* Vote.swift */,
+				B265B04823F1ECA200EA363D /* TalkFeedback.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -678,7 +697,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B265B04923F1ECA200EA363D /* Vote.swift in Sources */,
+				B265B04923F1ECA200EA363D /* TalkFeedback.swift in Sources */,
 				B2CD272F234D06530016AA02 /* AppDelegate.swift in Sources */,
 				B26E853823D49242006C2C9E /* AttributedTextView.swift in Sources */,
 				B2BC0B7B23B905B800C85F69 /* Venue.swift in Sources */,
@@ -697,10 +716,11 @@
 				B2BC0B7923B902BF00C85F69 /* VenuesProvider.swift in Sources */,
 				B2229A0123A39D6F00F50750 /* SlotsProvider.swift in Sources */,
 				B2BC0B8023B90DE100C85F69 /* LocationVenueView.swift in Sources */,
-				B2EF3CFB23E8A8020078019F /* AgendaFeedbackView.swift in Sources */,
+				B2EF3CFB23E8A8020078019F /* TalkFeedbackView.swift in Sources */,
 				B258187523C2374D00E1B0F0 /* PartnerRepository.swift in Sources */,
 				B258187923C23E7800E1B0F0 /* AboutViewModel.swift in Sources */,
 				B2A0669323521AC00062383A /* Language+UI.swift in Sources */,
+				B225422123FB27FE00C5A83E /* TimeProvider.swift in Sources */,
 				B2CD426B23579A36009FE6B0 /* SpeakersProvider.swift in Sources */,
 				B2CD276E234D18450016AA02 /* AgendaDayListViewModel.swift in Sources */,
 				B2EF3CF523E89FC90078019F /* FeedbackRepository.swift in Sources */,
@@ -710,7 +730,7 @@
 				B265B04423F05CFE00EA363D /* Timestamp+Codable.swift in Sources */,
 				B2BC0B8623B91E0800C85F69 /* VenueRepository.swift in Sources */,
 				B265B04B23F32A8700EA363D /* AgendaFeedbackChoiceView.swift in Sources */,
-				B2EF3CF923E8A4C30078019F /* AgendaFeedbackViewModel.swift in Sources */,
+				B2EF3CF923E8A4C30078019F /* TalkFeedbackViewModel.swift in Sources */,
 				B2CD2733234D06530016AA02 /* ContentView.swift in Sources */,
 				B2CD2763234D08820016AA02 /* AgendaCellView.swift in Sources */,
 				B2CD4264235789B5009FE6B0 /* DataProvider.swift in Sources */,

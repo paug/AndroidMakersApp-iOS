@@ -9,11 +9,11 @@
 import Foundation
 import Combine
 
-class AgendaFeedbackViewModel: ObservableObject, Identifiable {
+class TalkFeedbackViewModel: ObservableObject, Identifiable {
     struct Content {
         enum FeedbackAvailaibility {
             case notAvailable
-            case available(TalkVote)
+            case available(TalkFeedback)
         }
         let title: String
         let availability: FeedbackAvailaibility
@@ -37,7 +37,7 @@ class AgendaFeedbackViewModel: ObservableObject, Identifiable {
                     return
                 }
 
-                if talk.startTime >= Date() {
+                if talk.startTime >= TimeProvider.instance.currentTime {
                     self?.content = Content(title: talk.title, availability: .notAvailable)
                 } else {
                     self?.content = Content(title: talk.title, availability: .available(feedback))

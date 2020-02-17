@@ -39,17 +39,17 @@ class AgendaFeedbackChoiceViewModel: ObservableObject, Identifiable {
     @Published var content: Content
 
     let feedbackRepo: FeedbackRepository
-    private let talkVote: TalkVote
+    private let talkFeedback: TalkFeedback
     private let index: Int
 
-    private let proposition: TalkVote.Proposition
+    private let proposition: TalkFeedback.Proposition
 
-    init(vote: TalkVote, index: Int, feedbackRepo: FeedbackRepository = model.feedbackRepository) {
-        self.talkVote = vote
+    init(talkFeedback: TalkFeedback, index: Int, feedbackRepo: FeedbackRepository = model.feedbackRepository) {
+        self.talkFeedback = talkFeedback
         self.index = index
         self.feedbackRepo = feedbackRepo
-        self.proposition = vote.propositions[index]
-        let propositionInfo = vote.propositionInfos[proposition]
+        self.proposition = talkFeedback.propositions[index]
+        let propositionInfo = talkFeedback.propositionInfos[proposition]
         let numberOfVotes: Int
         let userVote: Content.RatioPosition?
         if let propositionInfo = propositionInfo {
@@ -65,22 +65,22 @@ class AgendaFeedbackChoiceViewModel: ObservableObject, Identifiable {
         }
 
         content = Content(title: proposition.text, votes: votes,
-                          userVote: userVote, availableColors: vote.colors)
+                          userVote: userVote, availableColors: talkFeedback.colors)
     }
 
     func voteOrUnvote(triggeredFrom ratioPosition: Content.RatioPosition) {
         if content.userHasVoted {
             print("Unvote called")
-            feedbackRepo.removeVote(proposition, for: talkVote.talkId)
+            feedbackRepo.removeVote(proposition, for: talkFeedback.talkId)
             content.userVote = nil
         } else {
             print("Vote called")
-            feedbackRepo.vote(proposition, for: talkVote.talkId)
+            feedbackRepo.vote(proposition, for: talkFeedback.talkId)
             content.userVote = ratioPosition
         }
     }
 
-    private func computeVotes(from propositionInfo: TalkVote.PropositionInfo?) -> [Content.RatioPosition] {
+    private func computeVotes(from propositionInfo: TalkFeedback.PropositionInfo?) -> [Content.RatioPosition] {
         guard let propositionInfo = propositionInfo else { return [] }
         let numberOfVotes = propositionInfo.numberOfVotes - (propositionInfo.userHasVoted ? 1 : 0)
         return (0..<numberOfVotes).map { _ in

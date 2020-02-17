@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct TalkVote {
+struct TalkFeedback {
     struct Proposition: Hashable {
         let uid: String
         let text: String

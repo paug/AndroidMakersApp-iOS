@@ -17,14 +17,13 @@ class DataProvider {
     var confVenuePublisher = PassthroughSubject<Venue, Error>()
     var partyVenuePublisher = PassthroughSubject<Venue, Error>()
     var partnerPublisher = PassthroughSubject<[PartnerCategory], Error>()
-    var votesPublisher = PassthroughSubject<[String: TalkVote], Error>()
+    var votesPublisher = PassthroughSubject<[String: TalkFeedback], Error>()
 
     private let sessionsProvider: SessionsProvider
     private let speakersProvider: SpeakersProvider
     private let slotsProvider: SlotsProvider
     private let venuesProvider: VenuesProvider
     private let partnersProvider: PartnersProvider
-
     private let openFeedbackSynchronizer = OpenFeedbackSynchronizer()
 
     private var cancellables: Set<AnyCancellable> = []
@@ -43,14 +42,14 @@ class DataProvider {
         computeVotes()
     }
 
-    func vote(_ proposition: TalkVote.Proposition, for talkId: String) {
+    func vote(_ proposition: TalkFeedback.Proposition, for talkId: String) {
         guard let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid }) else {
             return
         }
         openFeedbackSynchronizer.vote(voteItm, for: talkId)
     }
 
-    func removeVote(_ proposition: TalkVote.Proposition, for talkId: String) {
+    func removeVote(_ proposition: TalkFeedback.Proposition, for talkId: String) {
         guard let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid }) else {
             return
         }
@@ -128,31 +127,35 @@ class DataProvider {
     private func computeVotes() {
         openFeedbackSynchronizer.configPublisher
             .combineLatest(openFeedbackSynchronizer.sessionVotesPublisher,
-                           openFeedbackSynchronizer.userVotesPublisher)
+                           openFeedbackSynchronizer.userVotesPublisher,
+                           slotsProvider.slotsPublisher)
             .sink(receiveCompletion: { error in
                 print("Dja EEERRRROR \(error)")
-            }) { [unowned self] config, sessionVotes, userVotes in
+            }) { [unowned self] config, sessionVotes, userVotes, slots in
                 var propositions = config.voteItems.sorted { $0.position ?? 0 > $1.position ?? 0 }
-                    .compactMap { TalkVote.Proposition(from: $0) }
+                    .compactMap { TalkFeedback.Proposition(from: $0) }
                 if propositions.count % 2 == 0 { // TODO Djavan remove that
                     propositions.removeLast()
                 }
                 let propositionDict = Dictionary(uniqueKeysWithValues: propositions.map { ($0.uid, $0) })
                 let colors = config.chipColors.map { UIColor(hexString: $0) }
 
-                var talkVotes = [String: TalkVote]()
-                sessionVotes.forEach { talkId, votes in
-                    var infos = [TalkVote.Proposition: TalkVote.PropositionInfo]()
+                var talkVotes = [String: TalkFeedback]()
+                slots.forEach { slot in
+                    let talkId = slot.sessionId
+                    let votes = sessionVotes[talkId] ?? [:]
+                //sessionVotes.forEach { talkId, votes in
+                    var infos = [TalkFeedback.Proposition: TalkFeedback.PropositionInfo]()
                     votes.forEach { vote in
                         if let proposition = propositionDict[vote.key] {
                             let identifier = OpenFeedbackSynchronizer.UserVoteIdentifier(
                                 talkId: talkId, voteItemId: vote.key)
                             let hasVoted = userVotes[identifier]?.status == .active
-                            infos[proposition] = TalkVote.PropositionInfo(numberOfVotes: vote.value,
+                            infos[proposition] = TalkFeedback.PropositionInfo(numberOfVotes: vote.value,
                                                                           userHasVoted: hasVoted)
                         }
                     }
-                    let talkVote = TalkVote(talkId: talkId, colors: colors, propositions: propositions,
+                    let talkVote = TalkFeedback(talkId: talkId, colors: colors, propositions: propositions,
                                             propositionInfos: infos)
                     talkVotes[talkId] = talkVote
                 }
@@ -219,9 +222,9 @@ private extension Partner {
     }
 }
 
-private extension TalkVote.Proposition {
+private extension TalkFeedback.Proposition {
     init?(from voteItem: OpenFeedbackSynchronizer.Config.VoteItem) {
         guard voteItem.type == "boolean" else { return nil }
-        self = TalkVote.Proposition(uid: voteItem.id, text: voteItem.name)
+        self = TalkFeedback.Proposition(uid: voteItem.id, text: voteItem.name)
     }
 }

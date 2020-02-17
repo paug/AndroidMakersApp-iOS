@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// A single choice of the talk feedback
 struct AgendaFeedbackChoiceView: View {
 
     @ObservedObject private var viewModel: AgendaFeedbackChoiceViewModel
@@ -22,9 +23,9 @@ struct AgendaFeedbackChoiceView: View {
         150
     }
 
-    init(vote: TalkVote, index: Int, isAlone: Bool) {
+    init(talkFeedback: TalkFeedback, index: Int, isAlone: Bool) {
         self.isAlone = isAlone
-        viewModel = AgendaFeedbackChoiceViewModel(vote: vote, index: index)
+        viewModel = AgendaFeedbackChoiceViewModel(talkFeedback: talkFeedback, index: index)
     }
 
     var body: some View {
@@ -103,12 +104,12 @@ struct TappableView: UIViewRepresentable {
 
 struct AgendaFeedbackChoiceView_Previews: PreviewProvider {
     static var previews: some View {
-        let proposition = TalkVote.Proposition(uid: "1", text: "A choice")
+        let proposition = TalkFeedback.Proposition(uid: "1", text: "A choice")
         return AgendaFeedbackChoiceView(
-            vote: TalkVote(
+            talkFeedback: TalkFeedback(
                 talkId: "id", colors: [.blue, .red],
                 propositions: [proposition],
-                propositionInfos: [proposition: TalkVote.PropositionInfo(numberOfVotes: 10, userHasVoted: true)]),
+                propositionInfos: [proposition: TalkFeedback.PropositionInfo(numberOfVotes: 10, userHasVoted: true)]),
             index: 0, isAlone: false)
     }
 }
