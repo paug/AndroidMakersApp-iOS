@@ -43,16 +43,16 @@ class DataProvider {
     }
 
     func vote(_ proposition: TalkFeedback.Proposition, for talkId: String) {
-        guard let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid }) else {
-            return
-        }
+        guard let openFeedbackSynchronizer = openFeedbackSynchronizer,
+            let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid })
+            else { return }
         openFeedbackSynchronizer.vote(voteItm, for: talkId)
     }
 
     func removeVote(_ proposition: TalkFeedback.Proposition, for talkId: String) {
-        guard let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid }) else {
-            return
-        }
+        guard let openFeedbackSynchronizer = openFeedbackSynchronizer,
+            let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid })
+            else { return }
         openFeedbackSynchronizer.deleteVote(voteItm, of: talkId)
     }
 
@@ -125,6 +125,7 @@ class DataProvider {
     }
 
     private func computeVotes() {
+        guard let openFeedbackSynchronizer = openFeedbackSynchronizer else { return }
         openFeedbackSynchronizer.configPublisher
             .combineLatest(openFeedbackSynchronizer.sessionVotesPublisher,
                            openFeedbackSynchronizer.userVotesPublisher,

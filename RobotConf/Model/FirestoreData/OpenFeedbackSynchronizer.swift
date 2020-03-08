@@ -61,16 +61,30 @@ class OpenFeedbackSynchronizer {
     var userId: String?
 
     private let database: Firestore
-    init() {
+    init?() {
+        guard let plistPath = Bundle.main.path(forResource: "OpenFeedback-Info", ofType: "plist"),
+            let config = NSDictionary(contentsOfFile: plistPath),
+            let googleAppId = config["GOOGLE_APP_ID"] as? String,
+            let gcmSenderID = config["GCM_SENDER_ID"] as? String,
+            let projectId = config["PROJECT_ID"] as? String,
+            let bundleId = config["BUNDLE_ID"] as? String,
+            let apiKey = config["API_KEY"] as? String,
+            let clientId = config["CLIENT_ID"] as? String,
+            let databaseUrl = config["DATABASE_URL"] as? String,
+            let storageBucket = config["STORAGE_BUCKET"] as? String else {
+                print("Error: please embed a valid OpenFeedback-Info file in the main bundle")
+                return nil
+        }
+
         // Configure with manual options.
-        let secondaryOptions = FirebaseOptions(googleAppID: "1:765209934800:ios:5fe303aedf721b587297d5",
-                                               gcmSenderID: "765209934800")
-        secondaryOptions.projectID = "openfeedback-b7ab9"
-        secondaryOptions.bundleID = "com.sousoum.RobotConf"
-        secondaryOptions.apiKey = "AIzaSyAk2JACgME2HYrpLfbA1c2ayVVhD461S1s"
-        secondaryOptions.clientID = "765209934800-2lmtbv2igcqhg2l2e6ac5dlpks3dlvj2.apps.googleusercontent.com"
-        secondaryOptions.databaseURL = "https://openfeedback-b7ab9.firebaseio.com"
-        secondaryOptions.storageBucket = "openfeedback-b7ab9.appspot.com"
+        let secondaryOptions = FirebaseOptions(googleAppID: googleAppId,
+                                               gcmSenderID: gcmSenderID)
+        secondaryOptions.projectID = projectId
+        secondaryOptions.bundleID = bundleId
+        secondaryOptions.apiKey = apiKey
+        secondaryOptions.clientID = clientId
+        secondaryOptions.databaseURL = databaseUrl
+        secondaryOptions.storageBucket = storageBucket
 
         // Configure an alternative FIRApp.
         FirebaseApp.configure(name: "OpenFeedback", options: secondaryOptions)

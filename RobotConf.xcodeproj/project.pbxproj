@@ -55,6 +55,7 @@
 		B2CD426923578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD426823578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift */; };
 		B2CD426B23579A36009FE6B0 /* SpeakersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD426A23579A36009FE6B0 /* SpeakersProvider.swift */; };
 		B2CD426E2362281A009FE6B0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = B2CD426D2362281A009FE6B0 /* URLImage */; };
+		B2ECA77424151B6E00489874 /* OpenFeedback-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2ECA77324151B6E00489874 /* OpenFeedback-Info.plist */; };
 		B2EF3CF523E89FC90078019F /* FeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF3CF423E89FC90078019F /* FeedbackRepository.swift */; };
 		B2EF3CF923E8A4C30078019F /* TalkFeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF3CF823E8A4C30078019F /* TalkFeedbackViewModel.swift */; };
 		B2EF3CFB23E8A8020078019F /* TalkFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF3CFA23E8A8020078019F /* TalkFeedbackView.swift */; };
@@ -140,6 +141,7 @@
 		B2CD426623578D81009FE6B0 /* SessionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsProvider.swift; sourceTree = "<group>"; };
 		B2CD426823578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentSnapshot+Decodable.swift"; sourceTree = "<group>"; };
 		B2CD426A23579A36009FE6B0 /* SpeakersProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakersProvider.swift; sourceTree = "<group>"; };
+		B2ECA77324151B6E00489874 /* OpenFeedback-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OpenFeedback-Info.plist"; sourceTree = "<group>"; };
 		B2EF3CF423E89FC90078019F /* FeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRepository.swift; sourceTree = "<group>"; };
 		B2EF3CF823E8A4C30078019F /* TalkFeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkFeedbackViewModel.swift; sourceTree = "<group>"; };
 		B2EF3CFA23E8A8020078019F /* TalkFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkFeedbackView.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				B2F270D223DC816B00FD6823 /* SwiftGen */,
 				B2F270DA23DC869300FD6823 /* .swiftlint.yml */,
 				B2CD273C234D06560016AA02 /* Info.plist */,
+				B2ECA77324151B6E00489874 /* OpenFeedback-Info.plist */,
 				B2CD42612357876C009FE6B0 /* GoogleService-Info.plist */,
 				B2CD2736234D06560016AA02 /* Preview Content */,
 			);
@@ -528,6 +531,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2F270CA23DC7E2600FD6823 /* Localizable.strings in Resources */,
+				B2ECA77424151B6E00489874 /* OpenFeedback-Info.plist in Resources */,
 				B2CD273B234D06560016AA02 /* LaunchScreen.storyboard in Resources */,
 				B2CD42622357876C009FE6B0 /* GoogleService-Info.plist in Resources */,
 				B2F270DB23DC869300FD6823 /* .swiftlint.yml in Resources */,
@@ -919,14 +923,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "RobotConf/Preview\\ Content";
-				DEVELOPMENT_TEAM = 27VVDXJ5J4;
+				DEVELOPMENT_TEAM = 57MV6634WZ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RobotConf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sousoum.RobotConf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paug.RobotConf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -940,14 +944,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "RobotConf/Preview\\ Content";
-				DEVELOPMENT_TEAM = 27VVDXJ5J4;
+				DEVELOPMENT_TEAM = 57MV6634WZ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RobotConf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sousoum.RobotConf;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paug.RobotConf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
