@@ -92,6 +92,7 @@ class OpenFeedbackSynchronizer {
         // Retrieve a previous created named app.
         guard let openFeedbackApp = FirebaseApp.app(name: "OpenFeedback") else {
             assert(false, "Could not retrieve openFeedback app")
+            return nil
         }
 
         // Retrieve a Real Time Database client configured against a specific app.
