@@ -62,8 +62,10 @@ struct AgendaDetailView: View {
                             TagView(text: tag)
                         }
                     }
-                    Divider().padding(.top, 8)
-                    TalkFeedbackView(talkId: content.talkId)
+                    if content.isATalk {
+                        Divider().padding(.top, 8)
+                        TalkFeedbackView(talkId: content.talkId)
+                    }
                     Divider().padding(.top, 8)
                     ForEach(content.speakers, id: \.self) { speaker in
                         SpeakerView(speaker: speaker)

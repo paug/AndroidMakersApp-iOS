@@ -20,6 +20,8 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
         let speakers: [Speaker]
         let room: String
         let language: Language
+
+        var isATalk: Bool { return !speakers.isEmpty }
     }
 
     @Published var content: Content?
