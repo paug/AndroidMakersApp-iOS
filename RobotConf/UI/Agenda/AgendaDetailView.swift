@@ -68,7 +68,7 @@ struct AgendaDetailView: View {
                     ForEach(content.speakers, id: \.self) { speaker in
                         SpeakerView(speaker: speaker)
                     }
-                }.padding(.horizontal, 8)
+                }.padding(.horizontal)
         })
     }
 }

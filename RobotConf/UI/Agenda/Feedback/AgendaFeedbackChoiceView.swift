@@ -54,7 +54,6 @@ struct AgendaFeedbackChoiceView: View {
                     .stroke(lineWidth: viewModel.content.userHasVoted ? 2 : 0)
                     .foregroundColor(Color.gray)
         )
-            .padding(8)
     }
 
     func color(for index: Int) -> Color {
