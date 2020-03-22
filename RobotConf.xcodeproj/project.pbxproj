@@ -106,6 +106,7 @@
 		B265B04C23F47E1C00EA363D /* AgendaFeedbackChoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFeedbackChoiceViewModel.swift; sourceTree = "<group>"; };
 		B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		B26E853723D49242006C2C9E /* AttributedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextView.swift; sourceTree = "<group>"; };
+		B29CC7032427A01200FB7EF3 /* AndroidMakers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AndroidMakers.entitlements; sourceTree = "<group>"; };
 		B2A0669223521AC00062383A /* Language+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Language+UI.swift"; sourceTree = "<group>"; };
 		B2BC0B7823B902BF00C85F69 /* VenuesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenuesProvider.swift; sourceTree = "<group>"; };
 		B2BC0B7A23B905B800C85F69 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
@@ -286,6 +287,7 @@
 		B2CD272D234D06530016AA02 /* RobotConf */ = {
 			isa = PBXGroup;
 			children = (
+				B29CC7032427A01200FB7EF3 /* AndroidMakers.entitlements */,
 				B2CD272E234D06530016AA02 /* AppDelegate.swift */,
 				B2CD2730234D06530016AA02 /* SceneDelegate.swift */,
 				B2CD2760234D08400016AA02 /* UI */,
@@ -921,6 +923,7 @@
 			baseConfigurationReference = F87BB7759059171EE46F89B4 /* Pods-RobotConf.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RobotConf/AndroidMakers.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "RobotConf/Preview\\ Content";
@@ -943,6 +946,7 @@
 			baseConfigurationReference = 8ADF4158D468B32B2A947D28 /* Pods-RobotConf.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RobotConf/AndroidMakers.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "RobotConf/Preview\\ Content";
