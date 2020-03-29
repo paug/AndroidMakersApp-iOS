@@ -11,6 +11,7 @@ import Combine
 
 struct AgendaDayListView: View {
     @ObservedObject private var viewModel = AgendaDayListViewModel()
+    @State private var favOnly = false
 
     var sectionTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -31,21 +32,25 @@ struct AgendaDayListView: View {
                 ForEach(viewModel.content.sections, id: \.self) { section in
                     // swiftlint:disable:next line_length
                     Section(header: Text("\(self.sectionDateFormatter.string(from: section.date)), \(self.sectionTimeFormatter.string(from: section.date))")) {
-                        ForEach(section.talks, id: \.self) { talk in
+                        ForEach(self.favOnly ? section.talks.filter({ $0.isFavorite }) : section.talks,
+                                id: \.self) { talk in
                             NavigationLink(destination: AgendaDetailView(talkId: talk.uid)) {
-                                AgendaCellView(talk: talk)
+                                AgendaCellView(talk: talk, viewModel: self.viewModel)
                             }
                             .listRowBackground(talk.state != .none ?
                                 Color(Asset.Colors.currentTalk.color) : Color(UIColor.systemBackground))
                         }
                     }
                 }
-            }.navigationBarTitle(Text(L10n.Agenda.navTitle), displayMode: .large)
-            .onAppear {
-                self.viewModel.viewAppeared()
-            }.onDisappear {
-                self.viewModel.viewDisappeared()
             }
+            .navigationBarTitle(Text(L10n.Agenda.navTitle), displayMode: .large)
+            .navigationBarItems(trailing:
+                Button(action: { self.favOnly.toggle() }) {
+                    Image(systemName: favOnly ? "star.fill" : "star")
+                }
+            )
+                .onAppear { self.viewModel.viewAppeared() }
+                .onDisappear { self.viewModel.viewDisappeared() }
         }
     }
 }

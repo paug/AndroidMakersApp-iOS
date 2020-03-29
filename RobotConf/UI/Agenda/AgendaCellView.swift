@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AgendaCellView: View {
     var talk: AgendaDayListViewModel.Content.Talk
+    var viewModel: AgendaDayListViewModel
 
     var durationFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
@@ -33,9 +34,17 @@ struct AgendaCellView: View {
                 Spacer()
             }
             Spacer()
-            Text(talk.state.localizedDescription)
-                .font(.footnote)
-                .bold()
+            VStack {
+                Image(systemName: talk.isFavorite ? "star.fill" : "star")
+                    .foregroundColor(.yellow)
+                    .padding(8)
+                    .onTapGesture { self.viewModel.toggleFavorite(ofTalk: self.talk) }
+                Spacer()
+                Text(talk.state.localizedDescription)
+                    .font(.footnote)
+                    .bold()
+
+            }
         }
     }
 }
@@ -59,7 +68,8 @@ struct AgendaCellView_Previews: PreviewProvider {
                 title: "The infinite loop", duration: 25 * 60,
                 speakers: [Speaker(name: "Toto", photoUrl: "/images/people/florent_champigny.jpg",
                                    company: "", description: "")],
-                room: "Room 2.04", language: .french, state: .current))
+                room: "Room 2.04", language: .french, state: .current, isFavorite: true),
+                           viewModel: AgendaDayListViewModel())
         }
         .previewLayout(.fixed(width: 300, height: 100))
     }

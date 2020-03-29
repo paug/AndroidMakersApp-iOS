@@ -24,6 +24,7 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
             let room: String
             let language: Language
             let state: State
+            let isFavorite: Bool
         }
 
         struct Section: Hashable {
@@ -42,15 +43,17 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
 
     init(talkRepo: TalkRepository = model.talkRepository) {
         self.talkRepo = talkRepo
-        talkRepo.getTalks().sink { [weak self] in
-            self?.talksChanged(talks: $0)
+        talkRepo.getTalks()
+            .combineLatest(talkRepo.getFavoriteTalks())
+            .sink { [weak self] in
+                self?.talksChanged(talks: $0, favorites: $1)
         }.store(in: &disposables)
     }
 
     func viewAppeared() {
         timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { [weak self] _ in
             guard let self = self else { return }
-            self.talksChanged(talks: self.talkRepo.talks)
+            self.talksChanged(talks: self.talkRepo.talks, favorites: self.talkRepo.favoriteTalks)
         }
     }
 
@@ -59,14 +62,22 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
         timer = nil
     }
 
-    private func talksChanged(talks: [Talk]) {
+    func toggleFavorite(ofTalk talk: Content.Talk) {
+        if talk.isFavorite {
+            talkRepo.removeTalkToFavorite(talkId: talk.uid)
+        } else {
+            talkRepo.addTalkToFavorite(talkId: talk.uid)
+        }
+    }
+
+    private func talksChanged(talks: [Talk], favorites: Set<String>) {
         let groupedTalks = Dictionary(grouping: talks) { $0.startTime }
         let sortedKeys = groupedTalks.keys.sorted()
         var sections = [Content.Section]()
         sortedKeys.forEach { date in
             // can force unwrap since we're iterating amongst the keys
             let talks = groupedTalks[date]!
-                .map { Content.Talk(from: $0) }
+                .map { Content.Talk(from: $0, isFavorite: favorites.contains($0.uid)) }
                 .sorted { $0.room >= $1.room }
             sections.append(Content.Section(date: date, talks: talks))
         }
@@ -75,14 +86,15 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
 }
 
 extension AgendaDayListViewModel.Content.Talk {
-    init(from talk: Talk) {
+    init(from talk: Talk, isFavorite: Bool) {
         self.init(uid: talk.uid,
                   title: talk.title,
                   duration: talk.duration,
                   speakers: talk.speakers,
                   room: talk.room,
                   language: talk.language,
-                  state: State(from: talk))
+                  state: State(from: talk),
+                  isFavorite: isFavorite)
     }
 }
 
