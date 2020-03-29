@@ -133,8 +133,9 @@ class DataProvider {
             .sink(receiveCompletion: { error in
                 print("Dja EEERRRROR \(error)")
             }) { [unowned self] config, sessionVotes, userVotes, slots in
+                let preferredLanguage = Bundle.main.preferredLocalizations[0]
                 let propositions = config.voteItems.sorted { $0.position ?? 0 > $1.position ?? 0 }
-                    .compactMap { TalkFeedback.Proposition(from: $0) }
+                    .compactMap { TalkFeedback.Proposition(from: $0, language: preferredLanguage) }
                 let propositionDict = Dictionary(uniqueKeysWithValues: propositions.map { ($0.uid, $0) })
                 let colors = config.chipColors.map { UIColor(hexString: $0) }
 
@@ -220,8 +221,8 @@ private extension Partner {
 }
 
 private extension TalkFeedback.Proposition {
-    init?(from voteItem: OpenFeedbackSynchronizer.Config.VoteItem) {
+    init?(from voteItem: OpenFeedbackSynchronizer.Config.VoteItem, language: String) {
         guard voteItem.type == "boolean" else { return nil }
-        self = TalkFeedback.Proposition(uid: voteItem.id, text: voteItem.name)
+        self = TalkFeedback.Proposition(uid: voteItem.id, text: voteItem.languages[language] ?? voteItem.name)
     }
 }

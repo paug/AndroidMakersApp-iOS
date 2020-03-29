@@ -37,6 +37,7 @@ class OpenFeedbackSynchronizer {
     struct Config: Decodable {
         struct VoteItem: Decodable {
             let id: String
+            let languages: [String: String]
             let name: String
             let position: Int?
             let type: String
