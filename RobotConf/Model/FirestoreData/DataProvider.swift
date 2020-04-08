@@ -69,7 +69,8 @@ class DataProvider {
             for (sessionId, session) in sessions {
                 let sessionSpeakers = session.speakers?.compactMap { speakerId -> Speaker? in
                     if let speaker = speakers[speakerId] {
-                        return Speaker(name: speaker.name ?? "", photoUrl: speaker.photo,
+                        // can force unwrap URL because URL(string: "") is returning a non nil url
+                        return Speaker(name: speaker.name ?? "", photoUrl: URL(string: speaker.photo ?? "")!,
                                        company: speaker.company ?? "", description: speaker.bio ?? "")
                     }
                     // else raise an error

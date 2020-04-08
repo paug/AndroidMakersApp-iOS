@@ -10,7 +10,7 @@ import Foundation
 
 struct Speaker: Hashable {
     let name: String
-    let photoUrl: String?
+    let photoUrl: URL
     let company: String
     let description: String
 }

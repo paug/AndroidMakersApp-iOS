@@ -95,7 +95,7 @@ struct SpeakerView: View {
 
     var body: some View {
         HStack(alignment: .top) {
-            URLImage(URL(string: "https://androidmakers.fr\(speaker.photoUrl ?? "")")!) { proxy in
+            URLImage(speaker.photoUrl) { proxy in
                 proxy.image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
