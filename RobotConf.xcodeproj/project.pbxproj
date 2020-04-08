@@ -22,6 +22,7 @@
 		B265B04B23F32A8700EA363D /* AgendaFeedbackChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265B04A23F32A8700EA363D /* AgendaFeedbackChoiceView.swift */; };
 		B265B04D23F47E1D00EA363D /* AgendaFeedbackChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265B04C23F47E1C00EA363D /* AgendaFeedbackChoiceViewModel.swift */; };
 		B268A969242FADCE00412523 /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268A968242FADCE00412523 /* UserPrefs.swift */; };
+		B268A96B243E445800412523 /* RoomsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268A96A243E445800412523 /* RoomsProvider.swift */; };
 		B26E853623D49187006C2C9E /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */; };
 		B26E853823D49242006C2C9E /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26E853723D49242006C2C9E /* AttributedTextView.swift */; };
 		B26E853B23D49D8B006C2C9E /* SwiftRichString in Frameworks */ = {isa = PBXBuildFile; productRef = B26E853A23D49D8B006C2C9E /* SwiftRichString */; };
@@ -106,6 +107,7 @@
 		B265B04A23F32A8700EA363D /* AgendaFeedbackChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFeedbackChoiceView.swift; sourceTree = "<group>"; };
 		B265B04C23F47E1C00EA363D /* AgendaFeedbackChoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFeedbackChoiceViewModel.swift; sourceTree = "<group>"; };
 		B268A968242FADCE00412523 /* UserPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefs.swift; sourceTree = "<group>"; };
+		B268A96A243E445800412523 /* RoomsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsProvider.swift; sourceTree = "<group>"; };
 		B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		B26E853723D49242006C2C9E /* AttributedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextView.swift; sourceTree = "<group>"; };
 		B29CC7032427A01200FB7EF3 /* AndroidMakers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AndroidMakers.entitlements; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				B258187223C2354200E1B0F0 /* PartnersProvider.swift */,
 				B2BC0B7823B902BF00C85F69 /* VenuesProvider.swift */,
 				B2229A0023A39D6F00F50750 /* SlotsProvider.swift */,
+				B268A96A243E445800412523 /* RoomsProvider.swift */,
 				B2CD426A23579A36009FE6B0 /* SpeakersProvider.swift */,
 				B2CD426823578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift */,
 				B265B04123F02D3800EA363D /* OpenFeedbackSynchronizer.swift */,
@@ -711,6 +714,7 @@
 				B26E853823D49242006C2C9E /* AttributedTextView.swift in Sources */,
 				B2BC0B7B23B905B800C85F69 /* Venue.swift in Sources */,
 				B258187723C2379600E1B0F0 /* Partner.swift in Sources */,
+				B268A96B243E445800412523 /* RoomsProvider.swift in Sources */,
 				B265B04D23F47E1D00EA363D /* AgendaFeedbackChoiceViewModel.swift in Sources */,
 				B2CD2731234D06530016AA02 /* SceneDelegate.swift in Sources */,
 				B258187323C2354200E1B0F0 /* PartnersProvider.swift in Sources */,

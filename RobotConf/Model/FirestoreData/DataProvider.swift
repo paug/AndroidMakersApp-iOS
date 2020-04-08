@@ -22,6 +22,7 @@ class DataProvider {
     private let sessionsProvider: SessionsProvider
     private let speakersProvider: SpeakersProvider
     private let slotsProvider: SlotsProvider
+    private let roomsProvider: RoomsProvider
     private let venuesProvider: VenuesProvider
     private let partnersProvider: PartnersProvider
     private let openFeedbackSynchronizer = OpenFeedbackSynchronizer()
@@ -33,6 +34,7 @@ class DataProvider {
         sessionsProvider = SessionsProvider(database: database)
         speakersProvider = SpeakersProvider(database: database)
         slotsProvider = SlotsProvider(database: database)
+        roomsProvider = RoomsProvider(database: database)
         venuesProvider = VenuesProvider(database: database)
         partnersProvider = PartnersProvider(database: database)
 
@@ -58,10 +60,11 @@ class DataProvider {
 
     private func computeTalks() {
         sessionsProvider.sessionsPublisher
-            .combineLatest(speakersProvider.speakersPublisher, slotsProvider.slotsPublisher)
+            .combineLatest(speakersProvider.speakersPublisher, slotsProvider.slotsPublisher,
+                           roomsProvider.roomsPublisher)
             .sink(receiveCompletion: { error in
                 print("Dja EEERRRROR \(error)")
-        }) { [unowned self] (sessions, speakers, slots) in
+        }) { [unowned self] (sessions, speakers, slots, rooms) in
             var talks = [Talk]()
             for (sessionId, session) in sessions {
                 let sessionSpeakers = session.speakers?.compactMap { speakerId -> Speaker? in
@@ -82,7 +85,8 @@ class DataProvider {
                     uid: sessionId, title: session.title, description: session.description,
                     duration: duration, speakers: sessionSpeakers,
                     startTime: slot.startDate,
-                    room: slot.roomId.capitalized, language: Language(from: session.language))
+                    room: rooms[slot.roomId]?.roomName ?? slot.roomId.capitalized,
+                    language: Language(from: session.language))
                 talks.append(talk)
             }
             self.talksPublisher.send(talks)
