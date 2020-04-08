@@ -84,10 +84,12 @@ struct AboutView: View {
                                                     .resizable()
                                                     .aspectRatio(contentMode: .fit)
                                             }
-                                        }.frame(maxHeight: 50)
+                                        }
+                                        .frame(maxHeight: 50)
                                     }
                                 }
                             }
+                            Spacer(minLength: 8)
                         }.padding(8)
                     }
                 }

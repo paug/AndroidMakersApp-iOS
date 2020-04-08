@@ -15,7 +15,7 @@ class PartnersProvider {
     struct Partner: Decodable {
         let logoUrl: String
         let name: String
-        let url: String
+        let url: String?
     }
 
     struct PartnerCategory: Decodable {

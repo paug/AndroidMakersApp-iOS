@@ -218,9 +218,8 @@ private extension Partner {
         let logoUrlStr = partner.logoUrl
             .replacingOccurrences(of: "..", with: "")
             .replacingOccurrences(of: ".svg", with: ".png")
-        guard let logoUrl = URL(string: "https://androidmakers.fr\(logoUrlStr)"),
-            let url = URL(string: partner.url) else { return nil }
-        self.init(name: partner.name, logoUrl: logoUrl, url: url)
+        guard let logoUrl = URL(string: "https://androidmakers.fr\(logoUrlStr)") else { return nil }
+        self.init(name: partner.name, logoUrl: logoUrl, url: URL(string: partner.url))
     }
 }
 

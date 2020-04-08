@@ -74,6 +74,8 @@ class AboutViewModel: ObservableObject, Identifiable {
     }
 
     func openPartnerPage(_ partner: Partner) {
-        UIApplication.shared.open(partner.url)
+        if let url = partner.url {
+            UIApplication.shared.open(url)
+        }
     }
 }

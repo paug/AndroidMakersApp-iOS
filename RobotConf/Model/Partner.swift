@@ -11,7 +11,7 @@ import Foundation
 struct Partner: Hashable {
     let name: String
     let logoUrl: URL
-    let url: URL
+    let url: URL?
 }
 
 struct PartnerCategory: Hashable {
