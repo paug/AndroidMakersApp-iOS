@@ -21,7 +21,10 @@ struct ContentView: View {
                     }
             }.tag(0)
 
-            LocationListView()
+            // This year, because of Covid-19, we won't have a party and no need for plan so only display the
+            //"conference" part. This part will hopefully give insights about the streaming platform
+            //LocationListView()
+            NavigationView { LocationVenueView(kind: .conference) }
                 .tabItem {
                     VStack {
                         Image("location")
