@@ -15,7 +15,7 @@ internal enum L10n {
   internal enum About {
     /// Code of conduct
     internal static let coc = L10n.tr("Localizable", "about.coc")
-    /// Android Makers Paris is a two day event held on April 23rd and 24th, 2019 at Le Beffroi de Montrouge, in Paris, France.\n\nJoin us in tackling the present and future of Android with the hottest experts of the domain.\nThere'll be technical sessions, workshops, debates, networking, plus a chance to demo your project in the Makers Area.\nAndroid Makers gathers 4 events in 1.\n\n∙ Conferences : 40min Tech Talks by awesome speakers and 20min Lightning Talks on the future of Android.\n∙ Workshop : Get trained on new methods, discover and build your app during the workshops.\n∙ Makers Area : Walk around, play and discover the latest innovation in hardware and software developed by the makers.\n∙ Party! : Let’s meet, talk, drink and party!\n\nAll the Talks will be recorded, and uploaded on the Youtube channel.
+    /// RobotConf Paris is a two day event held on April 20th and 21st, 2020.\n\nJoin us in tackling the present and future of Robot with the hottest experts of the domain.\nThere'll be technical sessions, workshops, debates, networking.\nRobotConf gathers 4 events in 1.\n\n∙ Conferences : 40min Tech Talks by awesome speakers and 20min Lightning Talks on the future of Robot.\n∙ Workshop : Get trained on new methods, discover and build your app during the workshops.\n\nAll the talks will be recorded, and uploaded on the Youtube channel.
     internal static let explanation = L10n.tr("Localizable", "about.explanation")
     /// FAQ
     internal static let faq = L10n.tr("Localizable", "about.faq")
@@ -30,7 +30,7 @@ internal enum L10n {
   }
 
   internal enum Agenda {
-    /// Android Makers 20²
+    /// RobotConf 20²
     internal static let navTitle = L10n.tr("Localizable", "agenda.navTitle")
     /// Agenda
     internal static let tabTitle = L10n.tr("Localizable", "agenda.tabTitle")
