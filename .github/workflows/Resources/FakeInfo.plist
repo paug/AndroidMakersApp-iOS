@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>FAKE_CLIENT_ID</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>FAKE_REVERSED_CLIENT_ID</string>
+	<key>API_KEY</key>
+	<string>FAKE_API_KEY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>FAKE_GCM_SENDER_ID</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.paug.RobotConf</string>
+	<key>PROJECT_ID</key>
+	<string>FAKE_PROJECT_ID</string>
+	<key>STORAGE_BUCKET</key>
+	<string>FAKE_STORAGE_BUCKET</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:38710070893:ios:8f59c26e96899648923964</string>
+	<key>DATABASE_URL</key>
+	<string>FAKE_DATABASE_URL</string>
+</dict>
+</plist>

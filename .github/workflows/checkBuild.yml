@@ -1,0 +1,37 @@
+name: CheckBuild
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Pods dependencies
+      uses: actions/cache@v1
+      id: cache-pods
+      with:
+        path: Pods
+        key: ${{ runner.OS }}-pods-cache-${{ hashFiles('**/ios/Podfile.lock') }}
+
+    - name: Install pod dependencies
+      if: steps.cache-pods.outputs.cache-hit != 'true'
+      run: |
+        pod install
+      shell: bash
+    
+    - name: Add fake Firebase json files
+      run: |
+        cp .github/workflows/Resources/FakeInfo.plist RobotConf/GoogleService-Info.plist
+        cp .github/workflows/Resources/FakeInfo.plist RobotConf/OpenFeedback-Info.plist
+      shell: bash
+
+    - name: Build & run
+      run: xcodebuild clean test -workspace RobotConf.xcworkspace -scheme RobotConf -destination "platform=iOS Simulator,name=iPhone 11 Pro"
