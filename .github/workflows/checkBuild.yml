@@ -26,6 +26,12 @@ jobs:
       run: |
         pod install
       shell: bash
+    
+    - name: Add fake Firebase json files
+      run: |
+        touch RobotConf/GoogleService-Info.plist
+        touch RobotConf/OpenFeedback-Info.plist
+      shell: bash
 
     - name: Build & run
       run: xcodebuild clean test -workspace RobotConf.xcworkspace -scheme RobotConf -destination "platform=iOS Simulator,name=iPhone 11 Pro"
