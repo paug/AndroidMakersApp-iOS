@@ -227,6 +227,6 @@ private extension Partner {
 private extension TalkFeedback.Proposition {
     init?(from voteItem: OpenFeedbackSynchronizer.Config.VoteItem, language: String) {
         guard voteItem.type == "boolean" else { return nil }
-        self = TalkFeedback.Proposition(uid: voteItem.id, text: voteItem.languages[language] ?? voteItem.name)
+        self = TalkFeedback.Proposition(uid: voteItem.id, text: voteItem.languages?[language] ?? voteItem.name)
     }
 }
