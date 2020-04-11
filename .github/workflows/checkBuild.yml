@@ -18,14 +18,14 @@ jobs:
       uses: actions/cache@v1
       id: cache-pods
       with:
-        path: ios/Pods
+        path: Pods
         key: ${{ runner.OS }}-pods-cache-${{ hashFiles('**/ios/Podfile.lock') }}
 
     - name: Install pod dependencies
       if: steps.cache-pods.outputs.cache-hit != 'true'
       run: |
         pod install
-        shell: bash
+      shell: bash
 
     - name: Build & run
       run: xcodebuild clean test -workspace RobotConf.xcworkspace -scheme RobotConf -destination "platform=iOS Simulator,name=iPhone 11 Pro"
