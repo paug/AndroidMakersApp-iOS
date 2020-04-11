@@ -27,7 +27,7 @@ struct TalkFeedbackView: View {
 
         switch content.availability {
         case .notAvailable:
-            return AnyView(Text("This talk cannot be reviewed now. Please try again after attending the talk"))
+            return AnyView(Text(L10n.Agenda.Detail.Feedback.notAvailable).italic())
         case .available(let feedback):
             return AnyView(
                 VStack {

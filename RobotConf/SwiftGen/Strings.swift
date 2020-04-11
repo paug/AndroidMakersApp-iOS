@@ -39,6 +39,10 @@ internal enum L10n {
       internal static func summary(_ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
         return L10n.tr("Localizable", "agenda.detail.summary", p1, p2, p3, p4)
       }
+      internal enum Feedback {
+        /// This talk cannot be reviewed now.\nPlease try again after attending the talk.
+        internal static let notAvailable = L10n.tr("Localizable", "agenda.detail.feedback.notAvailable")
+      }
       internal enum State {
         /// Current
         internal static let current = L10n.tr("Localizable", "agenda.detail.state.current")
