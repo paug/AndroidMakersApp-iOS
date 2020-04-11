@@ -139,7 +139,7 @@ class DataProvider {
                 print("Dja EEERRRROR \(error)")
             }) { [unowned self] config, sessionVotes, userVotes, slots in
                 let preferredLanguage = Bundle.main.preferredLocalizations[0]
-                let propositions = config.voteItems.sorted { $0.position ?? 0 > $1.position ?? 0 }
+                let propositions = config.voteItems.sorted { $0.position ?? 0 < $1.position ?? 0 }
                     .compactMap { TalkFeedback.Proposition(from: $0, language: preferredLanguage) }
                 let propositionDict = Dictionary(uniqueKeysWithValues: propositions.map { ($0.uid, $0) })
                 let colors = config.chipColors.map { UIColor(hexString: $0) }
