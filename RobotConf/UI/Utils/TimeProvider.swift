@@ -13,7 +13,7 @@ class TimeProvider {
 
     // In debug, consider the launch of the app as the 23 avril 2019 11h59 16s GMT+2
     #if DEBUG
-    private let fakeDate = Date(timeIntervalSince1970: 1556013588) // 23 avril 2019 11h59 16s GMT+2
+    private let fakeDate = Date(timeIntervalSince1970: 1587384240) // Monday, 20 April 2020 14:04:00 GMT+02:00
     private let realDate = Date()
     #endif
 
