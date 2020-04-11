@@ -14,6 +14,7 @@ struct Talk {
     let description: String
     let duration: TimeInterval
     let speakers: [Speaker]
+    let tags: [String]
     let startTime: Date
     let room: String
     let language: Language

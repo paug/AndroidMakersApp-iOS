@@ -80,6 +80,7 @@ struct TagView: View {
 
     var body: some View {
         Text(text)
+            .lineLimit(1)
             .font(.caption)
             .padding(.vertical, 8)
             .padding(.horizontal, 16)

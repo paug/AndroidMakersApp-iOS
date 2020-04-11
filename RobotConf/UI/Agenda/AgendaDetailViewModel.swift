@@ -50,7 +50,7 @@ private extension AgendaDetailViewModel.Content {
                   startDate: talk.startTime,
                   endDate: talk.startTime.addingTimeInterval(talk.duration),
                   description: talk.description,
-                  tags: ["Expert", "Begginer"],
+                  tags: talk.tags,
                   speakers: talk.speakers,
                   room: talk.room,
                   language: talk.language)

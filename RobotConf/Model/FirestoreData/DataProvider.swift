@@ -84,7 +84,7 @@ class DataProvider {
                 let duration = slot.endDate.timeIntervalSince(slot.startDate)
                 let talk = Talk(
                     uid: sessionId, title: session.title, description: session.description,
-                    duration: duration, speakers: sessionSpeakers,
+                    duration: duration, speakers: sessionSpeakers, tags: session.tags,
                     startTime: slot.startDate,
                     room: rooms[slot.roomId]?.roomName ?? slot.roomId.capitalized,
                     language: Language(from: session.language))
