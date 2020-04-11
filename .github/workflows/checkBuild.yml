@@ -29,8 +29,8 @@ jobs:
     
     - name: Add fake Firebase json files
       run: |
-        touch RobotConf/GoogleService-Info.plist
-        touch RobotConf/OpenFeedback-Info.plist
+        cp .github/workflows/FakeInfo.plist RobotConf/GoogleService-Info.plist
+        cp .github/workflows/FakeInfo.plist RobotConf/OpenFeedback-Info.plist
       shell: bash
 
     - name: Build & run
