@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>FAKE_GOOGLE_APP_ID</string>
+	<string>1:38710070893:ios:8f59c26e96899648923964</string>
 	<key>DATABASE_URL</key>
 	<string>FAKE_DATABASE_URL</string>
 </dict>
