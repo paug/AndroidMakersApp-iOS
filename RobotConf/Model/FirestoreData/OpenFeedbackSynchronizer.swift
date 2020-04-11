@@ -13,7 +13,7 @@ import Combine
 
 class OpenFeedbackSynchronizer {
 
-    private static let projectId = "SiXwNLJ0Nrbj5UXvyFpJ"
+    private static let projectId = "mMHR63ARZQpPidFQISyc"
 
     struct UserVote: Codable {
         enum Status: String, Codable {
