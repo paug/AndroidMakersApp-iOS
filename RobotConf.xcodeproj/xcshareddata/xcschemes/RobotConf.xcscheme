@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B2CD272A234D06530016AA02"
-               BuildableName = "AndroidMakers.app"
+               BuildableName = "RobotConf.app"
                BlueprintName = "RobotConf"
                ReferencedContainer = "container:RobotConf.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2CD272A234D06530016AA02"
-            BuildableName = "AndroidMakers.app"
+            BuildableName = "RobotConf.app"
             BlueprintName = "RobotConf"
             ReferencedContainer = "container:RobotConf.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2CD272A234D06530016AA02"
-            BuildableName = "AndroidMakers.app"
+            BuildableName = "RobotConf.app"
             BlueprintName = "RobotConf"
             ReferencedContainer = "container:RobotConf.xcodeproj">
          </BuildableReference>
