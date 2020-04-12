@@ -21,16 +21,16 @@ struct ContentView: View {
                     }
             }.tag(0)
 
-            // This year, because of Covid-19, we won't have a party and no need for plan so only display the
-            //"conference" part. This part will hopefully give insights about the streaming platform
+            // This year, because of Covid-19, we won't have a party and no need for plan. The conference part need also
+            // to be removed because the screen is not meant to show links.
+            // For the moment, we remove the tab.
             //LocationListView()
-            NavigationView { LocationVenueView(kind: .conference) }
-                .tabItem {
-                    VStack {
-                        Image("location")
-                        Text(L10n.Locations.tabTitle)
-                    }
-            }.tag(1)
+//                .tabItem {
+//                    VStack {
+//                        Image("location")
+//                        Text(L10n.Locations.tabTitle)
+//                    }
+//            }.tag(1)
 
             AboutView()
                 .tabItem {
@@ -38,7 +38,7 @@ struct ContentView: View {
                         Image("about")
                         Text(L10n.About.tabTitle)
                     }
-            }.tag(2)
+            }.tag(1)
         }
     }
 }
