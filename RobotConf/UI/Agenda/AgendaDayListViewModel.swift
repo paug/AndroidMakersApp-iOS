@@ -78,7 +78,7 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
             // can force unwrap since we're iterating amongst the keys
             let talks = groupedTalks[date]!
                 .map { Content.Talk(from: $0, isFavorite: favorites.contains($0.uid)) }
-                .sorted { $0.room >= $1.room }
+                .sorted { $0.room < $1.room }
             sections.append(Content.Section(date: date, talks: talks))
         }
         content.sections = sections
