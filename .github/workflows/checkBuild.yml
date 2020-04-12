@@ -26,6 +26,7 @@ jobs:
     - name: Install pod dependencies
       if: steps.cache-pods.outputs.cache-hit != 'true'
       run: |
+        echo "pod version: `pod --version`"
         pod install
       shell: bash
     
