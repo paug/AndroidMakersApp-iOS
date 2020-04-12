@@ -23,14 +23,6 @@ class AboutViewModel: ObservableObject, Identifiable {
         }.store(in: &disposables)
     }
 
-    func openFaqPage() {
-        UIApplication.shared.open(URL(string: "https://androidmakers.fr/faq")!)
-    }
-
-    func openCodeOfConductPage() {
-        UIApplication.shared.open(URL(string: "https://androidmakers.fr/cod")!)
-    }
-
     func openTwitterPage() {
         let screenName = "@AndroidMakersFR"
         let appURL = URL(string: "twitter://user?screen_name=\(screenName)")!

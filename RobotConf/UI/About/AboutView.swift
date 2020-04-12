@@ -24,11 +24,11 @@ struct AboutView: View {
                             Text(L10n.About.explanation)
                                 .foregroundColor(Color.black)
                             HStack(spacing: 24) {
-                                Button(L10n.About.faq) {
-                                    self.viewModel.openFaqPage()
+                                WebButton(url: URL(string: "https://androidmakers.fr/faq")!) {
+                                    Text(L10n.About.faq)
                                 }
-                                Button(L10n.About.coc) {
-                                    self.viewModel.openCodeOfConductPage()
+                                WebButton(url: URL(string: "https://androidmakers.fr/cod")!) {
+                                    Text(L10n.About.coc)
                                 }
                             }.padding(8)
                         }.padding(8)
