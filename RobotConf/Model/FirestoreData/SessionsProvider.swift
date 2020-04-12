@@ -20,6 +20,7 @@ class SessionsProvider {
         let title: String
         let tags: [String]
         let videoURL: String?
+        let slido: String?
     }
 
     var sessionsPublisher = PassthroughSubject<[String: Session], Error>()

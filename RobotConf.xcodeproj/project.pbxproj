@@ -23,6 +23,7 @@
 		B265B04D23F47E1D00EA363D /* AgendaFeedbackChoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265B04C23F47E1C00EA363D /* AgendaFeedbackChoiceViewModel.swift */; };
 		B268A969242FADCE00412523 /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268A968242FADCE00412523 /* UserPrefs.swift */; };
 		B268A96B243E445800412523 /* RoomsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268A96A243E445800412523 /* RoomsProvider.swift */; };
+		B268A96E24431E7500412523 /* WebButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268A96D24431E7500412523 /* WebButton.swift */; };
 		B26E853623D49187006C2C9E /* NSAttributedString+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */; };
 		B26E853823D49242006C2C9E /* AttributedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26E853723D49242006C2C9E /* AttributedTextView.swift */; };
 		B26E853B23D49D8B006C2C9E /* SwiftRichString in Frameworks */ = {isa = PBXBuildFile; productRef = B26E853A23D49D8B006C2C9E /* SwiftRichString */; };
@@ -108,6 +109,7 @@
 		B265B04C23F47E1C00EA363D /* AgendaFeedbackChoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaFeedbackChoiceViewModel.swift; sourceTree = "<group>"; };
 		B268A968242FADCE00412523 /* UserPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefs.swift; sourceTree = "<group>"; };
 		B268A96A243E445800412523 /* RoomsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsProvider.swift; sourceTree = "<group>"; };
+		B268A96D24431E7500412523 /* WebButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebButton.swift; sourceTree = "<group>"; };
 		B26E853523D49187006C2C9E /* NSAttributedString+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+HTML.swift"; sourceTree = "<group>"; };
 		B26E853723D49242006C2C9E /* AttributedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextView.swift; sourceTree = "<group>"; };
 		B29CC7032427A01200FB7EF3 /* AndroidMakers.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AndroidMakers.entitlements; sourceTree = "<group>"; };
@@ -237,6 +239,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		B268A96C24431E5300412523 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B268A96D24431E7500412523 /* WebButton.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		B26E853423D4913C006C2C9E /* FormattedText */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +350,7 @@
 				B2BC0B7C23B90B3500C85F69 /* Location */,
 				B2BC0B8923BB66D000C85F69 /* About */,
 				B26E853423D4913C006C2C9E /* FormattedText */,
+				B268A96C24431E5300412523 /* Common */,
 				B225421F23FB27ED00C5A83E /* Utils */,
 				B2A0669223521AC00062383A /* Language+UI.swift */,
 				B2F270BF23DC7B7200FD6823 /* Resources */,
@@ -709,6 +720,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B268A96E24431E7500412523 /* WebButton.swift in Sources */,
 				B265B04923F1ECA200EA363D /* TalkFeedback.swift in Sources */,
 				B2CD272F234D06530016AA02 /* AppDelegate.swift in Sources */,
 				B26E853823D49242006C2C9E /* AttributedTextView.swift in Sources */,

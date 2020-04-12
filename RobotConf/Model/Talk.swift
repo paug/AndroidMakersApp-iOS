@@ -18,4 +18,5 @@ struct Talk {
     let startTime: Date
     let room: String
     let language: Language
+    let questionUrl: URL?
 }

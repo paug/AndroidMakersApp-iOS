@@ -20,6 +20,7 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
         let speakers: [Speaker]
         let room: String
         let language: Language
+        let questionUrl: URL?
 
         var isATalk: Bool { return !speakers.isEmpty }
     }
@@ -53,6 +54,7 @@ private extension AgendaDetailViewModel.Content {
                   tags: talk.tags,
                   speakers: talk.speakers,
                   room: talk.room,
-                  language: talk.language)
+                  language: talk.language,
+                  questionUrl: talk.questionUrl)
     }
 }
