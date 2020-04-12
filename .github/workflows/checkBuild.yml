@@ -19,7 +19,9 @@ jobs:
       id: cache-pods
       with:
         path: Pods
-        key: ${{ runner.OS }}-pods-cache-${{ hashFiles('**/ios/Podfile.lock') }}
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pods-
 
     - name: Install pod dependencies
       if: steps.cache-pods.outputs.cache-hit != 'true'
