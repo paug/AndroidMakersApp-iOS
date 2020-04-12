@@ -228,7 +228,7 @@ class OpenFeedbackSynchronizer {
             "talkId": vote.talkId,
             "updatedAt": Date(),
             "userId": vote.userId,
-            "voteItemId": vote.id
+            "voteItemId": vote.voteItemId
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
