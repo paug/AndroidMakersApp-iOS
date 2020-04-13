@@ -1,5 +1,5 @@
 //
-//  Copyright © 2019 Djavan Bertrand. All rights reserved.
+//  Copyright © 2020 Paris Android User Group. All rights reserved.
 //
 
 import Foundation

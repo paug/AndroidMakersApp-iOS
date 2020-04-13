@@ -1,9 +1,5 @@
 //
-//  TimeProvider.swift
-//  RobotConf
-//
-//  Created by Djavan Bertrand on 17/02/2020.
-//  Copyright © 2020 Djavan Bertrand. All rights reserved.
+//  Copyright © 2020 Paris Android User Group. All rights reserved.
 //
 
 import Foundation

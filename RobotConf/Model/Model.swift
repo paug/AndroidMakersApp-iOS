@@ -1,9 +1,5 @@
 //
-//  Engine.swift
-//  RobotConf
-//
-//  Created by Djavan Bertrand on 29/12/2019.
-//  Copyright © 2019 Djavan Bertrand. All rights reserved.
+//  Copyright © 2020 Paris Android User Group. All rights reserved.
 //
 
 import Foundation
