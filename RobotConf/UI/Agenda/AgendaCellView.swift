@@ -31,10 +31,12 @@ struct AgendaCellView: View {
             }
             Spacer()
             VStack {
-                Image(systemName: talk.isFavorite ? "star.fill" : "star")
-                    .foregroundColor(.yellow)
-                    .padding(8)
-                    .onTapGesture { self.viewModel.toggleFavorite(ofTalk: self.talk) }
+                if talk.isATalk {
+                    Image(systemName: viewModel.favoriteTalks.contains(talk.uid) ? "star.fill" : "star")
+                        .foregroundColor(.yellow)
+                        .padding(8)
+                        .onTapGesture { self.viewModel.toggleFavorite(ofTalk: self.talk) }
+                }
                 Spacer()
                 Text(talk.state.localizedDescription)
                     .font(.footnote)
@@ -66,7 +68,7 @@ struct AgendaCellView_Previews: PreviewProvider {
                     name: "Toto",
                     photoUrl: URL(string: "https://apod.nasa.gov/apod/image/1907/SpotlessSunIss_Colacurcio_2048.jpg")!,
                     company: "", description: "")],
-                room: "Room 2.04", language: .french, state: .current, isFavorite: true),
+                room: "Room 2.04", language: .french, state: .current),
                            viewModel: AgendaDayListViewModel())
         }
         .previewLayout(.fixed(width: 300, height: 100))

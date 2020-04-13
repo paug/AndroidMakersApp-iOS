@@ -34,6 +34,14 @@ struct AgendaDetailView: View {
 
     var body: some View {
         containedView()
+            .navigationBarItems(trailing:
+                Image(systemName: viewModel.content?.isFavorite ?? false ? "star.fill" : "star")
+                    .foregroundColor(.yellow)
+                    .padding(8)
+                    .onTapGesture {
+                        guard let content = self.viewModel.content else { return }
+                        self.viewModel.toggleFavorite(ofTalk: content)
+            })
             .navigationBarTitle(Text(viewModel.content?.title ?? ""), displayMode: .inline)
     }
 

@@ -20,7 +20,8 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
             let room: String
             let language: Language
             let state: State
-            let isFavorite: Bool
+
+            var isATalk: Bool { return !speakers.isEmpty }
         }
 
         struct Section: Hashable {
@@ -32,48 +33,60 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
     }
 
     @Published var content: Content = Content(sections: [])
+    @Published var favoriteTalks: Set<String> = []
 
     private var talkRepo: TalkRepository
     private var disposables = Set<AnyCancellable>()
     private var timer: Timer?
+    private var isDisplayed = false
 
     init(talkRepo: TalkRepository = model.talkRepository) {
         self.talkRepo = talkRepo
-        talkRepo.getTalks()
-            .combineLatest(talkRepo.getFavoriteTalks())
-            .sink { [weak self] in
-                self?.talksChanged(talks: $0, favorites: $1)
+        talkRepo.getTalks().sink { [weak self] in
+            self?.talksChanged(talks: $0)
+        }.store(in: &disposables)
+
+        talkRepo.getFavoriteTalks().sink { [unowned self] in
+            // only update when view is displayed otherwise it will redisplay the list when the favorite state changes
+            if self.isDisplayed {
+                self.favoriteTalks = $0
+            }
         }.store(in: &disposables)
     }
 
     func viewAppeared() {
+        isDisplayed = true
         timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { [weak self] _ in
             guard let self = self else { return }
-            self.talksChanged(talks: self.talkRepo.talks, favorites: self.talkRepo.favoriteTalks)
+            self.talksChanged(talks: self.talkRepo.talks)
         }
+        // recompute talks in case status have changed
+        talksChanged(talks: self.talkRepo.talks)
+        favoriteTalks = talkRepo.favoriteTalks
     }
 
     func viewDisappeared() {
         timer?.invalidate()
         timer = nil
+        isDisplayed = false
     }
 
     func toggleFavorite(ofTalk talk: Content.Talk) {
-        if talk.isFavorite {
+        if favoriteTalks.contains(talk.uid) {
             talkRepo.removeTalkToFavorite(talkId: talk.uid)
         } else {
             talkRepo.addTalkToFavorite(talkId: talk.uid)
         }
     }
 
-    private func talksChanged(talks: [Talk], favorites: Set<String>) {
+    private func talksChanged(talks: [Talk]) {
         let groupedTalks = Dictionary(grouping: talks) { $0.startTime }
         let sortedKeys = groupedTalks.keys.sorted()
         var sections = [Content.Section]()
         sortedKeys.forEach { date in
             // can force unwrap since we're iterating amongst the keys
             let talks = groupedTalks[date]!
-                .map { Content.Talk(from: $0, isFavorite: favorites.contains($0.uid)) }
+                .map { Content.Talk(from: $0) }
                 .sorted { $0.room < $1.room }
             sections.append(Content.Section(date: date, talks: talks))
         }
@@ -82,15 +95,14 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
 }
 
 extension AgendaDayListViewModel.Content.Talk {
-    init(from talk: Talk, isFavorite: Bool) {
+    init(from talk: Talk) {
         self.init(uid: talk.uid,
                   title: talk.title,
                   duration: talk.duration,
                   speakers: talk.speakers,
                   room: talk.room,
                   language: talk.language,
-                  state: State(from: talk),
-                  isFavorite: isFavorite)
+                  state: State(from: talk))
     }
 }
 

@@ -18,6 +18,7 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
         let language: Language
         let questionUrl: URL?
         let platformUrl: URL?
+        let isFavorite: Bool
 
         var isATalk: Bool { return !speakers.isEmpty }
     }
@@ -29,20 +30,30 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
 
     init(talkId: String, talkRepo: TalkRepository = model.talkRepository) {
         self.talkRepo = talkRepo
-        talkRepo.getTalks().sink { [weak self] talks in
-            guard let talk = talks.first(where: { $0.uid == talkId }) else {
-                // TODO: let the view know that this talks is unknown. To do that, maybe change the type of content
-                // to be a type that can give an error
-                return
-            }
+        talkRepo.getTalks()
+            .combineLatest(talkRepo.getFavoriteTalks())
+            .sink { [weak self] talks, favorites in
+                guard let talk = talks.first(where: { $0.uid == talkId }) else {
+                    // TODO: let the view know that this talks is unknown. To do that, maybe change the type of content
+                    // to be a type that can give an error
+                    return
+                }
 
-            self?.content = Content(from: talk)
+                self?.content = Content(from: talk, isFavorite: favorites.contains(talkId))
         }.store(in: &disposables)
+    }
+
+    func toggleFavorite(ofTalk talk: Content) {
+        if talk.isFavorite {
+            talkRepo.removeTalkToFavorite(talkId: talk.talkId)
+        } else {
+            talkRepo.addTalkToFavorite(talkId: talk.talkId)
+        }
     }
 }
 
 private extension AgendaDetailViewModel.Content {
-    init(from talk: Talk) {
+    init(from talk: Talk, isFavorite: Bool) {
         self.init(talkId: talk.uid,
                   title: talk.title,
                   startDate: talk.startTime,
@@ -53,6 +64,7 @@ private extension AgendaDetailViewModel.Content {
                   room: talk.room,
                   language: talk.language,
                   questionUrl: talk.questionUrl,
-                  platformUrl: talk.platformUrl)
+                  platformUrl: talk.platformUrl,
+                  isFavorite: isFavorite)
     }
 }

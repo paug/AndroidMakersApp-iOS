@@ -28,13 +28,14 @@ struct AgendaDayListView: View {
                 ForEach(viewModel.content.sections, id: \.self) { section in
                     // swiftlint:disable:next line_length
                     Section(header: Text("\(self.sectionDateFormatter.string(from: section.date)), \(self.sectionTimeFormatter.string(from: section.date))")) {
-                        ForEach(self.favOnly ? section.talks.filter({ $0.isFavorite }) : section.talks,
+                        ForEach(self.favOnly ?
+                            section.talks.filter({ self.viewModel.favoriteTalks.contains($0.uid) }) : section.talks,
                                 id: \.self) { talk in
-                            NavigationLink(destination: AgendaDetailView(talkId: talk.uid)) {
-                                AgendaCellView(talk: talk, viewModel: self.viewModel)
-                            }
-                            .listRowBackground(talk.state != .none ?
-                                Color(Asset.Colors.currentTalk.color) : Color(UIColor.systemBackground))
+                                    NavigationLink(destination: AgendaDetailView(talkId: talk.uid)) {
+                                        AgendaCellView(talk: talk, viewModel: self.viewModel)
+                                    }
+                                    .listRowBackground(talk.state != .none ?
+                                        Color(Asset.Colors.currentTalk.color) : Color(UIColor.systemBackground))
                         }
                     }
                 }
