@@ -64,16 +64,28 @@ struct AgendaDetailView: View {
                             TagView(text: tag)
                         }
                     }
-                    if content.questionUrl != nil {
+                    if content.platformUrl != nil || content.questionUrl != nil {
                         Divider().padding(.top, 8)
-                        WebButton(url: content.questionUrl!) {
-                            Text(L10n.Agenda.Detail.question)
-                            .frame(maxWidth: .infinity)
+                        if content.platformUrl != nil {
+                            WebButton(url: content.platformUrl!) {
+                                Text(L10n.Agenda.Detail.platform)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .padding()
+                            .background(Color(Asset.Colors.amBlue.color))
+                            .cornerRadius(8)
                         }
-                        .foregroundColor(Color(UIColor.systemBackground))
-                        .padding()
-                        .background(Color(Asset.Colors.amBlue.color))
-                        .cornerRadius(8)
+                        if content.questionUrl != nil {
+                            WebButton(url: content.questionUrl!) {
+                                Text(L10n.Agenda.Detail.question)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .padding()
+                            .background(Color(Asset.Colors.amBlue.color))
+                            .cornerRadius(8)
+                        }
 
                     }
                     if content.isATalk {

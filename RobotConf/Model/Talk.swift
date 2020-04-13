@@ -15,4 +15,5 @@ struct Talk {
     let room: String
     let language: Language
     let questionUrl: URL?
+    let platformUrl: URL?
 }

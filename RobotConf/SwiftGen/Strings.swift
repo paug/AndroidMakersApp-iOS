@@ -35,6 +35,8 @@ internal enum L10n {
     /// Agenda
     internal static let tabTitle = L10n.tr("Localizable", "agenda.tabTitle")
     internal enum Detail {
+      /// Watch this talk on the platform
+      internal static let platform = L10n.tr("Localizable", "agenda.detail.platform")
       /// Ask a question to the speaker on Slido
       internal static let question = L10n.tr("Localizable", "agenda.detail.question")
       /// %@ at %@ - %@, %@

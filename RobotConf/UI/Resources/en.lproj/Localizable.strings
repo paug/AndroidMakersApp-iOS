@@ -7,6 +7,7 @@
 "agenda.detail.summary" = "%@ at %@ - %@, %@";
 "agenda.detail.state.isComing" = "Coming";
 "agenda.detail.state.current" = "Current";
+"agenda.detail.platform" = "Watch this talk on the platform";
 "agenda.detail.question" = "Ask a question to the speaker on Slido";
 "agenda.detail.feedback.notAvailable" = "This talk cannot be reviewed now.\nPlease come back after attending it.";
 

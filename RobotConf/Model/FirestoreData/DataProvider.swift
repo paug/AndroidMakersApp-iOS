@@ -83,7 +83,8 @@ class DataProvider {
                     duration: duration, speakers: sessionSpeakers, tags: session.tags,
                     startTime: slot.startDate,
                     room: rooms[slot.roomId]?.roomName ?? slot.roomId.capitalized,
-                    language: Language(from: session.language), questionUrl: URL(string: session.slido))
+                    language: Language(from: session.language), questionUrl: URL(string: session.slido),
+                    platformUrl: URL(string: session.platformUrl))
                 talks.append(talk)
             }
             self.talksPublisher.send(talks)

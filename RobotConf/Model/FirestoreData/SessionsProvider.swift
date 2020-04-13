@@ -15,7 +15,8 @@ class SessionsProvider {
         let language: String?
         let title: String
         let tags: [String]
-        let videoURL: String?
+        let videoUrl: String?
+        let platformUrl: String?
         let slido: String?
     }
 
