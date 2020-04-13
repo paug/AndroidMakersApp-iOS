@@ -5,6 +5,7 @@
 import Foundation
 import FirebaseFirestore
 import Combine
+import FirebaseCrashlytics
 
 /// Object that provides server venues
 class VenuesProvider {
@@ -30,6 +31,7 @@ class VenuesProvider {
                 do {
                     self.confVenuePublisher.send(try document!.decoded())
                 } catch let error {
+                    Crashlytics.crashlytics().record(error: error)
                     self.confVenuePublisher.send(completion: .failure(error))
                 }
             }
@@ -44,6 +46,7 @@ class VenuesProvider {
                 do {
                     self.partyVenuePublisher.send(try document!.decoded())
                 } catch let error {
+                    Crashlytics.crashlytics().record(error: error)
                     self.partyVenuePublisher.send(completion: .failure(error))
                 }
             }

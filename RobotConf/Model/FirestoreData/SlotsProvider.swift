@@ -5,6 +5,7 @@
 import Foundation
 import FirebaseFirestore
 import Combine
+import FirebaseCrashlytics
 
 /// Object that provides server slots
 class SlotsProvider {
@@ -32,6 +33,7 @@ class SlotsProvider {
                     let slots: Slots = try document!.decoded()
                     self.slotsPublisher.send(slots.all)
                 } catch let error {
+                    Crashlytics.crashlytics().record(error: error)
                     self.slotsPublisher.send(completion: .failure(error))
                 }
             }

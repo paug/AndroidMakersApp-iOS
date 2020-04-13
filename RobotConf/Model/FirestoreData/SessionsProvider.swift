@@ -5,6 +5,7 @@
 import Foundation
 import FirebaseFirestore
 import Combine
+import FirebaseCrashlytics
 
 /// Object that provides server sessions
 class SessionsProvider {
@@ -36,6 +37,7 @@ class SessionsProvider {
                     }
                     self.sessionsPublisher.send(sessions)
                 } catch let error {
+                    Crashlytics.crashlytics().record(error: error)
                     self.sessionsPublisher.send(completion: .failure(error))
                 }
             }

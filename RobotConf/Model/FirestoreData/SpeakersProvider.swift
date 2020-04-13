@@ -5,6 +5,7 @@
 import Foundation
 import FirebaseFirestore
 import Combine
+import FirebaseCrashlytics
 
 /// Object that provides server speakers
 class SpeakersProvider {
@@ -38,6 +39,7 @@ class SpeakersProvider {
                     }
                     self.speakersPublisher.send(speakers)
                 } catch let error {
+                    Crashlytics.crashlytics().record(error: error)
                     self.speakersPublisher.send(completion: .failure(error))
                 }
             }

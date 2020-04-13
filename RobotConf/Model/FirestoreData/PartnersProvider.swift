@@ -5,6 +5,7 @@
 import Foundation
 import FirebaseFirestore
 import Combine
+import FirebaseCrashlytics
 
 /// Object that provides server partner
 class PartnersProvider {
@@ -42,6 +43,7 @@ class PartnersProvider {
                     }
                     self.partnersPublisher.send(partnerCategories)
                 } catch let error {
+                    Crashlytics.crashlytics().record(error: error)
                     self.partnersPublisher.send(completion: .failure(error))
                 }
             }

@@ -59,7 +59,7 @@ class DataProvider {
             .combineLatest(speakersProvider.speakersPublisher, slotsProvider.slotsPublisher,
                            roomsProvider.roomsPublisher)
             .sink(receiveCompletion: { error in
-                print("Dja EEERRRROR \(error)")
+                print("Error computing talks \(error)")
         }) { [unowned self] (sessions, speakers, slots, rooms) in
             var talks = [Talk]()
             for (sessionId, session) in sessions {
@@ -94,7 +94,7 @@ class DataProvider {
     private func computeVenues() {
         venuesProvider.confVenuePublisher
             .sink(receiveCompletion: { error in
-                print("Dja EEERRRROR \(error)")
+                print("Error computing venue \(error)")
             }) { [unowned self] venue in
                 guard let confVenue = Venue(from: venue) else {
                     //self.confVenuePublisher.send(completion: .failure())
@@ -120,7 +120,7 @@ class DataProvider {
     private func computePartners() {
         partnersProvider.partnersPublisher
             .sink(receiveCompletion: { error in
-                print("Dja EEERRRROR \(error)")
+                print("Error computing partners \(error)")
             }) { [unowned self] partnerCategories in
                 self.partnerPublisher.send([PartnerCategory](from: partnerCategories))
         }.store(in: &cancellables)
@@ -133,7 +133,7 @@ class DataProvider {
                            openFeedbackSynchronizer.userVotesPublisher,
                            slotsProvider.slotsPublisher)
             .sink(receiveCompletion: { error in
-                print("Dja EEERRRROR \(error)")
+                print("Error computing votes \(error)")
             }) { [unowned self] config, sessionVotes, userVotes, slots in
                 let preferredLanguage = Bundle.main.preferredLocalizations[0]
                 let propositions = config.voteItems.sorted { $0.position ?? 0 < $1.position ?? 0 }

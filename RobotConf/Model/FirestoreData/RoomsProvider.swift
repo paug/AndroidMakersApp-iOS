@@ -5,6 +5,7 @@
 import Foundation
 import FirebaseFirestore
 import Combine
+import FirebaseCrashlytics
 
 /// Object that provides server rooms
 class RoomsProvider {
@@ -30,6 +31,7 @@ class RoomsProvider {
                     let rooms: Rooms = try document!.decoded()
                     self.roomsPublisher.send(Dictionary(uniqueKeysWithValues: rooms.allRooms.map { ($0.roomId, $0) }))
                 } catch let error {
+                    Crashlytics.crashlytics().record(error: error)
                     self.roomsPublisher.send(completion: .failure(error))
                 }
             }

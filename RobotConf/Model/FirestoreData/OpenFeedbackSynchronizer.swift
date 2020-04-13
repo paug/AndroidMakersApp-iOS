@@ -6,6 +6,7 @@ import Foundation
 import Firebase
 import CodableFirebase
 import Combine
+import FirebaseCrashlytics
 
 class OpenFeedbackSynchronizer {
 
@@ -18,6 +19,7 @@ class OpenFeedbackSynchronizer {
         }
 
         private let createdAt: Timestamp
+        // swiftlint:disable:next identifier_name - tried to allow `id` in config but did not work
         let id: String
         let projectId = OpenFeedbackSynchronizer.projectId
         let status: Status
@@ -32,6 +34,7 @@ class OpenFeedbackSynchronizer {
 
     struct Config: Decodable {
         struct VoteItem: Decodable {
+            // swiftlint:disable:next identifier_name - tried to allow `id` in config but did not work
             let id: String
             let languages: [String: String]?
             let name: String
@@ -139,7 +142,7 @@ class OpenFeedbackSynchronizer {
                         }
                         self.userVotesPublisher.send(self.userVotes)
                     } catch let error {
-                        print(error)
+                        Crashlytics.crashlytics().record(error: error)
                         self.userVotesPublisher.send(completion: .failure(error))
                     }
                 }
@@ -162,6 +165,7 @@ class OpenFeedbackSynchronizer {
                         }
                         self.sessionVotesPublisher.send(sessionVotes)
                     } catch let error {
+                        Crashlytics.crashlytics().record(error: error)
                         self.sessionVotesPublisher.send(completion: .failure(error))
                     }
                 }
@@ -183,7 +187,7 @@ class OpenFeedbackSynchronizer {
                         self.config = config
                         self.configPublisher.send(config)
                     } catch let error {
-                        print(error)
+                        Crashlytics.crashlytics().record(error: error)
                         self.config = nil
                         self.configPublisher.send(completion: .failure(error))
                     }
@@ -208,6 +212,7 @@ class OpenFeedbackSynchronizer {
             "voteItemId": voteItem.id
         ]) { err in
             if let err = err {
+                Crashlytics.crashlytics().record(error: err)
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully written!")
@@ -227,6 +232,7 @@ class OpenFeedbackSynchronizer {
             "voteItemId": vote.voteItemId
         ]) { err in
             if let err = err {
+                Crashlytics.crashlytics().record(error: err)
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully written!")
