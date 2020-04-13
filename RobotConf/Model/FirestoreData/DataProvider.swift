@@ -94,7 +94,7 @@ class DataProvider {
     private func computeVenues() {
         venuesProvider.confVenuePublisher
             .sink(receiveCompletion: { error in
-                print("Error computing venue \(error)")
+                print("Error computing conf venue \(error)")
             }) { [unowned self] venue in
                 guard let confVenue = Venue(from: venue) else {
                     //self.confVenuePublisher.send(completion: .failure())
@@ -106,7 +106,7 @@ class DataProvider {
 
         venuesProvider.partyVenuePublisher
             .sink(receiveCompletion: { error in
-                print("Dja EEERRRROR \(error)")
+                print("Error computing party venue \(error)")
             }) { [unowned self] venue in
                 guard let partyVenue = Venue(from: venue) else {
                     //self.partyVenuePublisher.send(completion: .failure())

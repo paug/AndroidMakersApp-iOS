@@ -103,7 +103,6 @@ class OpenFeedbackSynchronizer {
 
         Auth.auth(app: openFeedbackApp).signInAnonymously { authResult, _ in
             guard let user = authResult?.user else { return }
-            print("User id: \(user.uid)")
             self.userId = user.uid
             self.getUserFeedbacks(user: user)
         }
