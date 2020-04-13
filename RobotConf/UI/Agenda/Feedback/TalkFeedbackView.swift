@@ -17,6 +17,8 @@ struct TalkFeedbackView: View {
     }
 
     func containedView() -> AnyView {
+        // this view is still using AnyView because I don't know how to make a switch (or an if) on enum with
+        // associated properties...
         guard let content = viewModel.content else {
             return AnyView(Text("Error..."))
         }

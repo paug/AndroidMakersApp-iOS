@@ -14,16 +14,7 @@ struct LocationVenueView: View {
     }
 
     var body: some View {
-        containedView()
-            .navigationBarTitle(Text(viewModel.content?.name ?? ""), displayMode: .inline)
-    }
-
-    func containedView() -> AnyView {
-        guard let content = viewModel.content else {
-            return AnyView(Text(L10n.Common.loading))
-        }
-
-        return AnyView(
+        viewModel.content.map { content in
             ScrollView {
                 VStack(alignment: .center, spacing: 16) {
                     URLImage(URL(string: content.imageUrl)!) { proxy in
@@ -57,7 +48,8 @@ struct LocationVenueView: View {
                     Spacer()
                 }
             }
-        )
+            .navigationBarTitle(Text(content.name), displayMode: .inline)
+        }
     }
 }
 

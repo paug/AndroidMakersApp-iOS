@@ -33,24 +33,7 @@ struct AgendaDetailView: View {
     }
 
     var body: some View {
-        containedView()
-            .navigationBarItems(trailing:
-                Image(systemName: viewModel.content?.isFavorite ?? false ? "star.fill" : "star")
-                    .foregroundColor(.yellow)
-                    .padding(8)
-                    .onTapGesture {
-                        guard let content = self.viewModel.content else { return }
-                        self.viewModel.toggleFavorite(ofTalk: content)
-            })
-            .navigationBarTitle(Text(viewModel.content?.title ?? ""), displayMode: .inline)
-    }
-
-    func containedView() -> AnyView {
-        guard let content = viewModel.content else {
-            return AnyView(Text("Loading..."))
-        }
-
-        return AnyView(
+        viewModel.content.map { content in
             ScrollView {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(content.title)
@@ -105,7 +88,16 @@ struct AgendaDetailView: View {
                         SpeakerView(speaker: speaker)
                     }
                 }.padding(.horizontal)
-        })
+            }
+            .navigationBarItems(trailing:
+                Image(systemName: content.isFavorite ? "star.fill" : "star")
+                    .foregroundColor(.yellow)
+                    .padding(8)
+                    .onTapGesture {
+                        self.viewModel.toggleFavorite(ofTalk: content)
+            })
+            .navigationBarTitle(Text(content.title), displayMode: .inline)
+        }
     }
 }
 
