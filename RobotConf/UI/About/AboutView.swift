@@ -95,6 +95,10 @@ struct AboutView: View {
             .background(Color(Asset.Colors.backgroundSecondary.color))
             .navigationBarTitle(Text(L10n.About.navTitle), displayMode: .inline)
         }
+        // must ensure that the stack navigation is used otherwise it is considered as a master view
+        // and nothing is shown in the detail
+        .navigationViewStyle(StackNavigationViewStyle())
+        .padding(0)
     }
 }
 

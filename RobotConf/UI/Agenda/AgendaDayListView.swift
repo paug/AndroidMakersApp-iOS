@@ -48,7 +48,15 @@ struct AgendaDayListView: View {
             )
                 .onAppear { self.viewModel.viewAppeared() }
                 .onDisappear { self.viewModel.viewDisappeared() }
+            // Display the first talk in the detail view to avoid having a white screen
+            // (this will be only used when the master and detail are visible together i.e. on ipads)
+            if viewModel.content.sections.first?.talks.first?.uid != nil {
+                AgendaDetailView(talkId: viewModel.content.sections.first!.talks.first!.uid)
+            }
         }
+        .navigationViewStyle(DoubleColumnNavigationViewStyle())
+            // Weird hack to have the master-detail in two columns working
+            .padding(1)
     }
 }
 

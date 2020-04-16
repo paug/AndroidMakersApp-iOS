@@ -58,13 +58,13 @@ struct AgendaFeedbackChoicePairView: View {
 
     var body: some View {
         HStack {
-            AgendaFeedbackChoiceView(talkFeedback: feedback, index: index, isAlone: isAlone)
-            if !isAlone {
-                AgendaFeedbackChoiceView(talkFeedback: feedback, index: index+1, isAlone: false)
+            AgendaFeedbackChoiceView(talkFeedback: self.feedback, index: self.index)
+            if !self.isAlone {
+                AgendaFeedbackChoiceView(talkFeedback: self.feedback, index: self.index+1)
             } else {
                 Spacer()
             }
-        }
+        }.frame(height: 120)
     }
 }
 
