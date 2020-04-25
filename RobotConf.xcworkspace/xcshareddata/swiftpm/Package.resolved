@@ -5,9 +5,9 @@
         "package": "CodableFirebase",
         "repositoryURL": "https://github.com/alickbass/CodableFirebase",
         "state": {
-          "branch": "master",
-          "revision": "a3fadfdc9f862fedeb12ac5d0f9218fd84566a95",
-          "version": null
+          "branch": null,
+          "revision": "a4cda89948db93ec21249a35ecdacab8c489a116",
+          "version": "0.2.2"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/dmytro-anokhin/url-image.git",
         "state": {
           "branch": null,
-          "revision": "dc913391b6fc0c9de283ef111eb90d0e9abf4c36",
-          "version": "0.9.10"
+          "revision": "a48feef3ef91f573a5f55779502e07adb19943b8",
+          "version": "0.9.15"
         }
       }
     ]

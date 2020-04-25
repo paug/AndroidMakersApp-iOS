@@ -1114,8 +1114,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alickbass/CodableFirebase";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
 			};
 		};
 		B26E853923D49D8B006C2C9E /* XCRemoteSwiftPackageReference "SwiftRichString" */ = {
