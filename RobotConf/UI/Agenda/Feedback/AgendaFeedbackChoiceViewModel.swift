@@ -49,7 +49,8 @@ class AgendaFeedbackChoiceViewModel: ObservableObject, Identifiable {
         let numberOfVotes: Int
         let userVote: Content.RatioPosition?
         if let propositionInfo = propositionInfo {
-            numberOfVotes = propositionInfo.numberOfVotes - (propositionInfo.userHasVoted ? 1 : 0)
+            // numberOfVotes can sometimes be less than 0 so we need to clamp it to 0.
+            numberOfVotes = max(propositionInfo.numberOfVotes - (propositionInfo.userHasVoted ? 1 : 0), 0)
             userVote = propositionInfo.userHasVoted ? Content.RatioPosition.random() : nil
         } else {
             numberOfVotes = 0
