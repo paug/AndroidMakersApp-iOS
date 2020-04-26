@@ -118,7 +118,6 @@ struct TagView: View {
 
 struct SpeakerView: View {
     var speaker: Speaker
-    let url = URL(string: "https://androidmakers.fr")!
 
     var body: some View {
         HStack(alignment: .top) {
@@ -140,8 +139,11 @@ struct SpeakerView: View {
     }
 }
 
+#if DEBUG
 struct AgendaDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        AgendaDetailView(talkId: "1")
+        injectMockModel()
+        return AgendaDetailView(talkId: "195718")
     }
 }
+#endif

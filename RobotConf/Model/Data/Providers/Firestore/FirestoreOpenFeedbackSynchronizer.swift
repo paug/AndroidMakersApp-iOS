@@ -8,83 +8,35 @@ import CodableFirebase
 import Combine
 import FirebaseCrashlytics
 
-class OpenFeedbackSynchronizer {
+class FirestoreOpenFeedbackSynchronizer: OpenFeedbackSynchronizer {
 
     private static let projectId = "mMHR63ARZQpPidFQISyc"
 
-    struct UserVote: Codable {
-        enum Status: String, Codable {
-            case active
-            case deleted
-        }
-
-        private let createdAt: Timestamp
-        // swiftlint:disable:next identifier_name - tried to allow `id` in config but did not work
-        let id: String
-        let projectId = OpenFeedbackSynchronizer.projectId
-        let status: Status
-        let talkId: String
-        private let updatedAt: Timestamp
-        let userId: String
-        let voteItemId: String
-
-        var creationDate: Date { createdAt.dateValue() }
-        var updateDate: Date { updatedAt.dateValue() }
-    }
-
-    struct Config: Decodable {
-        struct VoteItem: Decodable {
-            // swiftlint:disable:next identifier_name - tried to allow `id` in config but did not work
-            let id: String
-            let languages: [String: String]?
-            let name: String
-            let position: Int?
-            let type: String
-        }
-        let chipColors: [String]
-        let voteItems: [VoteItem]
-    }
-
-    struct UserVoteIdentifier: Hashable {
-        let talkId: String
-        let voteItemId: String
-    }
-
-    let configPublisher = PassthroughSubject<Config, Error>()
-    /// Number of votes indexed by vote item indexed by session
+    let configPublisher = PassthroughSubject<VoteConfigData, Error>()
     let sessionVotesPublisher = PassthroughSubject<[String: [String: Int]], Error>()
-    let userVotesPublisher = PassthroughSubject<[UserVoteIdentifier: UserVote], Error>()
+    let userVotesPublisher = PassthroughSubject<[UserVoteIdentifierData: UserVoteData], Error>()
 
-    private(set) var config: Config?
-    private var userVotes = [UserVoteIdentifier: UserVote]()
+    private(set) var config: VoteConfigData?
+    private(set) var userVotes = [UserVoteIdentifierData: UserVoteData]()
 
     var userId: String?
 
     private let database: Firestore
     init?() {
-        guard let plistPath = Bundle.main.path(forResource: "OpenFeedback-Info", ofType: "plist"),
-            let config = NSDictionary(contentsOfFile: plistPath),
-            let googleAppId = config["GOOGLE_APP_ID"] as? String,
-            let gcmSenderID = config["GCM_SENDER_ID"] as? String,
-            let projectId = config["PROJECT_ID"] as? String,
-            let bundleId = config["BUNDLE_ID"] as? String,
-            let apiKey = config["API_KEY"] as? String,
-            let clientId = config["CLIENT_ID"] as? String,
-            let databaseUrl = config["DATABASE_URL"] as? String,
-            let storageBucket = config["STORAGE_BUCKET"] as? String else {
-                print("Error: please embed a valid OpenFeedback-Info file in the main bundle")
-                return nil
+        guard let openFeedbackDescriptor = FirebaseDescriptor(forKind: .openFeedback) else {
+            print("Error: please embed a valid OpenFeedback-Info file in the main bundle")
+            return nil
         }
 
         // Configure with manual options.
-        let secondaryOptions = FirebaseOptions(googleAppID: googleAppId,
-                                               gcmSenderID: gcmSenderID)
-        secondaryOptions.projectID = projectId
-        secondaryOptions.bundleID = bundleId
-        secondaryOptions.apiKey = apiKey
-        secondaryOptions.clientID = clientId
-        secondaryOptions.databaseURL = databaseUrl
-        secondaryOptions.storageBucket = storageBucket
+        let secondaryOptions = FirebaseOptions(googleAppID: openFeedbackDescriptor.googleAppId,
+                                               gcmSenderID: openFeedbackDescriptor.gcmSenderID)
+        secondaryOptions.projectID = openFeedbackDescriptor.projectId
+        secondaryOptions.bundleID = openFeedbackDescriptor.bundleId
+        secondaryOptions.apiKey = openFeedbackDescriptor.apiKey
+        secondaryOptions.clientID = openFeedbackDescriptor.clientId
+        secondaryOptions.databaseURL = openFeedbackDescriptor.databaseUrl
+        secondaryOptions.storageBucket = openFeedbackDescriptor.storageBucket
 
         // Configure an alternative FIRApp.
         FirebaseApp.configure(name: "OpenFeedback", options: secondaryOptions)
@@ -108,8 +60,8 @@ class OpenFeedbackSynchronizer {
         }
     }
 
-    func vote(_ voteItem: Config.VoteItem, for talkId: String) {
-        let userVoteIdentifier = UserVoteIdentifier(talkId: talkId, voteItemId: voteItem.id)
+    func vote(_ voteItem: VoteConfigData.VoteItem, for talkId: String) {
+        let userVoteIdentifier = UserVoteIdentifierData(talkId: talkId, voteItemId: voteItem.id)
         if let userVote = userVotes[userVoteIdentifier] {
             updateVote(userVote, status: .active)
         } else {
@@ -117,8 +69,8 @@ class OpenFeedbackSynchronizer {
         }
     }
 
-    func deleteVote(_ voteItem: Config.VoteItem, of talkId: String) {
-        let userVoteIdentifier = UserVoteIdentifier(talkId: talkId, voteItemId: voteItem.id)
+    func deleteVote(_ voteItem: VoteConfigData.VoteItem, of talkId: String) {
+        let userVoteIdentifier = UserVoteIdentifierData(talkId: talkId, voteItemId: voteItem.id)
         guard let userVote = userVotes[userVoteIdentifier] else { return }
         updateVote(userVote, status: .deleted)
     }
@@ -134,8 +86,8 @@ class OpenFeedbackSynchronizer {
                     do {
                         self.userVotes = [:]
                         for document in querySnapshot!.documents {
-                            let userVote = try FirestoreDecoder().decode(UserVote.self, from: document.data())
-                            let userVoteIdentifier = UserVoteIdentifier(
+                            let userVote = try FirestoreDecoder().decode(UserVoteData.self, from: document.data())
+                            let userVoteIdentifier = UserVoteIdentifierData(
                                 talkId: userVote.talkId, voteItemId: userVote.voteItemId)
                             self.userVotes[userVoteIdentifier] = userVote
                         }
@@ -182,7 +134,8 @@ class OpenFeedbackSynchronizer {
                     self.configPublisher.send(completion: .failure(err))
                 } else {
                     do {
-                        let config: Config = try FirestoreDecoder().decode(Config.self, from: document?.data() ?? [:])
+                        let config: VoteConfigData = try FirestoreDecoder()
+                            .decode(VoteConfigData.self, from: document?.data() ?? [:])
                         self.config = config
                         self.configPublisher.send(config)
                     } catch let error {
@@ -194,7 +147,7 @@ class OpenFeedbackSynchronizer {
         }
     }
 
-    private func createVote(_ voteItem: Config.VoteItem, for talkId: String) {
+    private func createVote(_ voteItem: VoteConfigData.VoteItem, for talkId: String) {
         guard let userId = userId else {
             return
         }
@@ -219,11 +172,11 @@ class OpenFeedbackSynchronizer {
         }
     }
 
-    private func updateVote(_ vote: UserVote, status: UserVote.Status) {
+    private func updateVote(_ vote: UserVoteData, status: UserVoteData.Status) {
         database.collection("projects/\(Self.projectId)/userVotes").document(vote.id).setData([
             "createdAt": vote.creationDate,
             "id": vote.id,
-            "projectId": vote.projectId,
+            "projectId": Self.projectId,
             "status": status.rawValue,
             "talkId": vote.talkId,
             "updatedAt": Date(),

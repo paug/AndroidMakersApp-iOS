@@ -63,7 +63,8 @@ struct AgendaDayListView: View {
 #if DEBUG
 struct AgendaDayListView_Previews: PreviewProvider {
     static var previews: some View {
-        AgendaDayListView()
+        injectMockModel()
+        return AgendaDayListView()
     }
 }
 #endif

@@ -12,14 +12,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        FirebaseApp.configure()
-        #if DEBUG
-        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(false)
-        Analytics.setAnalyticsCollectionEnabled(false)
-        #else
-        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
-        Analytics.setAnalyticsCollectionEnabled(true)
-        #endif
+        if FirebaseDescriptor.isEmbedded(forKind: .main) {
+            FirebaseApp.configure()
+            #if DEBUG
+            Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(false)
+            Analytics.setAnalyticsCollectionEnabled(false)
+            #else
+            Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
+            Analytics.setAnalyticsCollectionEnabled(true)
+            #endif
+        } else {
+            print("⚠️ Firebase descriptor for the main purpose is not embedded, crashlytics disabled.")
+        }
 
         return true
     }

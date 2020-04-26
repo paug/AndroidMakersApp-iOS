@@ -115,8 +115,11 @@ struct Card<Content: View>: View {
     }
 }
 
+#if DEBUG
 struct AboutView_Previews: PreviewProvider {
     static var previews: some View {
-        AboutView()
+        injectMockModel()
+        return AboutView()
     }
 }
+#endif

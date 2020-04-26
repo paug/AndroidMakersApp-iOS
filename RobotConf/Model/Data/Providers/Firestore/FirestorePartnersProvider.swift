@@ -7,27 +7,9 @@ import FirebaseFirestore
 import Combine
 import FirebaseCrashlytics
 
-/// Object that provides server partner
-class PartnersProvider {
-    struct Partner: Decodable {
-        let logoUrl: String
-        let name: String
-        let url: String?
-    }
-
-    struct PartnerCategory: Decodable {
-        let order: Int
-        let category: String
-        let partners: [Partner]
-
-        enum CodingKeys: String, CodingKey {
-            case order
-            case category = "title"
-            case partners = "logos"
-        }
-    }
-
-    var partnersPublisher = PassthroughSubject<[PartnerCategory], Error>()
+/// Object that provides partners from Firestore
+class FirestorePartnersProvider: PartnersProvider {
+    var partnersPublisher = PassthroughSubject<[PartnerCategoryData], Error>()
 
     init(database: Firestore) {
         database.collection("partners").getDocuments { [weak self] (querySnapshot, err) in
@@ -37,7 +19,7 @@ class PartnersProvider {
                 self.partnersPublisher.send(completion: .failure(err))
             } else {
                 do {
-                    var partnerCategories = [PartnerCategory]()
+                    var partnerCategories = [PartnerCategoryData]()
                     for document in querySnapshot!.documents {
                         partnerCategories.append(try document.decoded())
                     }

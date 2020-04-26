@@ -9,30 +9,60 @@ import CoreLocation
 
 /// Object that transforms and provides model data from server data
 class DataProvider {
+    enum ProviderType {
+        case firestore
+        #if DEBUG
+        case json
+        #endif
+    }
+
     var talksPublisher = PassthroughSubject<[Talk], Error>()
     var confVenuePublisher = PassthroughSubject<Venue, Error>()
     var partyVenuePublisher = PassthroughSubject<Venue, Error>()
     var partnerPublisher = PassthroughSubject<[PartnerCategory], Error>()
     var votesPublisher = PassthroughSubject<[String: TalkFeedback], Error>()
 
-    private let sessionsProvider: SessionsProvider
+    private let talksProvider: TalksProvider
     private let speakersProvider: SpeakersProvider
     private let slotsProvider: SlotsProvider
     private let roomsProvider: RoomsProvider
     private let venuesProvider: VenuesProvider
     private let partnersProvider: PartnersProvider
-    private let openFeedbackSynchronizer = OpenFeedbackSynchronizer()
+    private let openFeedbackSynchronizer: OpenFeedbackSynchronizer?
 
     private var cancellables: Set<AnyCancellable> = []
 
-    init() {
-        let database = Firestore.firestore()
-        sessionsProvider = SessionsProvider(database: database)
-        speakersProvider = SpeakersProvider(database: database)
-        slotsProvider = SlotsProvider(database: database)
-        roomsProvider = RoomsProvider(database: database)
-        venuesProvider = VenuesProvider(database: database)
-        partnersProvider = PartnersProvider(database: database)
+    init(desiredProviderType: ProviderType = .firestore) {
+        var providerType = desiredProviderType
+        #if DEBUG
+        if desiredProviderType == .firestore &&
+            (!FirebaseDescriptor.isEmbedded(forKind: .main) || !FirebaseDescriptor.isEmbedded(forKind: .openFeedback)) {
+            print("⚠️ data from firebase was asked but defaulting to json. This won't work in release 💥 !")
+            providerType = .json
+        }
+        #endif
+
+        switch providerType {
+        case .firestore:
+            let database = Firestore.firestore()
+            talksProvider = FirestoreTalksProvider(database: database)
+            speakersProvider = FirestoreSpeakersProvider(database: database)
+            slotsProvider = FirestoreSlotsProvider(database: database)
+            roomsProvider = FirestoreRoomsProvider(database: database)
+            venuesProvider = FirestoreVenuesProvider(database: database)
+            partnersProvider = FirestorePartnersProvider(database: database)
+            openFeedbackSynchronizer = FirestoreOpenFeedbackSynchronizer()
+        #if DEBUG
+        case .json:
+            talksProvider = JsonTalksProvider()
+            speakersProvider = JsonSpeakersProvider()
+            slotsProvider = JsonSlotsProvider()
+            roomsProvider = JsonRoomsProvider()
+            venuesProvider = JsonVenuesProvider()
+            partnersProvider = JsonPartnersProvider()
+            openFeedbackSynchronizer = JsonOpenFeedbackSynchronizer()
+        #endif
+        }
 
         computeTalks()
         computeVenues()
@@ -55,7 +85,7 @@ class DataProvider {
     }
 
     private func computeTalks() {
-        sessionsProvider.sessionsPublisher
+        talksProvider.talksPublisher
             .combineLatest(speakersProvider.speakersPublisher, slotsProvider.slotsPublisher,
                            roomsProvider.roomsPublisher)
             .sink(receiveCompletion: { error in
@@ -148,7 +178,7 @@ class DataProvider {
                     var infos = [TalkFeedback.Proposition: TalkFeedback.PropositionInfo]()
                     votes.forEach { vote in
                         if let proposition = propositionDict[vote.key] {
-                            let identifier = OpenFeedbackSynchronizer.UserVoteIdentifier(
+                            let identifier = UserVoteIdentifierData(
                                 talkId: talkId, voteItemId: vote.key)
                             let hasVoted = userVotes[identifier]?.status == .active
                             infos[proposition] = TalkFeedback.PropositionInfo(numberOfVotes: vote.value,
@@ -182,7 +212,7 @@ extension Language {
 }
 
 private extension Venue {
-    init?(from venue: VenuesProvider.Venue) {
+    init?(from venue: VenueData) {
         let coords = venue.coordinates.split(separator: ",")
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "en_US")
@@ -200,7 +230,7 @@ private extension Venue {
 }
 
 private extension Array where Element == PartnerCategory {
-    init(from partnerCategories: [PartnersProvider.PartnerCategory]) {
+    init(from partnerCategories: [PartnerCategoryData]) {
         self = partnerCategories
             .sorted { $0.order < $1.order }
             .compactMap { category in
@@ -212,7 +242,7 @@ private extension Array where Element == PartnerCategory {
 }
 
 private extension Partner {
-    init?(from partner: PartnersProvider.Partner) {
+    init?(from partner: PartnerData) {
         let logoUrlStr = partner.logoUrl
             .replacingOccurrences(of: "..", with: "")
             .replacingOccurrences(of: ".svg", with: ".png")
@@ -222,7 +252,7 @@ private extension Partner {
 }
 
 private extension TalkFeedback.Proposition {
-    init?(from voteItem: OpenFeedbackSynchronizer.Config.VoteItem, language: String) {
+    init?(from voteItem: VoteConfigData.VoteItem, language: String) {
         guard voteItem.type == "boolean" else { return nil }
         self = TalkFeedback.Proposition(uid: voteItem.id, text: voteItem.languages?[language] ?? voteItem.name)
     }

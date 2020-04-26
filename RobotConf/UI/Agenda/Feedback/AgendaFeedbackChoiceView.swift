@@ -89,8 +89,10 @@ struct TappableView: UIViewRepresentable {
 
 }
 
+#if DEBUG
 struct AgendaFeedbackChoiceView_Previews: PreviewProvider {
     static var previews: some View {
+        injectMockModel()
         let proposition = TalkFeedback.Proposition(uid: "1", text: "A choice")
         return AgendaFeedbackChoiceView(
             talkFeedback: TalkFeedback(
@@ -100,3 +102,4 @@ struct AgendaFeedbackChoiceView_Previews: PreviewProvider {
             index: 0)
     }
 }
+#endif

@@ -53,8 +53,11 @@ struct LocationVenueView: View {
     }
 }
 
+#if DEBUG
 struct LocationVenueView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationVenueView(kind: .conference)
+        injectMockModel()
+        return LocationVenueView(kind: .conference)
     }
 }
+#endif

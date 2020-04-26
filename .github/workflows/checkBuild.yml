@@ -29,12 +29,6 @@ jobs:
         echo "pod version: `pod --version`"
         pod install
       shell: bash
-    
-    - name: Add fake Firebase json files
-      run: |
-        cp .github/workflows/Resources/FakeInfo.plist RobotConf/GoogleService-Info.plist
-        cp .github/workflows/Resources/FakeInfo.plist RobotConf/OpenFeedback-Info.plist
-      shell: bash
 
     - name: Build & run
       run: xcodebuild clean test -workspace RobotConf.xcworkspace -scheme RobotConf -destination "platform=iOS Simulator,name=iPhone 11 Pro"

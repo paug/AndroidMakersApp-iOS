@@ -22,8 +22,11 @@ struct LocationListView: View {
     }
 }
 
+#if DEBUG
 struct LocationListView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationListView()
+        injectMockModel()
+        return LocationListView()
     }
 }
+#endif

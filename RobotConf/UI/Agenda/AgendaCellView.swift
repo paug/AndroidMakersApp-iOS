@@ -60,7 +60,8 @@ extension AgendaDayListViewModel.Content.Talk.State {
 #if DEBUG
 struct AgendaCellView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        injectMockModel()
+        return Group {
             AgendaCellView(talk: AgendaDayListViewModel.Content.Talk(
                 uid: "1",
                 title: "The infinite loop", duration: 25 * 60,

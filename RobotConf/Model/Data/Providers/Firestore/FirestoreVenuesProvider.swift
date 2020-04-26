@@ -7,19 +7,10 @@ import FirebaseFirestore
 import Combine
 import FirebaseCrashlytics
 
-/// Object that provides server venues
-class VenuesProvider {
-    struct Venue: Decodable {
-        let address: String
-        let coordinates: String
-        let description: String
-        let descriptionFr: String
-        let imageUrl: String
-        let name: String
-    }
-
-    let confVenuePublisher = PassthroughSubject<Venue, Error>()
-    let partyVenuePublisher = PassthroughSubject<Venue, Error>()
+/// Object that provides venues from Firestore
+class FirestoreVenuesProvider: VenuesProvider {
+    let confVenuePublisher = PassthroughSubject<VenueData, Error>()
+    let partyVenuePublisher = PassthroughSubject<VenueData, Error>()
 
     init(database: Firestore) {
         database.collection("venues").document("conference").getDocument { [weak self] (document, err) in

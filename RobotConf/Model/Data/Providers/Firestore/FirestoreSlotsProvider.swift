@@ -7,20 +7,13 @@ import FirebaseFirestore
 import Combine
 import FirebaseCrashlytics
 
-/// Object that provides server slots
-class SlotsProvider {
-    struct Slot: Decodable {
-        let sessionId: String
-        let roomId: String
-        let startDate: Date
-        let endDate: Date
-    }
-
+/// Object that provides slots from Firestore
+class FirestoreSlotsProvider: SlotsProvider {
     private struct Slots: Decodable {
-        let all: [Slot]
+        let all: [SlotData]
     }
 
-    var slotsPublisher = PassthroughSubject<[Slot], Error>()
+    var slotsPublisher = PassthroughSubject<[SlotData], Error>()
 
     init(database: Firestore) {
         database.collection("schedule-app").document("slots").getDocument { [weak self] (document, err) in

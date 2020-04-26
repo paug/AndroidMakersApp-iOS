@@ -7,18 +7,13 @@ import FirebaseFirestore
 import Combine
 import FirebaseCrashlytics
 
-/// Object that provides server rooms
-class RoomsProvider {
-    struct Room: Decodable {
-        let roomId: String
-        let roomName: String
-    }
-
+/// Object that provides rooms from Firestore
+class FirestoreRoomsProvider: RoomsProvider {
     private struct Rooms: Decodable {
-        let allRooms: [Room]
+        let allRooms: [RoomData]
     }
 
-    var roomsPublisher = PassthroughSubject<[String: Room], Error>()
+    var roomsPublisher = PassthroughSubject<[String: RoomData], Error>()
 
     init(database: Firestore) {
         database.collection("schedule-app").document("rooms").getDocument { [weak self] (document, err) in

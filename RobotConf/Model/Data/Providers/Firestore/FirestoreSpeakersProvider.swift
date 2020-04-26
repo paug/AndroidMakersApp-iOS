@@ -7,23 +7,9 @@ import FirebaseFirestore
 import Combine
 import FirebaseCrashlytics
 
-/// Object that provides server speakers
-class SpeakersProvider {
-    struct Speaker: Decodable {
-        //let badges: Array<String>?
-        let country: String?
-        let featured: Bool?
-        let companyLogo: String?
-        let name: String?
-        let photo: String?
-        let bio: String?
-        let shortBio: String?
-        let company: String?
-        //let socials: Array<String>?
-        let order: Int?
-    }
-
-    var speakersPublisher = PassthroughSubject<[String: Speaker], Error>()
+/// Object that provides speakers from Firestore
+class FirestoreSpeakersProvider: SpeakersProvider {
+    var speakersPublisher = PassthroughSubject<[String: SpeakerData], Error>()
 
     init(database: Firestore) {
         database.collection("speakers").getDocuments { [weak self] (querySnapshot, err) in
@@ -33,7 +19,7 @@ class SpeakersProvider {
                 self.speakersPublisher.send(completion: .failure(err))
             } else {
                 do {
-                    var speakers = [String: Speaker]()
+                    var speakers = [String: SpeakerData]()
                     for document in querySnapshot!.documents {
                         speakers[document.documentID] = try document.decoded()
                     }

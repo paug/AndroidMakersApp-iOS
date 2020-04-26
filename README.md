@@ -13,8 +13,13 @@ You can find the iOS app [here on the AppStore](https://apps.apple.com/us/app/ro
 Well, because Apple is what it is... We've been rejected from the Apple Store because of the usage of the `Android` term... So we decided to name it RobotConf instead 😆.
 
 ### How to run it
-The project needs to private files in order to run: `GoogleService-Info.plist` and `OpenFeedback-Info.plist`.
+If you directly run it, the data is provided by the [embedded json files](https://github.com/paug/AndroidMakersApp-iOS/tree/master/RobotConf/Model/Data/Providers/Json/Resources). These files are only embedded in DEBUG (added by a Build Phase).
 
-All the data are based on our own Firebase. Unfortunatly, you do not have access to it. You can either mock the data coming issued by the publishers in `Model/FirestoreData/DataProvider.swift`. If you go this way, you can remove the `GoogleService-Info.plist` and `OpenFeedback-Info.plist` files from the project.
+To use real files, you will need to provide to the app the access to 2 firebase projects:
 
-Otherwise host your own Firebase database using data coming from [our website](https://github.com/paug/android-makers-2020) (located in data/database) and place your own `GoogleService-Info.plist` in the project. You'll also need to have an [OpenFeedback](https://openfeedback.io/) instance. Once you have it, add the `OpenFeedback-Info.plist` (representing the Firebase project that is hosting your Openfeedback data) to the project.
+- One hosting the conference data
+- One hosting the OpenFeedback data
+
+To do that, replace the `GoogleService-Info.plist` and `OpenFeedback-Info.plist` with your own files.
+
+If you want, you can host your own Firebase database using data coming from [our website](https://github.com/paug/android-makers-2020) (located in data/database). You'll also need to have an [OpenFeedback](https://openfeedback.io/) instance. Once you have it, add the `OpenFeedback-Info.plist` (representing the Firebase project that is hosting your Openfeedback data) to the project.

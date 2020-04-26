@@ -68,8 +68,18 @@ struct AgendaFeedbackChoicePairView: View {
     }
 }
 
+#if DEBUG
 struct TalkFeedbackView_Previews: PreviewProvider {
     static var previews: some View {
-        TalkFeedbackView(talkId: "XEB-2115")
+        injectMockModel()
+        return Group {
+            TalkFeedbackView(talkId: "195718")
+                .previewLayout(.fixed(width: 300, height: 300))
+            TalkFeedbackView(talkId: "195718")
+                .previewLayout(.fixed(width: 200, height: 300))
+            TalkFeedbackView(talkId: "195718")
+                .previewLayout(.fixed(width: 500, height: 300))
+        }
     }
 }
+#endif
