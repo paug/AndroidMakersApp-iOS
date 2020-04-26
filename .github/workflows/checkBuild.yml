@@ -14,6 +14,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Cache Pods dependencies
+      uses: actions/cache@v1
+      id: cache-pods
+      with:
+        path: Pods
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pods-
+
     - name: Install pod dependencies
       if: steps.cache-pods.outputs.cache-hit != 'true'
       run: |
