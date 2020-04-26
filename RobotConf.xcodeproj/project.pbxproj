@@ -1282,7 +1282,7 @@
 			repositoryURL = "https://github.com/alickbass/CodableFirebase";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.0;
+				minimumVersion = 0.2.2;
 			};
 		};
 		B26E853923D49D8B006C2C9E /* XCRemoteSwiftPackageReference "SwiftRichString" */ = {
