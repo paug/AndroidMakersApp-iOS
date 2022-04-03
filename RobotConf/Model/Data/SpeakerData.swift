@@ -16,4 +16,16 @@ struct SpeakerData: Decodable {
     let company: String?
     //let socials: Array<String>?
     let order: Int?
+
+    private enum CodingKeys: String, CodingKey {
+        case country
+        case featured
+        case companyLogo = "companyLogoUrl"
+        case name
+        case photo = "photoUrl"
+        case bio
+        case shortBio
+        case company
+        case order
+    }
 }

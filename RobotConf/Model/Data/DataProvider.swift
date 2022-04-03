@@ -32,6 +32,8 @@ class DataProvider {
 
     private var cancellables: Set<AnyCancellable> = []
 
+    private static let pictureRootUrl = URL(string: "https://raw.githubusercontent.com/paug/android-makers-2022/main/")!
+
     init(desiredProviderType: ProviderType = .firestore) {
         var providerType = desiredProviderType
         #if DEBUG
@@ -96,8 +98,11 @@ class DataProvider {
                 let sessionSpeakers = session.speakers?.compactMap { speakerId -> Speaker? in
                     if let speaker = speakers[speakerId] {
                         // can force unwrap URL because URL(string: "") is returning a non nil url
-                        return Speaker(name: speaker.name ?? "", photoUrl: URL(string: speaker.photo ?? "")!,
-                                       company: speaker.company ?? "", description: speaker.bio ?? "")
+                        return Speaker(
+                            name: speaker.name ?? "",
+                            photoUrl: speaker.photo.map { Self.pictureRootUrl.appendingPathComponent($0) } ??
+                                URL(string: "")!,
+                            company: speaker.company ?? "", description: speaker.bio ?? "")
                     }
                     // else raise an error
 
