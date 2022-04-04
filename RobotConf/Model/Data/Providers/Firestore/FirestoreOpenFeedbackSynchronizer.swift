@@ -7,6 +7,7 @@ import Firebase
 import CodableFirebase
 import Combine
 import FirebaseCrashlytics
+import FirebaseAuth
 
 class FirestoreOpenFeedbackSynchronizer: OpenFeedbackSynchronizer {
 

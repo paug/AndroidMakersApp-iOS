@@ -6,6 +6,7 @@ import Foundation
 import FirebaseFirestore
 import Combine
 import CoreLocation
+import UIKit
 
 /// Object that transforms and provides model data from server data
 class DataProvider {
@@ -132,7 +133,7 @@ class DataProvider {
                 print("Error computing conf venue \(error)")
             }) { [unowned self] venue in
                 guard let confVenue = Venue(from: venue) else {
-                    //self.confVenuePublisher.send(completion: .failure())
+                    // self.confVenuePublisher.send(completion: .failure())
                     return
                 }
 
@@ -144,7 +145,7 @@ class DataProvider {
                 print("Error computing party venue \(error)")
             }) { [unowned self] venue in
                 guard let partyVenue = Venue(from: venue) else {
-                    //self.partyVenuePublisher.send(completion: .failure())
+                    // self.partyVenuePublisher.send(completion: .failure())
                     return
                 }
 

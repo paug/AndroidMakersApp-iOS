@@ -5,7 +5,7 @@
 import Foundation
 
 struct SpeakerData: Decodable {
-    //let badges: Array<String>?
+    // let badges: Array<String>?
     let country: String?
     let featured: Bool?
     let companyLogo: String?
@@ -14,7 +14,7 @@ struct SpeakerData: Decodable {
     let bio: String?
     let shortBio: String?
     let company: String?
-    //let socials: Array<String>?
+    // let socials: Array<String>?
     let order: Int?
 
     private enum CodingKeys: String, CodingKey {

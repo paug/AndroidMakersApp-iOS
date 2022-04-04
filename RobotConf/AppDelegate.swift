@@ -3,6 +3,8 @@
 //
 
 import UIKit
+import FirebaseAnalytics
+import FirebaseCrashlytics
 import Firebase
 
 @UIApplicationMain

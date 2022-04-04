@@ -3,19 +3,27 @@
 
 import Foundation
 
-// swiftlint:disable superfluous_disable_command
-// swiftlint:disable file_length
+// swiftlint:disable superfluous_disable_command file_length implicit_return
 
 // MARK: - Strings
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
-// swiftlint:disable nesting type_body_length type_name
+// swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
 
   internal enum About {
     /// Code of conduct
     internal static let coc = L10n.tr("Localizable", "about.coc")
-    /// RobotConf Paris is a two day event held on April 20th and 21st, 2020.\n\nJoin us in tackling the present and future of Robot with the hottest experts of the domain.\nThere'll be technical sessions, workshops, debates, networking.\nRobotConf gathers 4 events in 1.\n\n∙ Conferences : 40min Tech Talks by awesome speakers and 20min Lightning Talks on the future of Robot.\n∙ Workshop : Get trained on new methods, discover and build your app during the workshops.\n\nAll the talks will be recorded, and uploaded on the Youtube channel.
+    /// RobotConf Paris is a two day event held on April 20th and 21st, 2020.
+    /// 
+    /// Join us in tackling the present and future of Robot with the hottest experts of the domain.
+    /// There'll be technical sessions, workshops, debates, networking.
+    /// RobotConf gathers 4 events in 1.
+    /// 
+    /// ∙ Conferences : 40min Tech Talks by awesome speakers and 20min Lightning Talks on the future of Robot.
+    /// ∙ Workshop : Get trained on new methods, discover and build your app during the workshops.
+    /// 
+    /// All the talks will be recorded, and uploaded on the Youtube channel.
     internal static let explanation = L10n.tr("Localizable", "about.explanation")
     /// FAQ
     internal static let faq = L10n.tr("Localizable", "about.faq")
@@ -40,11 +48,12 @@ internal enum L10n {
       /// Ask a question to the speaker on Slido
       internal static let question = L10n.tr("Localizable", "agenda.detail.question")
       /// %@ at %@ - %@, %@
-      internal static func summary(_ p1: String, _ p2: String, _ p3: String, _ p4: String) -> String {
-        return L10n.tr("Localizable", "agenda.detail.summary", p1, p2, p3, p4)
+      internal static func summary(_ p1: Any, _ p2: Any, _ p3: Any, _ p4: Any) -> String {
+        return L10n.tr("Localizable", "agenda.detail.summary", String(describing: p1), String(describing: p2), String(describing: p3), String(describing: p4))
       }
       internal enum Feedback {
-        /// This talk cannot be reviewed now.\nPlease come back after attending it.
+        /// This talk cannot be reviewed now.
+        /// Please come back after attending it.
         internal static let notAvailable = L10n.tr("Localizable", "agenda.detail.feedback.notAvailable")
       }
       internal enum State {
@@ -77,16 +86,25 @@ internal enum L10n {
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
-// swiftlint:enable nesting type_body_length type_name
+// swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
 
 // MARK: - Implementation Details
 
 extension L10n {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg...) -> String {
-    // swiftlint:disable:next nslocalizedstring_key
-    let format = NSLocalizedString(key, tableName: table, bundle: Bundle(for: BundleToken.self), comment: "")
+    let format = BundleToken.bundle.localizedString(forKey: key, value: nil, table: table)
     return String(format: format, locale: Locale.current, arguments: args)
   }
 }
 
-private final class BundleToken {}
+// swiftlint:disable convenience_type
+private final class BundleToken {
+  static let bundle: Bundle = {
+    #if SWIFT_PACKAGE
+    return Bundle.module
+    #else
+    return Bundle(for: BundleToken.self)
+    #endif
+  }()
+}
+// swiftlint:enable convenience_type

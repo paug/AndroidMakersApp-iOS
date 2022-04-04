@@ -5,11 +5,6 @@ target 'RobotConf' do
   use_frameworks!
 
   # Pods for RobotConf
-  pod 'Firebase/Core'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Crashlytics'
-  pod 'Firebase/Analytics'
 
   pod 'SwiftGen'
   pod 'SwiftLint'

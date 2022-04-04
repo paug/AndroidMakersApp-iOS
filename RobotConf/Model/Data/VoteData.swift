@@ -12,7 +12,6 @@ struct UserVoteData: Codable {
     }
 
     let createdAt: Timestamp
-    // swiftlint:disable:next identifier_name - tried to allow `id` in config but did not work
     let id: String
     let status: Status
     let talkId: String
@@ -26,7 +25,6 @@ struct UserVoteData: Codable {
 
 struct VoteConfigData: Decodable {
     struct VoteItem: Decodable {
-        // swiftlint:disable:next identifier_name - tried to allow `id` in config but did not work
         let id: String
         let languages: [String: String]?
         let name: String

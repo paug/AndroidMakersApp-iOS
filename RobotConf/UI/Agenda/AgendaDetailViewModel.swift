@@ -63,8 +63,8 @@ private extension AgendaDetailViewModel.Content {
                   speakers: talk.speakers,
                   room: talk.room,
                   language: talk.language,
-                  questionUrl: nil, //talk.questionUrl, set it to nil for this year, to deactivate questions
-                  platformUrl: nil, //talk.platformUrl, set it to nil for this year, to deactivate the button
+                  questionUrl: nil, // talk.questionUrl, set it to nil for this year, to deactivate questions
+                  platformUrl: nil, // talk.platformUrl, set it to nil for this year, to deactivate the button
                   isFavorite: isFavorite)
     }
 }

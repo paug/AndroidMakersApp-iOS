@@ -20,7 +20,7 @@ struct ContentView: View {
             // This year, because of Covid-19, we won't have a party and no need for plan. The conference part need also
             // to be removed because the screen is not meant to show links.
             // For the moment, we remove the tab.
-            //LocationListView()
+            // LocationListView()
 //                .tabItem {
 //                    VStack {
 //                        Image("location")

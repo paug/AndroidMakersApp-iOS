@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33243ED027FA154700ECBA97 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 33243ECF27FA154700ECBA97 /* FirebaseCrashlytics */; };
+		33243ED227FA154700ECBA97 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 33243ED127FA154700ECBA97 /* FirebaseFirestore */; };
+		33243ED427FA168800ECBA97 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 33243ED327FA168800ECBA97 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		33243ED627FA171400ECBA97 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 33243ED527FA171400ECBA97 /* FirebaseAuth */; };
 		B207015E2353324400F8E2AF /* AgendaDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B207015D2353324400F8E2AF /* AgendaDetailView.swift */; };
 		B20701602353372800F8E2AF /* AgendaDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B207015F2353372800F8E2AF /* AgendaDetailViewModel.swift */; };
 		B2229A0123A39D6F00F50750 /* FirestoreSlotsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2229A0023A39D6F00F50750 /* FirestoreSlotsProvider.swift */; };
@@ -221,8 +225,12 @@
 			files = (
 				B2CD426E2362281A009FE6B0 /* URLImage in Frameworks */,
 				B26E853B23D49D8B006C2C9E /* SwiftRichString in Frameworks */,
+				33243ED027FA154700ECBA97 /* FirebaseCrashlytics in Frameworks */,
 				B265B04723F0691400EA363D /* CodableFirebase in Frameworks */,
+				33243ED427FA168800ECBA97 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				B83891F623C17BE3B86C039E /* Pods_RobotConf.framework in Frameworks */,
+				33243ED227FA154700ECBA97 /* FirebaseFirestore in Frameworks */,
+				33243ED627FA171400ECBA97 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +559,6 @@
 				B2CD2729234D06530016AA02 /* Resources */,
 				B27CC3E5245594DF0055D36B /* Copy json files in debug */,
 				B27CC3E82455ADD40055D36B /* Copy Firebase plist files */,
-				BE80F1BF4819644040584EF7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -562,6 +569,10 @@
 				B2CD426D2362281A009FE6B0 /* URLImage */,
 				B26E853A23D49D8B006C2C9E /* SwiftRichString */,
 				B265B04623F0691400EA363D /* CodableFirebase */,
+				33243ECF27FA154700ECBA97 /* FirebaseCrashlytics */,
+				33243ED127FA154700ECBA97 /* FirebaseFirestore */,
+				33243ED327FA168800ECBA97 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				33243ED527FA171400ECBA97 /* FirebaseAuth */,
 			);
 			productName = RobotConf;
 			productReference = B2CD272B234D06530016AA02 /* RobotConf.app */;
@@ -594,7 +605,6 @@
 				B2CD2748234D06560016AA02 /* Sources */,
 				B2CD2749234D06560016AA02 /* Frameworks */,
 				B2CD274A234D06560016AA02 /* Resources */,
-				7E2C0F99403046CFF0A92E69 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -642,6 +652,7 @@
 				B2CD426C2362281A009FE6B0 /* XCRemoteSwiftPackageReference "url-image" */,
 				B26E853923D49D8B006C2C9E /* XCRemoteSwiftPackageReference "SwiftRichString" */,
 				B265B04523F0691400EA363D /* XCRemoteSwiftPackageReference "CodableFirebase" */,
+				33243ECE27FA154700ECBA97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = B2CD272C234D06530016AA02 /* Products */;
 			projectDirPath = "";
@@ -729,23 +740,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7E2C0F99403046CFF0A92E69 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RobotConf-RobotConfUITests/Pods-RobotConf-RobotConfUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RobotConf-RobotConfUITests/Pods-RobotConf-RobotConfUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RobotConf-RobotConfUITests/Pods-RobotConf-RobotConfUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B27CC3E5245594DF0055D36B /* Copy json files in debug */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -818,23 +812,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		BE80F1BF4819644040584EF7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RobotConf/Pods-RobotConf-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RobotConf/Pods-RobotConf-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RobotConf/Pods-RobotConf-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		C84F2D5824D109B5535FC4CE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1277,6 +1254,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		33243ECE27FA154700ECBA97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		B265B04523F0691400EA363D /* XCRemoteSwiftPackageReference "CodableFirebase" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alickbass/CodableFirebase";
@@ -1304,6 +1289,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		33243ECF27FA154700ECBA97 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33243ECE27FA154700ECBA97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		33243ED127FA154700ECBA97 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33243ECE27FA154700ECBA97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		33243ED327FA168800ECBA97 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33243ECE27FA154700ECBA97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		33243ED527FA171400ECBA97 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33243ECE27FA154700ECBA97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		B265B04623F0691400EA363D /* CodableFirebase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B265B04523F0691400EA363D /* XCRemoteSwiftPackageReference "CodableFirebase" */;
