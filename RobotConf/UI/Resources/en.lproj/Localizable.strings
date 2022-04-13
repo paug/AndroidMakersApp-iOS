@@ -1,7 +1,7 @@
 "common.loading" = "Loading...";
 
 "agenda.tabTitle" = "Agenda";
-"agenda.navTitle" = "RobotConf 20²";
+"agenda.navTitle" = "RobotConf 22";
 
 /* Info about the session. It is `date` at `start time` - `end time`, `room` */
 "agenda.detail.summary" = "%@ at %@ - %@, %@";
@@ -19,8 +19,8 @@
 "locations.plan" = "Plan";
 
 "about.tabTitle" = "About";
-"about.navTitle" = "About AM 20²";
-"about.explanation" = "RobotConf Paris is a two day event held on April 20th and 21st, 2020.
+"about.navTitle" = "About AM 22";
+"about.explanation" = "RobotConf Paris is a two day event held on April 25th and 26st, 2022.
 
 Join us in tackling the present and future of Robot with the hottest experts of the domain.
 There\'ll be technical sessions, workshops, debates, networking.

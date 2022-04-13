@@ -1,7 +1,7 @@
 "common.loading" = "Chargement...";
 
 "agenda.tabTitle" = "Agenda";
-"agenda.navTitle" = "RobotConf 20²";
+"agenda.navTitle" = "RobotConf 22";
 
 /* Info about the session. It is `date` at `start time` - `end time`, `room` */
 "agenda.detail.summary" = "%@ à %@ - %@, %@";
@@ -19,8 +19,8 @@
 "locations.plan" = "Plan";
 
 "about.tabTitle" = "À propos";
-"about.navTitle" = "À propos d'AM 20²";
-"about.explanation" = "RobotConf Paris est un événement de deux jours qui se tiendra les 20 et 21 avril 2020.
+"about.navTitle" = "À propos d'AM 22";
+"about.explanation" = "RobotConf Paris est un événement de deux jours qui se tiendra les 25 et 26 avril 2022.
 
 Rejoignez-nous pour aborder le présent et futur du Robot avec les meilleurs experts du domaine.
 Il y aura des sessions techniques, des ateliers, des débats, du réseautage.
