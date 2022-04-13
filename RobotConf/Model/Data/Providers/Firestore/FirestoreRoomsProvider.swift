@@ -19,7 +19,7 @@ class FirestoreRoomsProvider: RoomsProvider {
         database.collection("schedule-app").document("rooms").getDocument { [weak self] (document, err) in
             guard let self = self else { return }
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Error getting schedule rooms documents: \(err)")
                 self.roomsPublisher.send(completion: .failure(err))
             } else {
                 do {

@@ -81,7 +81,7 @@ class FirestoreOpenFeedbackSynchronizer: OpenFeedbackSynchronizer {
             .addSnapshotListener { [weak self] (querySnapshot, err) in
                 guard let self = self else { return }
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    print("Error getting feedback documents: \(err)")
                     self.userVotesPublisher.send(completion: .failure(err))
                 } else {
                     do {
@@ -107,7 +107,7 @@ class FirestoreOpenFeedbackSynchronizer: OpenFeedbackSynchronizer {
 
                 guard let self = self else { return }
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    print("Error getting session votes documents: \(err)")
                     self.sessionVotesPublisher.send(completion: .failure(err))
                 } else {
                     do {
@@ -130,7 +130,7 @@ class FirestoreOpenFeedbackSynchronizer: OpenFeedbackSynchronizer {
             .addSnapshotListener { [weak self] document, err in
                 guard let self = self else { return }
                 if let err = err {
-                    print("Error getting document: \(err)")
+                    print("Error getting open feedback project document: \(err)")
                     self.config = nil
                     self.configPublisher.send(completion: .failure(err))
                 } else {

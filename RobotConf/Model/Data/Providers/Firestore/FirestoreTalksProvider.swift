@@ -15,7 +15,7 @@ class FirestoreTalksProvider: TalksProvider {
         database.collection("sessions").getDocuments { [weak self] (querySnapshot, err) in
             guard let self = self else { return }
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Error getting sessions documents: \(err)")
                 self.talksPublisher.send(completion: .failure(err))
             } else {
                 do {

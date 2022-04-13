@@ -16,7 +16,7 @@ class FirestoreVenuesProvider: VenuesProvider {
         database.collection("venues").document("conference").getDocument { [weak self] (document, err) in
             guard let self = self else { return }
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Error getting conf venue documents: \(err)")
                 self.confVenuePublisher.send(completion: .failure(err))
             } else {
                 do {
@@ -31,7 +31,7 @@ class FirestoreVenuesProvider: VenuesProvider {
         database.collection("venues").document("afterparty").getDocument { [weak self] (document, err) in
             guard let self = self else { return }
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Error getting party venue documents: \(err)")
                 self.partyVenuePublisher.send(completion: .failure(err))
             } else {
                 do {

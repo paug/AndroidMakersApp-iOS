@@ -19,7 +19,7 @@ class FirestoreSlotsProvider: SlotsProvider {
         database.collection("schedule-app").document("slots").getDocument { [weak self] (document, err) in
             guard let self = self else { return }
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Error getting schedule slots documents: \(err)")
                 self.slotsPublisher.send(completion: .failure(err))
             } else {
                 do {
