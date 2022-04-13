@@ -7,9 +7,9 @@ import Foundation
 class TimeProvider {
     static let instance = TimeProvider()
 
-    // In debug, consider the launch of the app as the 23 avril 2019 11h59 16s GMT+2
+    // In debug, consider the launch of the app as the 25 April 2022 15:17:09 GMT+02:00
     #if DEBUG
-    private let fakeDate = Date(timeIntervalSince1970: 1587384240) // Monday, 20 April 2020 14:04:00 GMT+02:00
+    private let fakeDate = Date(timeIntervalSince1970: 1650892629) // Monday 25 April 2022 15:17:09 GMT+02:00
     private let realDate = Date()
     #endif
 
