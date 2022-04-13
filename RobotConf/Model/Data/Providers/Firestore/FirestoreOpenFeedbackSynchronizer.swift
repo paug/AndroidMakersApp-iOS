@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class FirestoreOpenFeedbackSynchronizer: OpenFeedbackSynchronizer {
 
-    private static let projectId = "mMHR63ARZQpPidFQISyc"
+    private static let projectId = "am-2022"
 
     let configPublisher = PassthroughSubject<VoteConfigData, Error>()
     let sessionVotesPublisher = PassthroughSubject<[String: [String: Int]], Error>()
@@ -36,7 +36,6 @@ class FirestoreOpenFeedbackSynchronizer: OpenFeedbackSynchronizer {
         secondaryOptions.bundleID = openFeedbackDescriptor.bundleId
         secondaryOptions.apiKey = openFeedbackDescriptor.apiKey
         secondaryOptions.clientID = openFeedbackDescriptor.clientId
-        secondaryOptions.databaseURL = openFeedbackDescriptor.databaseUrl
         secondaryOptions.storageBucket = openFeedbackDescriptor.storageBucket
 
         // Configure an alternative FIRApp.

@@ -29,7 +29,6 @@ struct FirebaseDescriptor {
     let bundleId: String
     let apiKey: String
     let clientId: String
-    let databaseUrl: String
     let storageBucket: String
 
     /// Loads a description for a given kind
@@ -43,7 +42,6 @@ struct FirebaseDescriptor {
             let bundleId = config["BUNDLE_ID"] as? String,
             let apiKey = config["API_KEY"] as? String,
             let clientId = config["CLIENT_ID"] as? String,
-            let databaseUrl = config["DATABASE_URL"] as? String,
             let storageBucket = config["STORAGE_BUCKET"] as? String else {
             return nil
         }
@@ -54,7 +52,6 @@ struct FirebaseDescriptor {
         self.bundleId = bundleId
         self.apiKey = apiKey
         self.clientId = clientId
-        self.databaseUrl = databaseUrl
         self.storageBucket = storageBucket
     }
 
