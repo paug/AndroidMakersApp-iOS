@@ -121,8 +121,8 @@ struct SpeakerView: View {
 
     var body: some View {
         HStack(alignment: .top) {
-            URLImage(speaker.photoUrl) { proxy in
-                proxy.image
+            URLImage(speaker.photoUrl) { image in
+                image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .clipShape(Circle())

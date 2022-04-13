@@ -74,8 +74,8 @@ struct AboutView: View {
                                         .padding(16)
                                     ForEach(category.partners, id: \.self) { partner in
                                         Button(action: { self.viewModel.openPartnerPage(partner) }) {
-                                            URLImage(partner.logoUrl) { proxy in
-                                                proxy.image
+                                            URLImage(partner.logoUrl) { image in
+                                                image
                                                     .renderingMode(.original)
                                                     .resizable()
                                                     .aspectRatio(contentMode: .fit)

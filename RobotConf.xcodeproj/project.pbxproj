@@ -1283,7 +1283,7 @@
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.7;
+				minimumVersion = 3.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

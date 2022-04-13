@@ -17,8 +17,8 @@ struct LocationVenueView: View {
         viewModel.content.map { content in
             ScrollView {
                 VStack(alignment: .center, spacing: 16) {
-                    URLImage(URL(string: content.imageUrl)!) { proxy in
-                        proxy.image
+                    URLImage(URL(string: content.imageUrl)!) { image in
+                        image
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     }.frame(maxHeight: 220)
