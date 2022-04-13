@@ -1,92 +1,104 @@
 [
-  {
-    "order": 0,
-    "title": "Event Organizers",
-    "logos": [
-      {
-        "logoUrl": "../images/organizer-paug-logo.svg",
-        "name": "Paris Android User Group",
-        "url": "https://www.paug.fr/"
-      },
-      {
-        "logoUrl": "../images/organizer-bma-logo.svg",
-        "name": "BeMyApp",
-        "url": "https://www.bemyapp.com/"
-      }
-    ]
-  },
-  {
-    "order": 1,
-    "title": "Gold Sponsors",
-    "logos": [
-      {
-        "logoUrl": "../images/logos/leboncoin.svg",
-        "name": "Le Bon Coin",
-        "url": "https://www.leboncoin.fr/"
-      }
-    ]
-  },
-  {
-    "order": 2,
-    "title": "Silver Sponsors",
-    "logos": [
-      {
-        "logoUrl": "../images/logos/bitrise.png",
-        "name": "Bitrise",
-        "url": "https://www.bitrise.io/"
-      },
-      {
-        "logoUrl": "../images/logos/ps-logo.svg",
-        "name": "Publicis Sapient Engineering",
-        "url": "https://blog.engineering.publicissapient.fr/"
-      },
-      {
-        "logoUrl": "../images/logos/coyote.png",
-        "name": "Coyotte",
-        "url": "https://www.moncoyote.com/"
-      },
-      {
-        "logoUrl": "../images/logos/blablacar.png",
-        "name": "Blablacar",
-        "url": "https://www.blablacar.fr/"
-      }
-    ]
-  },
-  {
-    "order": 3,
-    "title": "Basic Sponsors",
-    "logos": [
-      {
-        "logoUrl": "../images/logos/MWM.png",
-        "name": "MWM",
-        "url": "http://musicworldmedia.com/"
-      },
-      {
-        "logoUrl": "../images/logos/Meetic.png",
-        "name": "Meetic",
-        "url": "https://www.meetic.fr/"
-      }
-    ]
-  },
-  {
-    "order": 4,
-    "title": "Other Partners",
-    "logos": [
-      {
-        "logoUrl": "../images/logos/slido.svg",
-        "name": "Slido",
-        "url": "http://sli.do"
-      }
-    ]
-  },
-  {
-    "order": 5,
-    "title": "Website Template",
-    "logos": [
-      {
-        "logoUrl": "../images/logos/gdg-lviv.svg",
-        "name": "GDG Lviv"
-      }
-    ]
-  }
+    {
+        "category": {
+            "order": 0,
+            "title": "Event Organizers"
+        },
+        "partners": [
+            {
+                "order": 0,
+                "logoUrl": "../images/logos/organizer-bma-logo.svg",
+                "name": "BeMyApp",
+                "url": "https://www.bemyapp.com/"
+            },
+            {
+                "order": 1,
+                "logoUrl": "../images/logos/organizer-paug-logo.svg",
+                "name": "Paris Android User Group",
+                "url": "https://www.paug.fr/"
+            }
+        ]
+    },
+    {
+        "category": {
+            "order": 1,
+            "title": "Gold sponsor"
+        },
+        "partners": [
+            {
+                "order": 0,
+                "logoUrl": "../images/logos/bitrise.svg",
+                "name": "Bitrise",
+                "url": "http://bitrise.io/"
+            },
+            {
+                "order": 1,
+                "logoUrl": "../images/logos/babbel.jpeg",
+                "name": "Babbel",
+                "url": "https://babbel.com/"
+            }
+        ]
+    },
+    {
+        "category": {
+            "order": 2,
+            "title": "Silver sponsors"
+        },
+        "partners": [
+            {
+                "order": 0,
+                "logoUrl": "../images/logos/coyote.png",
+                "name": "Coyote",
+                "url": "https://corporate.moncoyote.com/"
+            },
+            {
+                "order": 1,
+                "logoUrl": "../images/logos/exomind.png",
+                "name": "Exomind",
+                "url": "https://www.exomind.fr/"
+            }
+        ]
+    },
+    {
+        "category": {
+            "order": 3,
+            "title": "Virtual sponsors"
+        },
+        "partners": [
+            {
+                "order": 0,
+                "logoUrl": "../images/logos/deezer.png",
+                "name": "Deezer",
+                "url": "https://www.deezer.com/en/company/about"
+            }
+        ]
+    },
+    {
+        "category": {
+            "order": 4,
+            "title": "Individual Speaker Sponsor",
+        },
+        "partners": [
+            {
+                "order": 0,
+                "logoUrl": "../images/logos/slack.svg",
+                "name": "Slack",
+                "url": "https://slack.com/careers/dept/products-and-technology"
+            }
+        ]
+    },
+    {
+        "category": {
+            "order": 5,
+            "title": "Template Creator"
+        },
+        "partners": [
+            {
+                "order": 0,
+                "logoUrl": "../images/logos/gdg-lviv.svg",
+                "name": "GDG Lviv",
+                "url": "https://www.meetup.com/GDG-Lviv/"
+            }
+        ]
+    }
 ]

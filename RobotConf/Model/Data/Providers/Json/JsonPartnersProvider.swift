@@ -7,7 +7,7 @@ import Combine
 
 /// Object that provides partners from a json file
 class JsonPartnersProvider: PartnersProvider {
-    var partnersPublisher = PassthroughSubject<[PartnerCategoryData], Error>()
+    var partnersPublisher = CurrentValueSubject<[PartnersByCategoryData], Error>([])
 
     init() {
         DispatchQueue.main.async {
@@ -17,7 +17,7 @@ class JsonPartnersProvider: PartnersProvider {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
-                let partners = try decoder.decode([PartnerCategoryData].self, from: data)
+                let partners = try decoder.decode([PartnersByCategoryData].self, from: data)
                 self.partnersPublisher.send(partners)
             } catch {
                 self.partnersPublisher.send(completion: .failure(error))

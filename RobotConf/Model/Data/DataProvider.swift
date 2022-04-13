@@ -33,7 +33,8 @@ class DataProvider {
 
     private var cancellables: Set<AnyCancellable> = []
 
-    private static let pictureRootUrl = URL(string: "https://raw.githubusercontent.com/paug/android-makers-2022/main/")!
+    fileprivate static let pictureRootUrl = URL(
+        string: "https://raw.githubusercontent.com/paug/android-makers-2022/main/")!
 
     init(desiredProviderType: ProviderType = .firestore) {
         var providerType = desiredProviderType
@@ -236,13 +237,13 @@ private extension Venue {
 }
 
 private extension Array where Element == PartnerCategory {
-    init(from partnerCategories: [PartnerCategoryData]) {
-        self = partnerCategories
-            .sorted { $0.order < $1.order }
-            .compactMap { category in
-                let partners = category.partners.compactMap { Partner(from: $0) }
+    init(from partnersByCategories: [PartnersByCategoryData]) {
+        self = partnersByCategories
+            .sorted { $0.category.order < $1.category.order }
+            .compactMap { partnersByCategory in
+                let partners = partnersByCategory.partners.compactMap { Partner(from: $0) }
                 guard !partners.isEmpty else { return nil }
-                return PartnerCategory(categoryName: category.category, partners: partners)
+                return PartnerCategory(categoryName: partnersByCategory.category.name, partners: partners)
         }
     }
 }
@@ -250,9 +251,14 @@ private extension Array where Element == PartnerCategory {
 private extension Partner {
     init?(from partner: PartnerData) {
         let logoUrlStr = partner.logoUrl
-            .replacingOccurrences(of: "..", with: "")
-            .replacingOccurrences(of: ".svg", with: ".png")
-        guard let logoUrl = URL(string: "https://androidmakers.fr\(logoUrlStr)") else { return nil }
+            .replacingOccurrences(of: "../", with: "")
+            .replacingOccurrences(of: ".svg", with: ".svg.png")
+        var logoUrl = DataProvider.pictureRootUrl.appendingPathComponent(logoUrlStr)
+        if logoUrl.path.hasSuffix(".svg.png") {
+            let filename = logoUrl.lastPathComponent
+            logoUrl = logoUrl.deletingLastPathComponent().appendingPathComponent("pngs")
+                .appendingPathComponent(filename)
+        }
         self.init(name: partner.name, logoUrl: logoUrl, url: URL(string: partner.url))
     }
 }

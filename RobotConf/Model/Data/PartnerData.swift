@@ -12,12 +12,15 @@ struct PartnerData: Decodable {
 
 struct PartnerCategoryData: Decodable {
     let order: Int
-    let category: String
-    let partners: [PartnerData]
+    let name: String
 
     enum CodingKeys: String, CodingKey {
         case order
-        case category = "title"
-        case partners = "logos"
+        case name = "title"
     }
+}
+
+struct PartnersByCategoryData: Decodable {
+    let category: PartnerCategoryData
+    let partners: [PartnerData]
 }
