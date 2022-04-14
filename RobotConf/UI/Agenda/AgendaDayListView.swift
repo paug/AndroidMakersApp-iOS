@@ -55,8 +55,6 @@ struct AgendaDayListView: View {
             }
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
-            // Weird hack to have the master-detail in two columns working
-            .padding(1)
     }
 }
 
