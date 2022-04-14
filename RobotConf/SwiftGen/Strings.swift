@@ -84,6 +84,17 @@ internal enum L10n {
     /// Locations
     internal static let tabTitle = L10n.tr("Localizable", "locations.tabTitle")
   }
+
+  internal enum Talk {
+    internal enum Complexity {
+      /// Beginner
+      internal static let beginner = L10n.tr("Localizable", "talk.complexity.beginner")
+      /// Expert
+      internal static let expert = L10n.tr("Localizable", "talk.complexity.expert")
+      /// Intermediate
+      internal static let intermediate = L10n.tr("Localizable", "talk.complexity.intermediate")
+    }
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

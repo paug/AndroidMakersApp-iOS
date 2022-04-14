@@ -5,6 +5,11 @@
 import Foundation
 
 struct Talk {
+    enum Complexity {
+        case beginner
+        case intermediate
+        case expert
+    }
     let uid: String
     let title: String
     let description: String
@@ -14,6 +19,7 @@ struct Talk {
     let startTime: Date
     let room: String
     let language: Language
+    let complexity: Complexity?
     let questionUrl: URL?
     let platformUrl: URL?
 }

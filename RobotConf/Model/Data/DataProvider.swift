@@ -120,8 +120,8 @@ class DataProvider {
                     duration: duration, speakers: sessionSpeakers, tags: session.tags,
                     startTime: slot.startDate,
                     room: rooms[slot.roomId]?.roomName ?? slot.roomId.capitalized,
-                    language: Language(from: session.language), questionUrl: URL(string: session.slido),
-                    platformUrl: URL(string: session.platformUrl))
+                    language: Language(from: session.language), complexity: Talk.Complexity(from: session.complexity),
+                    questionUrl: URL(string: session.slido), platformUrl: URL(string: session.platformUrl))
                 talks.append(talk)
             }
             self.talksPublisher.send(talks)
@@ -201,7 +201,7 @@ class DataProvider {
     }
 }
 
-extension Language {
+private extension Language {
     init(from str: String?) {
         guard let str = str else {
             self = .all
@@ -215,6 +215,17 @@ extension Language {
             language.formUnion(.french)
         }
         self = language
+    }
+}
+
+private extension Talk.Complexity {
+    init?(from str: String?) {
+        switch str {
+        case "Beginner": self = .beginner
+        case "Intermediate": self = .intermediate
+        case "Expert": self = .expert
+        default: return nil
+        }
     }
 }
 

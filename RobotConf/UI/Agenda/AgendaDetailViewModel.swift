@@ -13,6 +13,7 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
         let endDate: Date
         let description: String
         let tags: [String]
+        let complexity: Talk.Complexity?
         let speakers: [Speaker]
         let room: String
         let language: Language
@@ -59,7 +60,8 @@ private extension AgendaDetailViewModel.Content {
                   startDate: talk.startTime,
                   endDate: talk.startTime.addingTimeInterval(talk.duration),
                   description: talk.description,
-                  tags: talk.tags,
+                  tags: [], // talk.tags is set to empty because it is all Android Development
+                  complexity: talk.complexity,
                   speakers: talk.speakers,
                   room: talk.room,
                   language: talk.language,

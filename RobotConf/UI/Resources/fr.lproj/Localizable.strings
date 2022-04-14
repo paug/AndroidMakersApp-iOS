@@ -34,3 +34,7 @@ Tous les talks seront enregistrées, et mis sur la chaîne YouTube.";
 "about.coc" = "Code de conduite";
 "about.social" = "Social";
 "about.sponsors" = "Sponsors";
+
+"talk.complexity.beginner" = "Débutant";
+"talk.complexity.intermediate" = "Intermédiaire";
+"talk.complexity.expert" = "Expert";

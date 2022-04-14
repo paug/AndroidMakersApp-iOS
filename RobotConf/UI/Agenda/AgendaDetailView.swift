@@ -54,6 +54,9 @@ struct AgendaDetailView: View {
                         ForEach(content.tags, id: \.self) { tag in
                             TagView(text: tag)
                         }
+                        if let complexity = content.complexity {
+                            TagView(text: complexity.displayString)
+                        }
                     }
                     if content.platformUrl != nil || content.questionUrl != nil {
                         Divider().padding(.top, 8)
@@ -136,6 +139,16 @@ struct SpeakerView: View {
             }
         }
         .padding(.vertical, 8)
+    }
+}
+
+private extension Talk.Complexity {
+    var displayString: String {
+        switch self {
+        case .beginner:     return L10n.Talk.Complexity.beginner
+        case .intermediate: return L10n.Talk.Complexity.intermediate
+        case .expert:       return L10n.Talk.Complexity.expert
+        }
     }
 }
 
