@@ -29,7 +29,7 @@ struct TalkFeedbackView: View {
         case .available(let feedback):
             return AnyView(
                 VStack {
-                    ForEach(0..<rowsCount(feedback: feedback)) { index in
+                    ForEach(0..<rowsCount(feedback: feedback), id: \.self) { index in
                         HStack {
                             AgendaFeedbackChoicePairView(feedback: feedback, index: index*2)
                         }
