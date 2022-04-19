@@ -30,6 +30,7 @@ internal enum Asset {
     internal static let currentTalk = ColorAsset(name: "colors/currentTalk")
     internal static let feedbackColor = ColorAsset(name: "colors/feedbackColor")
     internal static let feedbackSelectedColor = ColorAsset(name: "colors/feedbackSelectedColor")
+    internal static let link = ColorAsset(name: "colors/link")
     internal static let tag = ColorAsset(name: "colors/tag")
     internal static let twitter = ColorAsset(name: "colors/twitter")
   }

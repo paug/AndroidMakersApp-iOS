@@ -25,9 +25,11 @@ struct AboutView: View {
                                     WebButton(url: URL(string: "https://androidmakers.fr/faq")!) {
                                         Text(L10n.About.faq)
                                     }
+                                    .foregroundColor(Color(Asset.Colors.link.color))
                                     WebButton(url: URL(string: "https://androidmakers.fr/coc")!) {
                                         Text(L10n.About.coc)
                                     }
+                                    .foregroundColor(Color(Asset.Colors.link.color))
                                 }.padding(8)
                             }.padding(8)
                         }
@@ -35,12 +37,12 @@ struct AboutView: View {
                             VStack {
                                 Text(L10n.About.social)
                                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(Color(Asset.Colors.link.color))
                                 Button(action: {
                                     self.viewModel.openHashtagPage()
                                 }) {
                                     Text("#AndroidMakers")
-                                        .foregroundColor(.blue)
+                                        .foregroundColor(Color(Asset.Colors.link.color))
                                 }
                                 HStack(spacing: 16) {
                                     Button(action: {
@@ -67,7 +69,7 @@ struct AboutView: View {
                             VStack(spacing: 16) {
                                 Text(L10n.About.sponsors)
                                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(Color(Asset.Colors.link.color))
                                 ForEach(self.viewModel.partnerCategories, id: \.self) { category in
                                     VStack {
                                         Text(category.categoryName)
