@@ -83,7 +83,7 @@ struct AgendaDetailView: View {
 
                     }
                     if content.isATalk {
-                        Divider().padding(.top, 8)
+                        Divider().padding(.vertical, 8)
                         TalkFeedbackView(talkId: content.talkId)
                     }
                     Divider().padding(.top, 8)
