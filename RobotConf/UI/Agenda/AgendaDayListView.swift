@@ -26,6 +26,13 @@ struct AgendaDayListView: View {
         NavigationView {
             List {
                 ForEach(viewModel.content.sections, id: \.self) { section in
+                    if section.isNewDay {
+                        Text("\(self.sectionDateFormatter.string(from: section.date))")
+                            .font(.title)
+                            .bold()
+                            .padding(.horizontal, -12)
+                            .listRowBackground(Color.clear)
+                    }
                     // swiftlint:disable:next line_length
                     Section(header: Text("\(self.sectionDateFormatter.string(from: section.date)), \(self.sectionTimeFormatter.string(from: section.date))")) {
                         ForEach(self.favOnly ?

@@ -27,6 +27,7 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
         struct Section: Hashable {
             let date: Date
             var talks: [Talk]
+            let isNewDay: Bool
         }
 
         var sections: [Section]
@@ -83,12 +84,19 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
         let groupedTalks = Dictionary(grouping: talks) { $0.startTime }
         let sortedKeys = groupedTalks.keys.sorted()
         var sections = [Content.Section]()
+        var previousDate: Date?
+        let calendar = Calendar.current
         sortedKeys.forEach { date in
             // can force unwrap since we're iterating amongst the keys
             let talks = groupedTalks[date]!
                 .map { Content.Talk(from: $0) }
                 .sorted { $0.room < $1.room }
-            sections.append(Content.Section(date: date, talks: talks))
+            sections.append(Content.Section(
+                date: date,
+                talks: talks,
+                isNewDay: !calendar.isDate(date, inSameDayAs: previousDate ?? Date.distantPast)))
+
+            previousDate = date
         }
         content.sections = sections
     }
