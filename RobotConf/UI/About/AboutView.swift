@@ -25,7 +25,7 @@ struct AboutView: View {
                                     WebButton(url: URL(string: "https://androidmakers.fr/faq")!) {
                                         Text(L10n.About.faq)
                                     }
-                                    WebButton(url: URL(string: "https://androidmakers.fr/cod")!) {
+                                    WebButton(url: URL(string: "https://androidmakers.fr/coc")!) {
                                         Text(L10n.About.coc)
                                     }
                                 }.padding(8)
