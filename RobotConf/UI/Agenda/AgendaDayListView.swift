@@ -30,7 +30,7 @@ struct AgendaDayListView: View {
                         Text("\(self.sectionDateFormatter.string(from: section.date))")
                             .font(.title)
                             .bold()
-                            .padding(.horizontal, -12)
+                            .padding(.horizontal, -8)
                             .listRowBackground(Color.clear)
                     }
                     // swiftlint:disable:next line_length
