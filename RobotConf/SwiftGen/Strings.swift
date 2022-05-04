@@ -43,14 +43,16 @@ internal enum L10n {
     /// Agenda
     internal static let tabTitle = L10n.tr("Localizable", "agenda.tabTitle")
     internal enum Detail {
-      /// Watch this talk on the platform
-      internal static let platform = L10n.tr("Localizable", "agenda.detail.platform")
+      /// Open the slides
+      internal static let presentation = L10n.tr("Localizable", "agenda.detail.presentation")
       /// Ask a question to the speaker on Slido
       internal static let question = L10n.tr("Localizable", "agenda.detail.question")
       /// %@ at %@ - %@, %@
       internal static func summary(_ p1: Any, _ p2: Any, _ p3: Any, _ p4: Any) -> String {
         return L10n.tr("Localizable", "agenda.detail.summary", String(describing: p1), String(describing: p2), String(describing: p3), String(describing: p4))
       }
+      /// Watch this talk on Youtube
+      internal static let youtube = L10n.tr("Localizable", "agenda.detail.youtube")
       internal enum Feedback {
         /// This talk cannot be reviewed now.
         /// Please come back after attending it.

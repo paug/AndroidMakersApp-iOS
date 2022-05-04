@@ -58,11 +58,21 @@ struct AgendaDetailView: View {
                             TagView(text: complexity.displayString)
                         }
                     }
-                    if content.platformUrl != nil || content.questionUrl != nil {
+                    if content.youtubeUrl != nil || content.slidesUrl != nil || content.questionUrl != nil {
                         Divider().padding(.top, 8)
-                        if content.platformUrl != nil {
-                            WebButton(url: content.platformUrl!) {
-                                Text(L10n.Agenda.Detail.platform)
+                        if content.youtubeUrl != nil {
+                            WebButton(url: content.youtubeUrl!, openInExternalBrowser: true) {
+                                Text(L10n.Agenda.Detail.youtube)
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .foregroundColor(Color(UIColor.systemBackground))
+                            .padding()
+                            .background(Color(Asset.Colors.amBlue.color))
+                            .cornerRadius(8)
+                        }
+                        if content.slidesUrl != nil {
+                            WebButton(url: content.slidesUrl!, openInExternalBrowser: true) {
+                                Text(L10n.Agenda.Detail.presentation)
                                     .frame(maxWidth: .infinity)
                             }
                             .foregroundColor(Color(UIColor.systemBackground))

@@ -21,5 +21,6 @@ struct Talk {
     let language: Language
     let complexity: Complexity?
     let questionUrl: URL?
-    let platformUrl: URL?
+    let youtubeUrl: URL?
+    let slidesUrl: URL?
 }

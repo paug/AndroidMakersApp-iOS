@@ -11,7 +11,7 @@ struct TalkData: Decodable {
     let language: String?
     let title: String
     let tags: [String]
-    let videoUrl: String?
-    let platformUrl: String?
+    let videoId: String?
+    let presentation: String?
     let slido: String?
 }

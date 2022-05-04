@@ -18,7 +18,8 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
         let room: String
         let language: Language
         let questionUrl: URL?
-        let platformUrl: URL?
+        let youtubeUrl: URL?
+        let slidesUrl: URL?
         let isFavorite: Bool
 
         var isATalk: Bool { return !speakers.isEmpty }
@@ -66,7 +67,8 @@ private extension AgendaDetailViewModel.Content {
                   room: talk.room,
                   language: talk.language,
                   questionUrl: nil, // talk.questionUrl, set it to nil for this year, to deactivate questions
-                  platformUrl: nil, // talk.platformUrl, set it to nil for this year, to deactivate the button
+                  youtubeUrl: talk.youtubeUrl,
+                  slidesUrl: talk.slidesUrl,
                   isFavorite: isFavorite)
     }
 }

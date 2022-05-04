@@ -36,6 +36,9 @@ class DataProvider {
     fileprivate static let pictureRootUrl = URL(
         string: "https://raw.githubusercontent.com/paug/android-makers-2022/main/")!
 
+    fileprivate static let youtubeRootUrl = URL(
+        string: "https://www.youtube.com/watch")!
+
     init(desiredProviderType: ProviderType = .firestore) {
         var providerType = desiredProviderType
         #if DEBUG
@@ -115,13 +118,21 @@ class DataProvider {
                     continue
                 }
                 let duration = slot.endDate.timeIntervalSince(slot.startDate)
+                let youtubeUrl: URL?
+                if let videoId = session.videoId {
+                    youtubeUrl = Self.youtubeRootUrl.appendingQueryItem(name: "v", value: videoId)
+                } else {
+                    youtubeUrl = nil
+                }
                 let talk = Talk(
                     uid: sessionId, title: session.title, description: session.description,
                     duration: duration, speakers: sessionSpeakers, tags: session.tags,
                     startTime: slot.startDate,
                     room: rooms[slot.roomId]?.roomName ?? slot.roomId.capitalized,
                     language: Language(from: session.language), complexity: Talk.Complexity(from: session.complexity),
-                    questionUrl: URL(string: session.slido), platformUrl: URL(string: session.platformUrl))
+                    questionUrl: URL(string: session.slido),
+                    youtubeUrl: youtubeUrl,
+                    slidesUrl: URL(string: session.presentation))
                 talks.append(talk)
             }
             self.talksPublisher.send(talks)
