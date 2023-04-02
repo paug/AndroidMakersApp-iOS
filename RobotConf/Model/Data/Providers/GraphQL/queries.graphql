@@ -11,7 +11,12 @@ query GetVenues {
 }
 
 query GetTalks {
-  sessions {
+  rooms {
+    capacity
+    id
+    name
+  }
+  sessions(first: 1000) {
     nodes {
       complexity
       description

@@ -10,7 +10,13 @@ public extension GraphQLData {
       definition: .init(
         #"""
         query GetTalks {
-          sessions {
+          rooms {
+            __typename
+            capacity
+            id
+            name
+          }
+          sessions(first: 1000) {
             __typename
             nodes {
               __typename
@@ -53,10 +59,31 @@ public extension GraphQLData {
 
       public static var __parentType: ApolloAPI.ParentType { GraphQLData.Objects.Query }
       public static var __selections: [ApolloAPI.Selection] { [
-        .field("sessions", Sessions.self),
+        .field("rooms", [Room].self),
+        .field("sessions", Sessions.self, arguments: ["first": 1000]),
       ] }
 
+      public var rooms: [Room] { __data["rooms"] }
       public var sessions: Sessions { __data["sessions"] }
+
+      /// Room
+      ///
+      /// Parent Type: `Room`
+      public struct Room: GraphQLData.SelectionSet {
+        public let __data: DataDict
+        public init(data: DataDict) { __data = data }
+
+        public static var __parentType: ApolloAPI.ParentType { GraphQLData.Objects.Room }
+        public static var __selections: [ApolloAPI.Selection] { [
+          .field("capacity", Int?.self),
+          .field("id", String.self),
+          .field("name", String.self),
+        ] }
+
+        public var capacity: Int? { __data["capacity"] }
+        public var id: String { __data["id"] }
+        public var name: String { __data["name"] }
+      }
 
       /// Sessions
       ///

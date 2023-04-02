@@ -25,6 +25,14 @@ class GraphQLTalksProvider {
                         fetchedResult.errors?.first ?? NSError(domain: "Empty data", code: 1)))
                     return
                 }
+                var roomIdxByIds = [String: Int]()
+                if let gqlRooms = fetchedResult.data?.rooms {
+                    var idx = 0
+                    for gqlRoom in gqlRooms {
+                        roomIdxByIds[gqlRoom.id] = idx
+                        idx += 1
+                    }
+                }
                 var sessionsData = [SessionData]()
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX") // TODO Djavan: Check si c'est correct
@@ -50,8 +58,9 @@ class GraphQLTalksProvider {
                         tags: gqlSession.tags,
                         startTime: startDate,
                         endTime: endDate,
-                        // TODO: Djavan plusieurs rooms dans le model
-                        room: gqlSession.rooms.first.map { SessionData.Room(id: $0.id, name: $0.name) } ?? .init(id: "unknown", name: "ROOOM"),
+                        room: gqlSession.rooms.first.map {
+                            SessionData.Room(id: $0.id, name: $0.name, index: roomIdxByIds[$0.id] ?? 1000)
+                        } ?? .init(id: "unknown", name: "ROOOM", index: 1000),
                         language: gqlSession.language,
                         complexity: gqlSession.complexity,
                         questionUrl: nil,

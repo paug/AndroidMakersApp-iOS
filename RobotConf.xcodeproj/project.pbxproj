@@ -30,6 +30,8 @@
 		4538D0DC29CA2DB600BB94DB /* Room.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538D0CB29CA2DB600BB94DB /* Room.graphql.swift */; };
 		4538D0DD29CA2DB600BB94DB /* SchemaConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538D0CC29CA2DB600BB94DB /* SchemaConfiguration.swift */; };
 		4538D0DE29CA2DB600BB94DB /* SchemaMetadata.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538D0CD29CA2DB600BB94DB /* SchemaMetadata.graphql.swift */; };
+		4567FB1229D9D04F00724187 /* View+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1129D9D04F00724187 /* View+Utils.swift */; };
+		4567FB1529D9D95B00724187 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1429D9D95B00724187 /* Room.swift */; };
 		4595145829C0F275003F7B4F /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 4595145729C0F275003F7B4F /* Apollo */; };
 		4595148E29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4595148D29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift */; };
 		45EC5A9E29C254A500ABBB7F /* GraphQLTalksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5A9D29C254A500ABBB7F /* GraphQLTalksProvider.swift */; };
@@ -161,6 +163,8 @@
 		4538D0CB29CA2DB600BB94DB /* Room.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.graphql.swift; sourceTree = "<group>"; };
 		4538D0CC29CA2DB600BB94DB /* SchemaConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaConfiguration.swift; sourceTree = "<group>"; };
 		4538D0CD29CA2DB600BB94DB /* SchemaMetadata.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaMetadata.graphql.swift; sourceTree = "<group>"; };
+		4567FB1129D9D04F00724187 /* View+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Utils.swift"; sourceTree = "<group>"; };
+		4567FB1429D9D95B00724187 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		4595145A29C0F56E003F7B4F /* schema.graphqls */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphqls; sourceTree = "<group>"; };
 		4595145B29C0F56E003F7B4F /* queries.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = queries.graphql; sourceTree = "<group>"; };
 		4595148D29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphQLVenuesProvider.swift; sourceTree = "<group>"; };
@@ -420,6 +424,7 @@
 			children = (
 				B225422023FB27FE00C5A83E /* TimeProvider.swift */,
 				33BFB2842822D71300B12C0D /* URL+QueryItems.swift */,
+				4567FB1129D9D04F00724187 /* View+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				B265B04823F1ECA200EA363D /* TalkFeedback.swift */,
 				B268A968242FADCE00412523 /* UserPrefs.swift */,
 				B2FE9FB524546EE2005FE370 /* Data */,
+				4567FB1429D9D95B00724187 /* Room.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1038,8 +1044,10 @@
 				B265B04223F02D3800EA363D /* FirestoreOpenFeedbackSynchronizer.swift in Sources */,
 				B2BC0B8423B91D2100C85F69 /* Model.swift in Sources */,
 				B2FE9FBA24546FAD005FE370 /* TalksProvider.swift in Sources */,
+				4567FB1529D9D95B00724187 /* Room.swift in Sources */,
 				B27CC3DF24549E1B0055D36B /* VoteData.swift in Sources */,
 				B2FE9FCD24548B80005FE370 /* JsonSlotsProvider.swift in Sources */,
+				4567FB1229D9D04F00724187 /* View+Utils.swift in Sources */,
 				B2FE9FC52454787F005FE370 /* SpeakersProvider.swift in Sources */,
 				B207015E2353324400F8E2AF /* AgendaDetailView.swift in Sources */,
 				4538D0D329CA2DB600BB94DB /* LocalDate.swift in Sources */,
@@ -1253,6 +1261,7 @@
 				DEVELOPMENT_TEAM = 57MV6634WZ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RobotConf/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1277,6 +1286,7 @@
 				DEVELOPMENT_TEAM = 57MV6634WZ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RobotConf/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

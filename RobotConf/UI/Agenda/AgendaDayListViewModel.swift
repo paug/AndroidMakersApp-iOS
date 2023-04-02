@@ -89,8 +89,9 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
         sortedKeys.forEach { date in
             // can force unwrap since we're iterating amongst the keys
             let talks = groupedTalks[date]!
+                .sorted { $0.room.index < $1.room.index }
                 .map { Content.Talk(from: $0) }
-                .sorted { $0.room < $1.room }
+
             sections.append(Content.Section(
                 date: date,
                 talks: talks,
@@ -108,7 +109,7 @@ extension AgendaDayListViewModel.Content.Talk {
                   title: talk.title,
                   duration: talk.duration,
                   speakers: talk.speakers,
-                  room: talk.room,
+                  room: talk.room.name,
                   language: talk.language,
                   state: State(from: talk))
     }

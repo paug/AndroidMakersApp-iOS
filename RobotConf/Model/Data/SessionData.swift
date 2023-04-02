@@ -13,6 +13,7 @@ struct SessionData {
     struct Room {
         let id: String
         let name: String
+        let index: Int
     }
     struct Speaker {
         let country: String?

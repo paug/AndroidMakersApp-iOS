@@ -17,7 +17,7 @@ struct Talk {
     let speakers: [Speaker]
     let tags: [String]
     let startTime: Date
-    let room: String
+    let room: Room
     let language: Language
     let complexity: Complexity?
     let questionUrl: URL?

@@ -64,7 +64,7 @@ private extension AgendaDetailViewModel.Content {
                   tags: [], // talk.tags is set to empty because it is all Android Development
                   complexity: talk.complexity,
                   speakers: talk.speakers,
-                  room: talk.room,
+                  room: talk.room.name,
                   language: talk.language,
                   questionUrl: nil, // talk.questionUrl, set it to nil for this year, to deactivate questions
                   youtubeUrl: talk.youtubeUrl,

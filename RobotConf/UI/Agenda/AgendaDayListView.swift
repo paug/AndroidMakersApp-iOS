@@ -33,8 +33,7 @@ struct AgendaDayListView: View {
                             .padding(.horizontal, -8)
                             .listRowBackground(Color.clear)
                     }
-                    // swiftlint:disable:next line_length
-                    Section(header: Text("\(self.sectionDateFormatter.string(from: section.date)), \(self.sectionTimeFormatter.string(from: section.date))")) {
+                    Section {
                         ForEach(self.favOnly ?
                             section.talks.filter({ self.viewModel.favoriteTalks.contains($0.uid) }) : section.talks,
                                 id: \.self) { talk in
@@ -44,9 +43,13 @@ struct AgendaDayListView: View {
                                     .listRowBackground(talk.state != .none ?
                                         Color(Asset.Colors.currentTalk.color) : Color(UIColor.systemBackground))
                         }
+                    } header: {
+                        Text("\(self.sectionDateFormatter.string(from: section.date)), " +
+                             "\(self.sectionTimeFormatter.string(from: section.date))")
                     }
                 }
             }
+            .listStyle(.insetGrouped)
             .navigationBarTitle(Text(L10n.Agenda.navTitle), displayMode: .large)
             .navigationBarItems(trailing:
                 Button(action: { self.favOnly.toggle() }) {

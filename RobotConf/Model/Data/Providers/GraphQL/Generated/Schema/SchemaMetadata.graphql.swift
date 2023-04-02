@@ -33,9 +33,9 @@ public extension GraphQLData {
       switch typename {
       case "Query": return GraphQLData.Objects.Query
       case "Venue": return GraphQLData.Objects.Venue
+      case "Room": return GraphQLData.Objects.Room
       case "SessionConnection": return GraphQLData.Objects.SessionConnection
       case "Session": return GraphQLData.Objects.Session
-      case "Room": return GraphQLData.Objects.Room
       case "Speaker": return GraphQLData.Objects.Speaker
       case "PartnerGroup": return GraphQLData.Objects.PartnerGroup
       case "Partner": return GraphQLData.Objects.Partner
