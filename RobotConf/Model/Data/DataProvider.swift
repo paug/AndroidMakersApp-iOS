@@ -7,11 +7,24 @@ import FirebaseFirestore
 import Combine
 import CoreLocation
 import UIKit
+import Apollo
+
+protocol DataProviderProtocol {
+    var sessionsPublisher: AnyPublisher<[SessionData], Error> { get }
+    var confVenuePublisher: AnyPublisher<VenueData, Error> { get }
+    var partyVenuePublisher: AnyPublisher<VenueData, Error> { get }
+    var partnersPublisher: AnyPublisher<[PartnersByCategoryData], Error> { get }
+    var votesPublisher: AnyPublisher<[String: TalkFeedback], Error> { get }
+
+    func vote(_ proposition: TalkFeedback.Proposition, for talkId: String)
+    func removeVote(_ proposition: TalkFeedback.Proposition, for talkId: String)
+}
 
 /// Object that transforms and provides model data from server data
 class DataProvider {
     enum ProviderType {
         case firestore
+        case graphQL
         #if DEBUG
         case json
         #endif
@@ -21,126 +34,63 @@ class DataProvider {
     var confVenuePublisher = PassthroughSubject<Venue, Error>()
     var partyVenuePublisher = PassthroughSubject<Venue, Error>()
     var partnerPublisher = PassthroughSubject<[PartnerCategory], Error>()
-    var votesPublisher = PassthroughSubject<[String: TalkFeedback], Error>()
-
-    private let talksProvider: TalksProvider
-    private let speakersProvider: SpeakersProvider
-    private let slotsProvider: SlotsProvider
-    private let roomsProvider: RoomsProvider
-    private let venuesProvider: VenuesProvider
-    private let partnersProvider: PartnersProvider
-    private let openFeedbackSynchronizer: OpenFeedbackSynchronizer?
+    let votesPublisher: AnyPublisher<[String: TalkFeedback], Error>
 
     private var cancellables: Set<AnyCancellable> = []
 
-    fileprivate static let pictureRootUrl = URL(
-        string: "https://raw.githubusercontent.com/paug/android-makers-2022/main/")!
+    let proxyDataProvider: DataProviderProtocol
 
-    fileprivate static let youtubeRootUrl = URL(
-        string: "https://www.youtube.com/watch")!
+    init(desiredProviderType: ProviderType = .graphQL) {
+        proxyDataProvider = GraphQLDataProvider()
 
-    init(desiredProviderType: ProviderType = .firestore) {
-        var providerType = desiredProviderType
-        #if DEBUG
-        if desiredProviderType == .firestore &&
-            (!FirebaseDescriptor.isEmbedded(forKind: .main) || !FirebaseDescriptor.isEmbedded(forKind: .openFeedback)) {
-            print("⚠️ data from firebase was asked but defaulting to json. This won't work in release 💥 !")
-            providerType = .json
-        }
-        #endif
-
-        switch providerType {
-        case .firestore:
-            let database = Firestore.firestore()
-            talksProvider = FirestoreTalksProvider(database: database)
-            speakersProvider = FirestoreSpeakersProvider(database: database)
-            slotsProvider = FirestoreSlotsProvider(database: database)
-            roomsProvider = FirestoreRoomsProvider(database: database)
-            venuesProvider = FirestoreVenuesProvider(database: database)
-            partnersProvider = FirestorePartnersProvider(database: database)
-            openFeedbackSynchronizer = FirestoreOpenFeedbackSynchronizer()
-        #if DEBUG
-        case .json:
-            talksProvider = JsonTalksProvider()
-            speakersProvider = JsonSpeakersProvider()
-            slotsProvider = JsonSlotsProvider()
-            roomsProvider = JsonRoomsProvider()
-            venuesProvider = JsonVenuesProvider()
-            partnersProvider = JsonPartnersProvider()
-            openFeedbackSynchronizer = JsonOpenFeedbackSynchronizer()
-        #endif
-        }
+        votesPublisher = proxyDataProvider.votesPublisher
 
         computeTalks()
         computeVenues()
         computePartners()
-        computeVotes()
     }
 
     func vote(_ proposition: TalkFeedback.Proposition, for talkId: String) {
-        guard let openFeedbackSynchronizer = openFeedbackSynchronizer,
-            let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid })
-            else { return }
-        openFeedbackSynchronizer.vote(voteItm, for: talkId)
+        proxyDataProvider.vote(proposition, for: talkId)
     }
 
     func removeVote(_ proposition: TalkFeedback.Proposition, for talkId: String) {
-        guard let openFeedbackSynchronizer = openFeedbackSynchronizer,
-            let voteItm = openFeedbackSynchronizer.config?.voteItems.first(where: { $0.id == proposition.uid })
-            else { return }
-        openFeedbackSynchronizer.deleteVote(voteItm, of: talkId)
+        proxyDataProvider.removeVote(proposition, for: talkId)
     }
 
     private func computeTalks() {
-        talksProvider.talksPublisher
-            .combineLatest(speakersProvider.speakersPublisher, slotsProvider.slotsPublisher,
-                           roomsProvider.roomsPublisher)
-            .sink(receiveCompletion: { error in
-                print("Error computing talks \(error)")
-        }) { [unowned self] (sessions, speakers, slots, rooms) in
-            var talks = [Talk]()
-            for (sessionId, session) in sessions {
-                let sessionSpeakers = session.speakers?.compactMap { speakerId -> Speaker? in
-                    if let speaker = speakers[speakerId] {
+        proxyDataProvider.sessionsPublisher.sink(receiveCompletion: { error in
+            print("Error computing talks \(error)")
+        }) { [unowned self] sessionsData in
+            var sessions = [Talk]()
+            for sessionData in sessionsData {
+                let speakers: [Speaker] = sessionData.speakers.compactMap {
+                    guard let name = $0.name else { return nil }
+                    return Speaker(
+                        name: name,
                         // can force unwrap URL because URL(string: "") is returning a non nil url
-                        return Speaker(
-                            name: speaker.name ?? "",
-                            photoUrl: speaker.photo.map { Self.pictureRootUrl.appendingPathComponent($0) } ??
-                                URL(string: "")!,
-                            company: speaker.company ?? "", description: speaker.bio ?? "")
-                    }
-                    // else raise an error
-
-                    return nil
-                } ?? []
-                guard let slot = slots.first(where: { $0.sessionId == sessionId }) else {
-                    // if no slot, no need to get the session
-                    continue
-                }
-                let duration = slot.endDate.timeIntervalSince(slot.startDate)
-                let youtubeUrl: URL?
-                if let videoId = session.videoId {
-                    youtubeUrl = Self.youtubeRootUrl.appendingQueryItem(name: "v", value: videoId)
-                } else {
-                    youtubeUrl = nil
+                        photoUrl: $0.photoUrl.map { URL(string: $0) ?? URL(string: "")! } ?? URL(string: "")!,
+                        company: $0.company ?? "", description: $0.bio ?? "")
                 }
                 let talk = Talk(
-                    uid: sessionId, title: session.title, description: session.description,
-                    duration: duration, speakers: sessionSpeakers, tags: session.tags,
-                    startTime: slot.startDate,
-                    room: rooms[slot.roomId]?.roomName ?? slot.roomId.capitalized,
-                    language: Language(from: session.language), complexity: Talk.Complexity(from: session.complexity),
-                    questionUrl: URL(string: session.slido),
-                    youtubeUrl: youtubeUrl,
-                    slidesUrl: URL(string: session.presentation))
-                talks.append(talk)
+                    uid: sessionData.uid,
+                    title: sessionData.title,
+                    description: sessionData.description,
+                    duration: sessionData.endTime.timeIntervalSince(sessionData.startTime),
+                    speakers: speakers, tags: sessionData.tags, startTime: sessionData.startTime,
+                    room: sessionData.room.name, language: Language(from: sessionData.language),
+                    complexity: Talk.Complexity(from: sessionData.complexity),
+                    questionUrl: URL(string: sessionData.questionUrl),
+                    youtubeUrl: URL(string: sessionData.youtubeUrl),
+                    slidesUrl: URL(string: sessionData.slidesUrl))
+                sessions.append(talk)
             }
-            self.talksPublisher.send(talks)
+            self.talksPublisher.send(sessions)
         }.store(in: &cancellables)
     }
 
     private func computeVenues() {
-        venuesProvider.confVenuePublisher
+        proxyDataProvider.confVenuePublisher
             .sink(receiveCompletion: { error in
                 print("Error computing conf venue \(error)")
             }) { [unowned self] venue in
@@ -152,7 +102,7 @@ class DataProvider {
                 self.confVenuePublisher.send(confVenue)
         }.store(in: &cancellables)
 
-        venuesProvider.partyVenuePublisher
+        proxyDataProvider.partyVenuePublisher
             .sink(receiveCompletion: { error in
                 print("Error computing party venue \(error)")
             }) { [unowned self] venue in
@@ -166,48 +116,11 @@ class DataProvider {
     }
 
     private func computePartners() {
-        partnersProvider.partnersPublisher
+        proxyDataProvider.partnersPublisher
             .sink(receiveCompletion: { error in
                 print("Error computing partners \(error)")
             }) { [unowned self] partnerCategories in
                 self.partnerPublisher.send([PartnerCategory](from: partnerCategories))
-        }.store(in: &cancellables)
-    }
-
-    private func computeVotes() {
-        guard let openFeedbackSynchronizer = openFeedbackSynchronizer else { return }
-        openFeedbackSynchronizer.configPublisher
-            .combineLatest(openFeedbackSynchronizer.sessionVotesPublisher,
-                           openFeedbackSynchronizer.userVotesPublisher,
-                           slotsProvider.slotsPublisher)
-            .sink(receiveCompletion: { error in
-                print("Error computing votes \(error)")
-            }) { [unowned self] config, sessionVotes, userVotes, slots in
-                let preferredLanguage = Bundle.main.preferredLocalizations[0]
-                let propositions = config.voteItems.sorted { $0.position ?? 0 < $1.position ?? 0 }
-                    .compactMap { TalkFeedback.Proposition(from: $0, language: preferredLanguage) }
-                let propositionDict = Dictionary(uniqueKeysWithValues: propositions.map { ($0.uid, $0) })
-                let colors = config.chipColors.map { UIColor(hexString: $0) }
-
-                var talkVotes = [String: TalkFeedback]()
-                slots.forEach { slot in
-                    let talkId = slot.sessionId
-                    let votes = sessionVotes[talkId] ?? [:]
-                    var infos = [TalkFeedback.Proposition: TalkFeedback.PropositionInfo]()
-                    votes.forEach { vote in
-                        if let proposition = propositionDict[vote.key] {
-                            let identifier = UserVoteIdentifierData(
-                                talkId: talkId, voteItemId: vote.key)
-                            let hasVoted = userVotes[identifier]?.status == .active
-                            infos[proposition] = TalkFeedback.PropositionInfo(numberOfVotes: vote.value,
-                                                                          userHasVoted: hasVoted)
-                        }
-                    }
-                    let talkVote = TalkFeedback(talkId: talkId, colors: colors, propositions: propositions,
-                                            propositionInfos: infos)
-                    talkVotes[talkId] = talkVote
-                }
-                self.votesPublisher.send(talkVotes)
         }.store(in: &cancellables)
     }
 }
@@ -272,15 +185,7 @@ private extension Array where Element == PartnerCategory {
 
 private extension Partner {
     init?(from partner: PartnerData) {
-        let logoUrlStr = partner.logoUrl
-            .replacingOccurrences(of: "../", with: "")
-            .replacingOccurrences(of: ".svg", with: ".svg.png")
-        var logoUrl = DataProvider.pictureRootUrl.appendingPathComponent(logoUrlStr)
-        if logoUrl.path.hasSuffix(".svg.png") {
-            let filename = logoUrl.lastPathComponent
-            logoUrl = logoUrl.deletingLastPathComponent().appendingPathComponent("pngs")
-                .appendingPathComponent(filename)
-        }
+        guard let logoUrl = URL(string: partner.logoUrl) else { return nil }
         self.init(name: partner.name, logoUrl: logoUrl, url: URL(string: partner.url))
     }
 }

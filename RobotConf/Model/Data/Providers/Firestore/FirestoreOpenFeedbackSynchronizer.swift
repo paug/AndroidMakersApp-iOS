@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class FirestoreOpenFeedbackSynchronizer: OpenFeedbackSynchronizer {
 
-    private static let projectId = "am-2022"
+    private static let projectId = "am2023"
 
     let configPublisher = PassthroughSubject<VoteConfigData, Error>()
     let sessionVotesPublisher = PassthroughSubject<[String: [String: Int]], Error>()
