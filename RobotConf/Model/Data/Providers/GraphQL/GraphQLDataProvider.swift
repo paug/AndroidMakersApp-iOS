@@ -21,7 +21,7 @@ class GraphQLDataProvider: DataProviderProtocol {
     private let openFeedbackSynchronizer: OpenFeedbackSynchronizer?
 
     private let apolloClient: ApolloClient = {
-        let endpointURL = URL(string: "https://confetti-app.dev/graphql")!
+        let endpointURL = URL(string: "https://androidmakers-2023.ew.r.appspot.com/graphql")!
         let store = ApolloStore()
         let interceptorProvider = NetworkInterceptorsProvider(
             interceptors: [ConfInterceptor(confUid: "androidmakers2023")],
