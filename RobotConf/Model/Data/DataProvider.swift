@@ -156,18 +156,21 @@ private extension Talk.Complexity {
 
 private extension Venue {
     init?(from venue: VenueData) {
-        let coords = venue.coordinates.split(separator: ",")
+        let coords = venue.coordinates?.split(separator: ",") ?? []
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "en_US")
         formatter.numberStyle = .decimal
-        guard coords.count == 2,
+        let coordinates: CLLocationCoordinate2D?
+        if coords.count == 2,
             let latitude = formatter.number(from: String(coords[0]))?.doubleValue,
-            let longitude = formatter.number(from: String(coords[1]))?.doubleValue else {
-            return nil
+            let longitude = formatter.number(from: String(coords[1]))?.doubleValue {
+            coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        } else {
+            coordinates = nil
         }
         self = Venue(name: venue.name, description: venue.description, descriptionFr: venue.descriptionFr,
                      address: venue.address,
-                     coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+                     coordinates: coordinates,
                      imageUrl: venue.imageUrl)
     }
 }

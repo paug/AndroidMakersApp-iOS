@@ -6,7 +6,7 @@ import Foundation
 
 struct VenueData: Decodable {
     let address: String
-    let coordinates: String
+    let coordinates: String?
     let description: String
     let descriptionFr: String
     let imageUrl: String

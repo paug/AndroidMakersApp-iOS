@@ -7,10 +7,10 @@ import URLImage
 import MapKit
 
 struct LocationVenueView: View {
-    @ObservedObject private var viewModel: LocationVenueViewModel
+    @StateObject private var viewModel: LocationVenueViewModel
 
     init(kind: LocationVenueViewModel.VenueKind) {
-        viewModel = LocationVenueViewModel(kind: kind)
+        self._viewModel = StateObject(wrappedValue: LocationVenueViewModel(kind: kind))
     }
 
     var body: some View {
@@ -35,10 +35,20 @@ struct LocationVenueView: View {
                         .padding(.horizontal, 8)
 
                     Button(L10n.Locations.directions) {
-                        let placemark = MKPlacemark(coordinate: content.coordinates)
-                        let mapItem = MKMapItem(placemark: placemark)
-                        mapItem.name = content.name
-                        mapItem.openInMaps()
+                        if let coordinates = content.coordinates {
+                            let placemark = MKPlacemark(coordinate: coordinates)
+                            let mapItem = MKMapItem(placemark: placemark)
+                            mapItem.name = content.name
+                            mapItem.openInMaps()
+                        } else {
+                            let geoCoder = CLGeocoder()
+                            geoCoder.geocodeAddressString(content.address) { (placemarks, error) in
+                                guard let placemark = placemarks?.first else { return }
+                                let mapItem = MKMapItem(placemark: MKPlacemark(placemark: placemark))
+                                mapItem.name = content.name
+                                mapItem.openInMaps()
+                            }
+                        }
                     }.padding(.vertical, 8)
                         .padding(.horizontal, 16)
                         .foregroundColor(Color.primary)

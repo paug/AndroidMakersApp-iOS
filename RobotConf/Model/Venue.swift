@@ -10,6 +10,6 @@ struct Venue {
     let description: String
     let descriptionFr: String
     let address: String
-    let coordinates: CLLocationCoordinate2D
+    let coordinates: CLLocationCoordinate2D?
     let imageUrl: String
 }

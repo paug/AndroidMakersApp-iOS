@@ -29,8 +29,10 @@ class GraphQLVenuesProvider: VenuesProvider {
                     return
                 }
                 for venue in venues {
-                    if venue.id == "main", let venueData = VenueData(from: venue) {
+                    if venue.id == "conference", let venueData = VenueData(from: venue) {
                         self.confVenuePublisher.send(venueData)
+                    } else if venue.id == "afterparty", let venueData = VenueData(from: venue) {
+                        self.partyVenuePublisher.send(venueData)
                     }
                 }
             } catch let error {
@@ -45,12 +47,11 @@ class GraphQLVenuesProvider: VenuesProvider {
 private extension VenueData {
     init?(from venue: GraphQLData.GetVenuesQuery.Data.Venue) {
         guard let address = venue.address,
-              let coordinates = venue.coordinates,
               let imageUrl = venue.imageUrl else {
             return nil
         }
         self.address = address
-        self.coordinates = coordinates
+        self.coordinates = venue.coordinates
         description = venue.description
         descriptionFr = venue.descriptionFr
         self.imageUrl = imageUrl

@@ -36,7 +36,7 @@ class GraphQLDataProvider: DataProviderProtocol {
     init() {
         venuesProvider = GraphQLVenuesProvider(apolloClient: apolloClient)
         confVenuePublisher = venuesProvider.confVenuePublisher.eraseToAnyPublisher()
-        partyVenuePublisher = venuesProvider.confVenuePublisher.eraseToAnyPublisher()
+        partyVenuePublisher = venuesProvider.partyVenuePublisher.eraseToAnyPublisher()
 
         partnersProvider = GraphQLPartnersProvider(apolloClient: apolloClient)
         partnersPublisher = partnersProvider.partnersPublisher.eraseToAnyPublisher()
