@@ -14,7 +14,7 @@ internal enum L10n {
   internal enum About {
     /// Code of conduct
     internal static let coc = L10n.tr("Localizable", "about.coc")
-    /// RobotConf Paris is a two day event held on April 25th and 26st, 2022.
+    /// RobotConf Paris is a two day event held on April 27th and 28th, 2023.
     /// 
     /// Join us in tackling the present and future of Robot with the hottest experts of the domain.
     /// There'll be technical sessions, workshops, debates, networking.
@@ -27,7 +27,7 @@ internal enum L10n {
     internal static let explanation = L10n.tr("Localizable", "about.explanation")
     /// FAQ
     internal static let faq = L10n.tr("Localizable", "about.faq")
-    /// About AM 22
+    /// About AM 23
     internal static let navTitle = L10n.tr("Localizable", "about.navTitle")
     /// Social
     internal static let social = L10n.tr("Localizable", "about.social")
@@ -38,7 +38,7 @@ internal enum L10n {
   }
 
   internal enum Agenda {
-    /// RobotConf 22
+    /// RobotConf 23
     internal static let navTitle = L10n.tr("Localizable", "agenda.navTitle")
     /// Agenda
     internal static let tabTitle = L10n.tr("Localizable", "agenda.tabTitle")
