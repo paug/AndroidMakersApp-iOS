@@ -85,7 +85,7 @@ struct AboutView: View {
                                                         .aspectRatio(contentMode: .fit)
                                                 }
                                             }
-                                            .frame(maxHeight: 50)
+                                            .frame(maxHeight: 150)
                                         }
                                     }
                                 }
