@@ -22,12 +22,13 @@ struct AboutView: View {
                                 Text(L10n.About.explanation)
                                     .foregroundColor(Color.black)
                                 HStack(spacing: 24) {
-                                    WebButton(url: URL(string: "https://androidmakers.fr/faq")!) {
+                                    WebButton(url: URL(string: "https://androidmakers.droidcon.com/faqs/")!) {
                                         Text(L10n.About.faq)
                                     }
                                     .foregroundColor(Color(Asset.Colors.link.color))
-                                    WebButton(url: URL(string: "https://androidmakers.fr/coc")!) {
-                                        Text(L10n.About.coc)
+                                    WebButton(url: URL(
+                                        string: "https://androidmakers.droidcon.com/code-of-conduct/")!) {
+                                            Text(L10n.About.coc)
                                     }
                                     .foregroundColor(Color(Asset.Colors.link.color))
                                 }.padding(8)
