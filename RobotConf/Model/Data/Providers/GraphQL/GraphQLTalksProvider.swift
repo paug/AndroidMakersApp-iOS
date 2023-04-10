@@ -26,11 +26,11 @@ class GraphQLTalksProvider {
                         fetchedResult.errors?.first ?? NSError(domain: "Empty data", code: 1)))
                     return
                 }
-                var roomIdxByIds = [String: Int]()
+                var roomsByIds = [String: (GraphQLData.GetTalksQuery.Data.Room, Int)]()
                 if let gqlRooms = fetchedResult.data?.rooms {
                     var idx = 0
                     for gqlRoom in gqlRooms {
-                        roomIdxByIds[gqlRoom.id] = idx
+                        roomsByIds[gqlRoom.id] = (gqlRoom, idx)
                         idx += 1
                     }
                 }
@@ -60,7 +60,8 @@ class GraphQLTalksProvider {
                         startTime: startDate,
                         endTime: endDate,
                         room: gqlSession.rooms.first.map {
-                            SessionData.Room(id: $0.id, name: $0.name, index: roomIdxByIds[$0.id] ?? 1000)
+                            let (room, idx) = roomsByIds[$0.id] ?? (nil, nil)
+                            return SessionData.Room(id: $0.id, name: room?.name ?? $0.name, index: idx ?? 1000)
                         } ?? .init(id: "unknown", name: "ROOOM", index: 1000),
                         language: gqlSession.language,
                         complexity: gqlSession.complexity,

@@ -115,7 +115,7 @@ class FirestoreOpenFeedbackSynchronizer: OpenFeedbackSynchronizer {
                             // due to a crash when converting document.data() to a json, we exclude the rows that we
                             // don't want (i.e. every row that does not qualifies a voteItem that is a preconfigured
                             // vote option). This will filter out any textual vote.
-                            var data = document.data().filter { $0.value is Int }
+                            let data = document.data().filter { $0.value is Int }
                             sessionVotes[document.documentID] = try document.decoded(data: data)
                         }
                         self.sessionVotesPublisher.send(sessionVotes)

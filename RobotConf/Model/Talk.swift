@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct Talk {
+struct Talk: Hashable {
     enum Complexity {
         case beginner
         case intermediate

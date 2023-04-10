@@ -7,7 +7,7 @@ import SwiftUI
 import Combine
 
 struct AgendaDayListView: View {
-    @ObservedObject private var viewModel = AgendaDayListViewModel()
+    @StateObject private var viewModel = AgendaDayListViewModel()
     @State private var favOnly = false
     @State private var highlightedTalk = ""
 

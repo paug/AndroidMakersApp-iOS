@@ -78,7 +78,7 @@ class DataProvider {
                     description: sessionData.description,
                     duration: sessionData.endTime.timeIntervalSince(sessionData.startTime),
                     speakers: speakers, tags: sessionData.tags, startTime: sessionData.startTime,
-                    room: Room(name: sessionData.room.name, index: sessionData.room.index),
+                    room: Room(uid: sessionData.room.id, name: sessionData.room.name, index: sessionData.room.index),
                     language: Language(from: sessionData.language),
                     complexity: Talk.Complexity(from: sessionData.complexity),
                     questionUrl: URL(string: sessionData.questionUrl),

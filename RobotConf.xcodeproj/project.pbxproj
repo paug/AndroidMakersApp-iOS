@@ -35,6 +35,10 @@
 		4595148E29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4595148D29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift */; };
 		45DAAD7A29E49D430085977B /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 45DAAD7929E49D430085977B /* Apollo */; };
 		45DAAD7C29E49D430085977B /* ApolloSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 45DAAD7B29E49D430085977B /* ApolloSQLite */; };
+		4567FB1729D9E08000724187 /* AgendaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1629D9E08000724187 /* AgendaListView.swift */; };
+		4567FB1B29D9E13100724187 /* AgendaRoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1A29D9E13100724187 /* AgendaRoomListView.swift */; };
+		4595148E29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4595148D29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift */; };
+		45DAAD7729E4867B0085977B /* AgendaRoomListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAAD7629E4867B0085977B /* AgendaRoomListViewModel.swift */; };
 		45EC5A9E29C254A500ABBB7F /* GraphQLTalksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5A9D29C254A500ABBB7F /* GraphQLTalksProvider.swift */; };
 		45EC5AC229C26DCE00ABBB7F /* GraphQLDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5AC129C26DCE00ABBB7F /* GraphQLDataProvider.swift */; };
 		45EC5AC429C2701400ABBB7F /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5AC329C2701400ABBB7F /* SessionData.swift */; };
@@ -166,9 +170,12 @@
 		4538D0CD29CA2DB600BB94DB /* SchemaMetadata.graphql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaMetadata.graphql.swift; sourceTree = "<group>"; };
 		4567FB1129D9D04F00724187 /* View+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Utils.swift"; sourceTree = "<group>"; };
 		4567FB1429D9D95B00724187 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		4567FB1629D9E08000724187 /* AgendaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaListView.swift; sourceTree = "<group>"; };
+		4567FB1A29D9E13100724187 /* AgendaRoomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaRoomListView.swift; sourceTree = "<group>"; };
 		4595145A29C0F56E003F7B4F /* schema.graphqls */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphqls; sourceTree = "<group>"; };
 		4595145B29C0F56E003F7B4F /* queries.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = queries.graphql; sourceTree = "<group>"; };
 		4595148D29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphQLVenuesProvider.swift; sourceTree = "<group>"; };
+		45DAAD7629E4867B0085977B /* AgendaRoomListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaRoomListViewModel.swift; sourceTree = "<group>"; };
 		45EC5A9D29C254A500ABBB7F /* GraphQLTalksProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphQLTalksProvider.swift; sourceTree = "<group>"; };
 		45EC5AC129C26DCE00ABBB7F /* GraphQLDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLDataProvider.swift; sourceTree = "<group>"; };
 		45EC5AC329C2701400ABBB7F /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
@@ -373,6 +380,24 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
+		4567FB1829D9E0DB00724187 /* ByDay */ = {
+			isa = PBXGroup;
+			children = (
+				B2CD275E234D079B0016AA02 /* AgendaDayListView.swift */,
+				B2CD276D234D18450016AA02 /* AgendaDayListViewModel.swift */,
+			);
+			path = ByDay;
+			sourceTree = "<group>";
+		};
+		4567FB1929D9E10600724187 /* ByRoom */ = {
+			isa = PBXGroup;
+			children = (
+				4567FB1A29D9E13100724187 /* AgendaRoomListView.swift */,
+				45DAAD7629E4867B0085977B /* AgendaRoomListViewModel.swift */,
+			);
+			path = ByRoom;
+			sourceTree = "<group>";
+		};
 		4595145929C0F56E003F7B4F /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
@@ -553,8 +578,9 @@
 		B2CD2761234D08530016AA02 /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
-				B2CD275E234D079B0016AA02 /* AgendaDayListView.swift */,
-				B2CD276D234D18450016AA02 /* AgendaDayListViewModel.swift */,
+				4567FB1629D9E08000724187 /* AgendaListView.swift */,
+				4567FB1829D9E0DB00724187 /* ByDay */,
+				4567FB1929D9E10600724187 /* ByRoom */,
 				B207015F2353372800F8E2AF /* AgendaDetailViewModel.swift */,
 				B2CD2762234D08820016AA02 /* AgendaCellView.swift */,
 				B207015D2353324400F8E2AF /* AgendaDetailView.swift */,
@@ -992,6 +1018,7 @@
 				B2FE9FD924548FBF005FE370 /* PartnersProvider.swift in Sources */,
 				4538D0D029CA2DB600BB94DB /* GetVenuesQuery.graphql.swift in Sources */,
 				B26E853823D49242006C2C9E /* AttributedTextView.swift in Sources */,
+				4567FB1B29D9E13100724187 /* AgendaRoomListView.swift in Sources */,
 				4538D0D529CA2DB600BB94DB /* Venue.graphql.swift in Sources */,
 				B2BC0B7B23B905B800C85F69 /* Venue.swift in Sources */,
 				B2FE9FCB24548AAF005FE370 /* SlotsProvider.swift in Sources */,
@@ -1044,9 +1071,11 @@
 				B2CD276E234D18450016AA02 /* AgendaDayListViewModel.swift in Sources */,
 				B2EF3CF523E89FC90078019F /* FeedbackRepository.swift in Sources */,
 				B2FE9FDB24548FDC005FE370 /* PartnerData.swift in Sources */,
+				4567FB1729D9E08000724187 /* AgendaListView.swift in Sources */,
 				B265B04223F02D3800EA363D /* FirestoreOpenFeedbackSynchronizer.swift in Sources */,
 				B2BC0B8423B91D2100C85F69 /* Model.swift in Sources */,
 				B2FE9FBA24546FAD005FE370 /* TalksProvider.swift in Sources */,
+				45DAAD7729E4867B0085977B /* AgendaRoomListViewModel.swift in Sources */,
 				4567FB1529D9D95B00724187 /* Room.swift in Sources */,
 				B27CC3DF24549E1B0055D36B /* VoteData.swift in Sources */,
 				B2FE9FCD24548B80005FE370 /* JsonSlotsProvider.swift in Sources */,

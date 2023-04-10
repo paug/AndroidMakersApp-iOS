@@ -4,7 +4,8 @@
 
 import Foundation
 
-struct Room {
+struct Room: Hashable {
+    let uid: String
     let name: String
     let index: Int
 }
