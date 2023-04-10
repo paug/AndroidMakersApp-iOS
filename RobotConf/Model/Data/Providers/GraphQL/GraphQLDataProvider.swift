@@ -5,6 +5,7 @@
 import Foundation
 import Combine
 import Apollo
+import ApolloSQLite
 import FirebaseFirestore
 import UIKit
 
@@ -21,8 +22,23 @@ class GraphQLDataProvider: DataProviderProtocol {
     private let openFeedbackSynchronizer: OpenFeedbackSynchronizer?
 
     private let apolloClient: ApolloClient = {
+        // setup cache
+        let documentsPath = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory,
+            .userDomainMask,
+            true
+        ).first!
+        let documentsURL = URL(fileURLWithPath: documentsPath)
+        let sqliteFileURL = documentsURL.appendingPathComponent("am_apollo_db.sqlite")
+        let sqliteCache = try? SQLiteNormalizedCache(fileURL: sqliteFileURL)
+
         let endpointURL = URL(string: "https://androidmakers-2023.ew.r.appspot.com/graphql")!
-        let store = ApolloStore()
+        let store: ApolloStore
+        if let sqliteCache {
+            store = ApolloStore(cache: sqliteCache)
+        } else {
+            store = ApolloStore()
+        }
         let interceptorProvider = NetworkInterceptorsProvider(
             interceptors: [ConfInterceptor(confUid: "androidmakers2023")],
             store: store

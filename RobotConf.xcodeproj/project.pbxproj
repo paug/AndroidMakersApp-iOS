@@ -32,8 +32,9 @@
 		4538D0DE29CA2DB600BB94DB /* SchemaMetadata.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538D0CD29CA2DB600BB94DB /* SchemaMetadata.graphql.swift */; };
 		4567FB1229D9D04F00724187 /* View+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1129D9D04F00724187 /* View+Utils.swift */; };
 		4567FB1529D9D95B00724187 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1429D9D95B00724187 /* Room.swift */; };
-		4595145829C0F275003F7B4F /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 4595145729C0F275003F7B4F /* Apollo */; };
 		4595148E29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4595148D29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift */; };
+		45DAAD7A29E49D430085977B /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 45DAAD7929E49D430085977B /* Apollo */; };
+		45DAAD7C29E49D430085977B /* ApolloSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 45DAAD7B29E49D430085977B /* ApolloSQLite */; };
 		45EC5A9E29C254A500ABBB7F /* GraphQLTalksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5A9D29C254A500ABBB7F /* GraphQLTalksProvider.swift */; };
 		45EC5AC229C26DCE00ABBB7F /* GraphQLDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5AC129C26DCE00ABBB7F /* GraphQLDataProvider.swift */; };
 		45EC5AC429C2701400ABBB7F /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5AC329C2701400ABBB7F /* SessionData.swift */; };
@@ -280,9 +281,10 @@
 				B26E853B23D49D8B006C2C9E /* SwiftRichString in Frameworks */,
 				33243ED027FA154700ECBA97 /* FirebaseCrashlytics in Frameworks */,
 				B265B04723F0691400EA363D /* CodableFirebase in Frameworks */,
-				4595145829C0F275003F7B4F /* Apollo in Frameworks */,
+				45DAAD7A29E49D430085977B /* Apollo in Frameworks */,
 				33243ED427FA168800ECBA97 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				B83891F623C17BE3B86C039E /* Pods_RobotConf.framework in Frameworks */,
+				45DAAD7C29E49D430085977B /* ApolloSQLite in Frameworks */,
 				33243ED227FA154700ECBA97 /* FirebaseFirestore in Frameworks */,
 				33243ED627FA171400ECBA97 /* FirebaseAuth in Frameworks */,
 			);
@@ -710,7 +712,8 @@
 				33243ED127FA154700ECBA97 /* FirebaseFirestore */,
 				33243ED327FA168800ECBA97 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				33243ED527FA171400ECBA97 /* FirebaseAuth */,
-				4595145729C0F275003F7B4F /* Apollo */,
+				45DAAD7929E49D430085977B /* Apollo */,
+				45DAAD7B29E49D430085977B /* ApolloSQLite */,
 			);
 			productName = RobotConf;
 			productReference = B2CD272B234D06530016AA02 /* RobotConf.app */;
@@ -792,7 +795,7 @@
 				B26E853923D49D8B006C2C9E /* XCRemoteSwiftPackageReference "SwiftRichString" */,
 				B265B04523F0691400EA363D /* XCRemoteSwiftPackageReference "CodableFirebase" */,
 				33243ECE27FA154700ECBA97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				4595145629C0F275003F7B4F /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				45DAAD7829E49D430085977B /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
 			productRefGroup = B2CD272C234D06530016AA02 /* Products */;
 			projectDirPath = "";
@@ -1431,7 +1434,7 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		4595145629C0F275003F7B4F /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+		45DAAD7829E49D430085977B /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
 			requirement = {
@@ -1486,10 +1489,15 @@
 			package = 33243ECE27FA154700ECBA97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		4595145729C0F275003F7B4F /* Apollo */ = {
+		45DAAD7929E49D430085977B /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4595145629C0F275003F7B4F /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			package = 45DAAD7829E49D430085977B /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
+		};
+		45DAAD7B29E49D430085977B /* ApolloSQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45DAAD7829E49D430085977B /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloSQLite;
 		};
 		B265B04623F0691400EA363D /* CodableFirebase */ = {
 			isa = XCSwiftPackageProductDependency;
