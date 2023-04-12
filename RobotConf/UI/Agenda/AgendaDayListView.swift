@@ -2,12 +2,14 @@
 //  Copyright © 2020 Paris Android User Group. All rights reserved.
 //
 
+import Foundation
 import SwiftUI
 import Combine
 
 struct AgendaDayListView: View {
     @ObservedObject private var viewModel = AgendaDayListViewModel()
     @State private var favOnly = false
+    @State private var highlightedTalk = ""
 
     var sectionTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -37,11 +39,21 @@ struct AgendaDayListView: View {
                         ForEach(self.favOnly ?
                             section.talks.filter({ self.viewModel.favoriteTalks.contains($0.uid) }) : section.talks,
                                 id: \.self) { talk in
-                                    NavigationLink(destination: AgendaDetailView(talkId: talk.uid)) {
+                                NavigationLink(destination: AgendaDetailView(talkId: talk.uid)
+                                    .onAppear {
+                                        // dirty hack to be able to highlight the cell that has just been taped
+                                        highlightedTalk = talk.uid
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                            highlightedTalk = ""
+                                        }
+                                    }) {
                                         AgendaCellView(talk: talk, viewModel: self.viewModel)
                                     }
-                                    .listRowBackground(talk.state != .none ?
-                                        Color(Asset.Colors.currentTalk.color) : Color(UIColor.systemBackground))
+                                    .listRowBackground(
+                                        highlightedTalk == talk.uid ?
+                                            Color(UIColor.systemGroupedBackground) :
+                                            talk.state != .none ?
+                                                Color(Asset.Colors.currentTalk.color) : Color(UIColor.systemBackground))
                         }
                     } header: {
                         Text("\(self.sectionDateFormatter.string(from: section.date)), " +
