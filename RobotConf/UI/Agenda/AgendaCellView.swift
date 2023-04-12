@@ -22,12 +22,12 @@ struct AgendaCellView: View {
                     .foregroundColor(.blue)
                     .font(.headline)
                     .padding(.bottom, 4)
+                Spacer()
                 // swiftlint:disable:next line_length
                 Text("\(durationFormatter.string(from: talk.duration)!) / \(talk.room) / \(talk.language.flagDescription)")
                     .font(.footnote)
                 Text(talk.speakers.map { $0.name }.joined(separator: ", "))
                     .font(.footnote)
-                Spacer()
             }
             Spacer()
             VStack {
@@ -37,13 +37,15 @@ struct AgendaCellView: View {
                         .padding(8)
                         .onTapGesture { self.viewModel.toggleFavorite(ofTalk: self.talk) }
                 }
-                Spacer()
-                Text(talk.state.localizedDescription)
-                    .font(.footnote)
-                    .bold()
+                if talk.state != .none {
+                    Spacer()
+                    Text(talk.state.localizedDescription)
+                        .font(.footnote)
+                        .bold()
+                }
 
             }
-        }
+        }.padding(.vertical, 4)
     }
 }
 
