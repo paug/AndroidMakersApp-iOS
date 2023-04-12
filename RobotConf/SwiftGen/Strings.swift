@@ -20,8 +20,8 @@ internal enum L10n {
     /// There'll be technical sessions, workshops, debates, networking.
     /// RobotConf gathers 4 events in 1.
     /// 
-    /// ∙ Conferences : 40min Tech Talks by awesome speakers and 20min Lightning Talks on the future of Robot.
-    /// ∙ Workshop : Get trained on new methods, discover and build your app during the workshops.
+    /// ∙ Conferences: 40min Tech Talks by awesome speakers and 20min Lightning Talks on the future of Robot.
+    /// ∙ Workshops: Get trained on new methods, discover and build your app during the workshops.
     /// 
     /// All the talks will be recorded, and uploaded on the Youtube channel.
     internal static let explanation = L10n.tr("Localizable", "about.explanation")
