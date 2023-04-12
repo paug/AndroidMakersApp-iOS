@@ -73,9 +73,10 @@ struct AboutView: View {
                                     .foregroundColor(Color(Asset.Colors.link.color))
                                 ForEach(self.viewModel.partnerCategories, id: \.self) { category in
                                     VStack {
-                                        Text(category.categoryName)
+                                        Text(category.categoryName.capitalized)
                                             .foregroundColor(Color.black)
                                             .bold()
+                                            .font(.title2)
                                             .padding(16)
                                         ForEach(category.partners, id: \.self) { partner in
                                             Button(action: { self.viewModel.openPartnerPage(partner) }) {
