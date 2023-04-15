@@ -96,8 +96,8 @@ struct AboutView: View {
                         }
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
+                    .padding(.horizontal)
                 }
-                .padding(0)
                 .background(Color(.secondarySystemBackground))
                 .navigationBarTitle(Text(L10n.About.navTitle), displayMode: .inline)
             }

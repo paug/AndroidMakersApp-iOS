@@ -51,9 +51,10 @@ struct AgendaDayListView: View {
                                     }
                                     .listRowBackground(
                                         highlightedTalk == talk.uid ?
-                                            Color(UIColor.systemGroupedBackground) :
+                                            Color(UIColor.systemGray4) :
                                             talk.state != .none ?
-                                                Color(Asset.Colors.currentTalk.color) : Color(UIColor.systemBackground))
+                                                Color(Asset.Colors.currentTalk.color) :
+                                                nil) // default color
                         }
                     } header: {
                         Text("\(self.sectionDateFormatter.string(from: section.date)), " +
