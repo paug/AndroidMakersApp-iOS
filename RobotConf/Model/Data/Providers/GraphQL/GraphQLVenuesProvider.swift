@@ -16,7 +16,8 @@ class GraphQLVenuesProvider: VenuesProvider {
 
     init(apolloClient: ApolloClient) {
         self.apolloClient = apolloClient
-        apolloClient.fetch(query: GraphQLData.GetVenuesQuery()) { [weak self] result in
+        apolloClient.fetch(query: GraphQLData.GetVenuesQuery(),
+                           cachePolicy: .returnCacheDataAndFetch) { [weak self] result in
             guard let self = self else { return }
             do {
                 let fetchedResult = try result.get()

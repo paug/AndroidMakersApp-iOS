@@ -15,7 +15,8 @@ class GraphQLTalksProvider {
 
     init(apolloClient: ApolloClient) {
         self.apolloClient = apolloClient
-        apolloClient.fetch(query: GraphQLData.GetTalksQuery()) { [weak self] result in
+        apolloClient.fetch(query: GraphQLData.GetTalksQuery(),
+                           cachePolicy: .returnCacheDataAndFetch) { [weak self] result in
             guard let self = self else { return }
             do {
                 let fetchedResult = try result.get()

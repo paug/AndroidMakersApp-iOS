@@ -15,7 +15,8 @@ class GraphQLPartnersProvider {
 
     init(apolloClient: ApolloClient) {
         self.apolloClient = apolloClient
-        apolloClient.fetch(query: GraphQLData.GetPartnersQuery()) { [weak self] result in
+        apolloClient.fetch(query: GraphQLData.GetPartnersQuery(),
+                           cachePolicy: .returnCacheDataAndFetch) { [weak self] result in
             guard let self = self else { return }
             do {
                 let fetchedResult = try result.get()
