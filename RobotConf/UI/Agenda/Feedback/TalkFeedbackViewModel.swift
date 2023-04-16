@@ -20,23 +20,23 @@ class TalkFeedbackViewModel: ObservableObject, Identifiable {
     private var feedbackRepo: FeedbackRepository
     private var disposables = Set<AnyCancellable>()
 
-    init(talkId: String, talkRepo: TalkRepository = model.talkRepository,
+    init(talkId: String, sessionRepo: SessionRepository = model.sessionRepository,
          feedbackRepo: FeedbackRepository = model.feedbackRepository) {
         self.feedbackRepo = feedbackRepo
-        talkRepo.getTalks().first(where: { !$0.isEmpty })
+        sessionRepo.getSessions().first(where: { !$0.isEmpty })
             .combineLatest(feedbackRepo.getFeedbacks().first(where: { !$0.isEmpty }))
-            .sink { [weak self] talks, feedbacks in
-                guard let talk = talks.first(where: { $0.uid == talkId }),
+            .sink { [weak self] sessions, feedbacks in
+                guard let session = sessions.first(where: { $0.uid == talkId }),
                     let feedback = feedbacks[talkId] else {
                     // TODO: let the view know that this talks is unknown. To do that, maybe change the type of content
                     // to be a type that can give an error
                     return
                 }
 
-                if talk.startTime >= TimeProvider.instance.currentTime {
-                    self?.content = Content(title: talk.title, availability: .notAvailable)
+                if session.startTime >= TimeProvider.instance.currentTime {
+                    self?.content = Content(title: session.title, availability: .notAvailable)
                 } else {
-                    self?.content = Content(title: talk.title, availability: .available(feedback))
+                    self?.content = Content(title: session.title, availability: .available(feedback))
                 }
         }.store(in: &disposables)
     }

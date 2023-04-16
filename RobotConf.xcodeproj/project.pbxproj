@@ -84,8 +84,8 @@
 		B2CD2751234D06560016AA02 /* RobotConfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD2750234D06560016AA02 /* RobotConfUITests.swift */; };
 		B2CD275F234D079B0016AA02 /* AgendaDayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD275E234D079B0016AA02 /* AgendaDayListView.swift */; };
 		B2CD2763234D08820016AA02 /* AgendaCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD2762234D08820016AA02 /* AgendaCellView.swift */; };
-		B2CD2766234D116A0016AA02 /* Talk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD2765234D116A0016AA02 /* Talk.swift */; };
-		B2CD2768234D12500016AA02 /* TalkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD2767234D12500016AA02 /* TalkRepository.swift */; };
+		B2CD2766234D116A0016AA02 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD2765234D116A0016AA02 /* Session.swift */; };
+		B2CD2768234D12500016AA02 /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD2767234D12500016AA02 /* SessionRepository.swift */; };
 		B2CD276A234D12980016AA02 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD2769234D12980016AA02 /* Speaker.swift */; };
 		B2CD276C234D13380016AA02 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD276B234D13380016AA02 /* Language.swift */; };
 		B2CD276E234D18450016AA02 /* AgendaDayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD276D234D18450016AA02 /* AgendaDayListViewModel.swift */; };
@@ -227,8 +227,8 @@
 		B2CD2752234D06560016AA02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2CD275E234D079B0016AA02 /* AgendaDayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaDayListView.swift; sourceTree = "<group>"; };
 		B2CD2762234D08820016AA02 /* AgendaCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaCellView.swift; sourceTree = "<group>"; };
-		B2CD2765234D116A0016AA02 /* Talk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Talk.swift; sourceTree = "<group>"; };
-		B2CD2767234D12500016AA02 /* TalkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRepository.swift; sourceTree = "<group>"; };
+		B2CD2765234D116A0016AA02 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		B2CD2767234D12500016AA02 /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
 		B2CD2769234D12980016AA02 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		B2CD276B234D13380016AA02 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		B2CD276D234D18450016AA02 /* AgendaDayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaDayListViewModel.swift; sourceTree = "<group>"; };
@@ -592,11 +592,11 @@
 			isa = PBXGroup;
 			children = (
 				B2BC0B8323B91D2100C85F69 /* Model.swift */,
-				B2CD2767234D12500016AA02 /* TalkRepository.swift */,
+				B2CD2767234D12500016AA02 /* SessionRepository.swift */,
 				B2BC0B8523B91E0800C85F69 /* VenueRepository.swift */,
 				B258187423C2374D00E1B0F0 /* PartnerRepository.swift */,
 				B2EF3CF423E89FC90078019F /* FeedbackRepository.swift */,
-				B2CD2765234D116A0016AA02 /* Talk.swift */,
+				B2CD2765234D116A0016AA02 /* Session.swift */,
 				B2CD2769234D12980016AA02 /* Speaker.swift */,
 				B2BC0B7A23B905B800C85F69 /* Venue.swift */,
 				B258187623C2379600E1B0F0 /* Partner.swift */,
@@ -1030,7 +1030,7 @@
 				B258187323C2354200E1B0F0 /* FirestorePartnersProvider.swift in Sources */,
 				B2FE9FD124548CD3005FE370 /* RoomsProvider.swift in Sources */,
 				B2FE9FDF245490F1005FE370 /* VenueData.swift in Sources */,
-				B2CD2768234D12500016AA02 /* TalkRepository.swift in Sources */,
+				B2CD2768234D12500016AA02 /* SessionRepository.swift in Sources */,
 				B2CD426923578FBD009FE6B0 /* DocumentSnapshot+Decodable.swift in Sources */,
 				B2F270DE23DC944800FD6823 /* Assets.swift in Sources */,
 				4538D0D729CA2DB600BB94DB /* Query.graphql.swift in Sources */,
@@ -1105,7 +1105,7 @@
 				B2CD426723578D81009FE6B0 /* FirestoreTalksProvider.swift in Sources */,
 				B2BC0B8223B91C5B00C85F69 /* LocationVenueViewModel.swift in Sources */,
 				B2FE9FC72454882F005FE370 /* JsonSpeakersProvider.swift in Sources */,
-				B2CD2766234D116A0016AA02 /* Talk.swift in Sources */,
+				B2CD2766234D116A0016AA02 /* Session.swift in Sources */,
 				B27CC3DD24549D0A0055D36B /* OpenFeedbackSynchronizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

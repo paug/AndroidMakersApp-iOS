@@ -16,7 +16,7 @@ func injectMockModel() {
 #endif
 
 protocol RepositoryProvider {
-    var talkRepository: TalkRepository { get }
+    var sessionRepository: SessionRepository { get }
     var venueRepository: VenueRepository { get }
     var partnerRepository: PartnerRepository { get }
     var feedbackRepository: FeedbackRepository { get }
@@ -25,14 +25,14 @@ protocol RepositoryProvider {
 /// The model API object
 class Model: RepositoryProvider {
     private let dataProvider: DataProvider // A strong ref on the data provider must be kept
-    let talkRepository: TalkRepository
+    let sessionRepository: SessionRepository
     let venueRepository: VenueRepository
     let partnerRepository: PartnerRepository
     let feedbackRepository: FeedbackRepository
 
     fileprivate init(dataProvider: DataProvider = DataProvider()) {
         self.dataProvider = dataProvider
-        talkRepository = TalkRepository(dataProvider: dataProvider)
+        sessionRepository = SessionRepository(dataProvider: dataProvider)
         venueRepository = VenueRepository(dataProvider: dataProvider)
         partnerRepository = PartnerRepository(dataProvider: dataProvider)
 

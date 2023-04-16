@@ -9,7 +9,7 @@ import Combine
 struct AgendaDayListView: View {
     @StateObject private var viewModel = AgendaDayListViewModel()
     @State private var favOnly = false
-    @State private var highlightedTalk = ""
+    @State private var highlightedSession = ""
 
     var sectionTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -37,22 +37,23 @@ struct AgendaDayListView: View {
                     }
                     Section {
                         ForEach(self.favOnly ?
-                            section.talks.filter({ self.viewModel.favoriteTalks.contains($0.uid) }) : section.talks,
-                                id: \.self) { talk in
-                                NavigationLink(destination: AgendaDetailView(talkId: talk.uid)
+                                    section.sessions.filter({ self.viewModel.favoriteSessions.contains($0.uid) }) :
+                                    section.sessions,
+                                id: \.self) { session in
+                                NavigationLink(destination: AgendaDetailView(sessionId: session.uid)
                                     .onAppear {
                                         // dirty hack to be able to highlight the cell that has just been taped
-                                        highlightedTalk = talk.uid
+                                        highlightedSession = session.uid
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                            highlightedTalk = ""
+                                            highlightedSession = ""
                                         }
                                     }) {
-                                        AgendaCellView(talk: talk, viewModel: self.viewModel)
+                                        AgendaCellView(session: session, viewModel: self.viewModel)
                                     }
                                     .listRowBackground(
-                                        highlightedTalk == talk.uid ?
+                                        highlightedSession == session.uid ?
                                             Color(UIColor.systemGray4) :
-                                            talk.state != .none ?
+                                            session.state != .none ?
                                                 Color(Asset.Colors.currentTalk.color) :
                                                 nil) // default color
                         }
@@ -71,10 +72,10 @@ struct AgendaDayListView: View {
             )
                 .onAppear { self.viewModel.viewAppeared() }
                 .onDisappear { self.viewModel.viewDisappeared() }
-            // Display the first talk in the detail view to avoid having a white screen
+            // Display the first session in the detail view to avoid having a white screen
             // (this will be only used when the master and detail are visible together i.e. on ipads)
-            if viewModel.content.sections.first?.talks.first?.uid != nil {
-                AgendaDetailView(talkId: viewModel.content.sections.first!.talks.first!.uid)
+            if viewModel.content.sections.first?.sessions.first?.uid != nil {
+                AgendaDetailView(sessionId: viewModel.content.sections.first!.sessions.first!.uid)
             }
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())

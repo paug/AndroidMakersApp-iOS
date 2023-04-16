@@ -16,7 +16,8 @@ struct AgendaRoomListView: View {
                     .edgesIgnoringSafeArea(.all)
                 if !viewModel.content.rooms.isEmpty && !viewModel.content.hours.isEmpty {
                     NonEmptyContentView(
-                        content: favOnly ? viewModel.content.keepSessions(viewModel.favoriteTalks) : viewModel.content,
+                        content: favOnly ?
+                            viewModel.content.keepSessions(viewModel.favoriteSessions) : viewModel.content,
                         days: viewModel.days,
                         selectedDay: $viewModel.selectedDay)
                     
@@ -133,12 +134,12 @@ struct NonEmptyContentView: View {
 }
 
 private struct SessionView: View {
-    let session: Talk
+    let session: Session
     let size: CGSize
     @State private var isActive = false
 
     var body: some View {
-        NavigationLink(destination: AgendaDetailView(talkId: session.uid)) {
+        NavigationLink(destination: AgendaDetailView(sessionId: session.uid)) {
             VStack(alignment: .leading) {
                 Text(session.title)
                     .foregroundColor(Color(UIColor.label))

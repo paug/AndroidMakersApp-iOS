@@ -7,7 +7,7 @@ import Combine
 
 class AgendaDayListViewModel: ObservableObject, Identifiable {
     struct Content {
-        struct Talk: Hashable {
+        struct Session: Hashable {
             enum State {
                 case current
                 case isComing
@@ -26,7 +26,7 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
 
         struct Section: Hashable {
             let date: Date
-            var talks: [Talk]
+            var sessions: [Session]
             let isNewDay: Bool
         }
 
@@ -34,23 +34,23 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
     }
 
     @Published var content: Content = Content(sections: [])
-    @Published var favoriteTalks: Set<String> = []
+    @Published var favoriteSessions: Set<String> = []
 
-    private var talkRepo: TalkRepository
+    private var sessionRepo: SessionRepository
     private var disposables = Set<AnyCancellable>()
     private var timer: Timer?
     private var isDisplayed = false
 
-    init(talkRepo: TalkRepository = model.talkRepository) {
-        self.talkRepo = talkRepo
-        talkRepo.getTalks().sink { [weak self] in
-            self?.talksChanged(talks: $0)
+    init(sessionRepository: SessionRepository = model.sessionRepository) {
+        self.sessionRepo = sessionRepository
+        sessionRepo.getSessions().sink { [weak self] in
+            self?.sessionsChanged(sessions: $0)
         }.store(in: &disposables)
 
-        talkRepo.getFavoriteTalks().sink { [unowned self] in
+        sessionRepo.getFavoriteSessions().sink { [unowned self] in
             // only update when view is displayed otherwise it will redisplay the list when the favorite state changes
             if self.isDisplayed {
-                self.favoriteTalks = $0
+                self.favoriteSessions = $0
             }
         }.store(in: &disposables)
     }
@@ -59,11 +59,11 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
         isDisplayed = true
         timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { [weak self] _ in
             guard let self = self else { return }
-            self.talksChanged(talks: self.talkRepo.talks)
+            self.sessionsChanged(sessions: self.sessionRepo.sessions)
         }
-        // recompute talks in case status have changed
-        talksChanged(talks: self.talkRepo.talks)
-        favoriteTalks = talkRepo.favoriteTalks
+        // recompute sessions in case status have changed
+        sessionsChanged(sessions: self.sessionRepo.sessions)
+        favoriteSessions = sessionRepo.favoriteSessions
     }
 
     func viewDisappeared() {
@@ -72,29 +72,29 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
         isDisplayed = false
     }
 
-    func toggleFavorite(ofTalk talk: Content.Talk) {
-        if favoriteTalks.contains(talk.uid) {
-            talkRepo.removeTalkToFavorite(talkId: talk.uid)
+    func toggleFavorite(ofSession session: Content.Session) {
+        if favoriteSessions.contains(session.uid) {
+            sessionRepo.removeSessionToFavorite(sessionId: session.uid)
         } else {
-            talkRepo.addTalkToFavorite(talkId: talk.uid)
+            sessionRepo.addSessionToFavorite(sessionId: session.uid)
         }
     }
 
-    private func talksChanged(talks: [Talk]) {
-        let groupedTalks = Dictionary(grouping: talks) { $0.startTime }
-        let sortedKeys = groupedTalks.keys.sorted()
+    private func sessionsChanged(sessions: [Session]) {
+        let groupedSessions = Dictionary(grouping: sessions) { $0.startTime }
+        let sortedKeys = groupedSessions.keys.sorted()
         var sections = [Content.Section]()
         var previousDate: Date?
         let calendar = Calendar.current
         sortedKeys.forEach { date in
             // can force unwrap since we're iterating amongst the keys
-            let talks = groupedTalks[date]!
+            let sessions = groupedSessions[date]!
                 .sorted { $0.room.index < $1.room.index }
-                .map { Content.Talk(from: $0) }
+                .map { Content.Session(from: $0) }
 
             sections.append(Content.Section(
                 date: date,
-                talks: talks,
+                sessions: sessions,
                 isNewDay: !calendar.isDate(date, inSameDayAs: previousDate ?? Date.distantPast)))
 
             previousDate = date
@@ -103,32 +103,32 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
     }
 }
 
-extension AgendaDayListViewModel.Content.Talk {
-    init(from talk: Talk) {
-        self.init(uid: talk.uid,
-                  title: talk.title,
-                  duration: talk.duration,
-                  speakers: talk.speakers,
-                  room: talk.isATalk ? talk.room.name : nil,
-                  language: talk.isATalk ? talk.language : nil,
-                  state: State(from: talk))
+extension AgendaDayListViewModel.Content.Session {
+    init(from session: Session) {
+        self.init(uid: session.uid,
+                  title: session.title,
+                  duration: session.duration,
+                  speakers: session.speakers,
+                  room: session.isATalk ? session.room.name : nil,
+                  language: session.isATalk ? session.language : nil,
+                  state: State(from: session))
     }
 }
 
-private extension AgendaDayListViewModel.Content.Talk.State {
+private extension AgendaDayListViewModel.Content.Session.State {
     // Time before a session to be considered as coming
     private static let timeGapBeforeToCome = -5 * 60.0
     // Time after a session to be still considered as current
     private static let timeGapAfterCurrent = 2.5 * 60.0
 
-    init(from talk: Talk) {
+    init(from session: Session) {
         let currentDate = TimeProvider.instance.currentTime
 
-        let startToNow = currentDate.timeIntervalSince(talk.startTime)
+        let startToNow = currentDate.timeIntervalSince(session.startTime)
         switch startToNow {
         case Self.timeGapBeforeToCome..<0:
             self = .isComing
-        case 0...(talk.duration + Self.timeGapAfterCurrent):
+        case 0...(session.duration + Self.timeGapAfterCurrent):
             self = .current
         default:
             self = .none

@@ -28,8 +28,8 @@ struct AgendaDetailView: View {
         return formatter
     }()
 
-    init(talkId: String) {
-        viewModel = AgendaDetailViewModel(talkId: talkId)
+    init(sessionId: String) {
+        viewModel = AgendaDetailViewModel(sessionId: sessionId)
     }
 
     var body: some View {
@@ -96,7 +96,7 @@ struct AgendaDetailView: View {
                     }
                     if content.isATalk {
                         Divider().padding(.vertical, 8)
-                        TalkFeedbackView(talkId: content.talkId)
+                        TalkFeedbackView(talkId: content.sessionId)
                     }
                     Divider().padding(.top, 8)
                     ForEach(content.speakers, id: \.self) { speaker in
@@ -109,7 +109,7 @@ struct AgendaDetailView: View {
                     .foregroundColor(.yellow)
                     .padding(8)
                     .onTapGesture {
-                        self.viewModel.toggleFavorite(ofTalk: content)
+                        self.viewModel.toggleFavorite(ofSession: content)
             })
             .navigationBarTitle(Text(content.title), displayMode: .inline)
         }
@@ -154,7 +154,7 @@ struct SpeakerView: View {
     }
 }
 
-private extension Talk.Complexity {
+private extension Session.Complexity {
     var displayString: String {
         switch self {
         case .beginner:     return L10n.Talk.Complexity.beginner
@@ -168,7 +168,7 @@ private extension Talk.Complexity {
 struct AgendaDetailView_Previews: PreviewProvider {
     static var previews: some View {
         injectMockModel()
-        return AgendaDetailView(talkId: "195718")
+        return AgendaDetailView(sessionId: "195718")
     }
 }
 #endif

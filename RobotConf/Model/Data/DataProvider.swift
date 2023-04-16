@@ -30,7 +30,7 @@ class DataProvider {
         #endif
     }
 
-    var talksPublisher = PassthroughSubject<[Talk], Error>()
+    var sessionsPublisher = PassthroughSubject<[Session], Error>()
     var confVenuePublisher = PassthroughSubject<Venue, Error>()
     var partyVenuePublisher = PassthroughSubject<Venue, Error>()
     var partnerPublisher = PassthroughSubject<[PartnerCategory], Error>()
@@ -45,7 +45,7 @@ class DataProvider {
 
         votesPublisher = proxyDataProvider.votesPublisher
 
-        computeTalks()
+        computeSessions()
         computeVenues()
         computePartners()
     }
@@ -58,11 +58,11 @@ class DataProvider {
         proxyDataProvider.removeVote(proposition, for: talkId)
     }
 
-    private func computeTalks() {
+    private func computeSessions() {
         proxyDataProvider.sessionsPublisher.sink(receiveCompletion: { error in
             print("Error computing talks \(error)")
         }) { [unowned self] sessionsData in
-            var sessions = [Talk]()
+            var sessions = [Session]()
             for sessionData in sessionsData {
                 let speakers: [Speaker] = sessionData.speakers.compactMap {
                     guard let name = $0.name else { return nil }
@@ -72,7 +72,7 @@ class DataProvider {
                         photoUrl: $0.photoUrl.map { URL(string: $0) ?? URL(string: "")! } ?? URL(string: "")!,
                         company: $0.company ?? "", description: $0.bio ?? "")
                 }
-                let talk = Talk(
+                let talk = Session(
                     uid: sessionData.uid,
                     title: sessionData.title,
                     description: sessionData.description,
@@ -80,13 +80,13 @@ class DataProvider {
                     speakers: speakers, tags: sessionData.tags, startTime: sessionData.startTime,
                     room: Room(uid: sessionData.room.id, name: sessionData.room.name, index: sessionData.room.index),
                     language: Language(from: sessionData.language),
-                    complexity: Talk.Complexity(from: sessionData.complexity),
+                    complexity: Session.Complexity(from: sessionData.complexity),
                     questionUrl: URL(string: sessionData.questionUrl),
                     youtubeUrl: URL(string: sessionData.youtubeUrl),
                     slidesUrl: URL(string: sessionData.slidesUrl))
                 sessions.append(talk)
             }
-            self.talksPublisher.send(sessions)
+            self.sessionsPublisher.send(sessions)
         }.store(in: &cancellables)
     }
 
@@ -143,7 +143,7 @@ private extension Language {
     }
 }
 
-private extension Talk.Complexity {
+private extension Session.Complexity {
     init?(from str: String?) {
         switch str {
         case "Beginner": self = .beginner

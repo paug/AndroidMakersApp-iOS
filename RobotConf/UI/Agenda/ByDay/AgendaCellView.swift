@@ -5,7 +5,7 @@
 import SwiftUI
 
 struct AgendaCellView: View {
-    var talk: AgendaDayListViewModel.Content.Talk
+    var session: AgendaDayListViewModel.Content.Session
     var viewModel: AgendaDayListViewModel
 
     var durationFormatter: DateComponentsFormatter = {
@@ -18,29 +18,32 @@ struct AgendaCellView: View {
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading) {
-                Text(talk.title)
+                Text(session.title)
                     .foregroundColor(.blue)
                     .font(.headline)
                     .padding(.bottom, 4)
                 Spacer()
                 // swiftlint:disable:next line_length
-                Text([durationFormatter.string(from: talk.duration)!, talk.room, talk.language?.flagDescription]
+                Text([
+                    durationFormatter.string(from: session.duration)!,
+                    session.room,
+                    session.language?.flagDescription]
                     .compactMap { $0 }.joined(separator: " / "))
                     .font(.footnote)
-                Text(talk.speakers.map { $0.name }.joined(separator: ", "))
+                Text(session.speakers.map { $0.name }.joined(separator: ", "))
                     .font(.footnote)
             }
             Spacer()
             VStack {
-                if talk.isATalk {
-                    Image(systemName: viewModel.favoriteTalks.contains(talk.uid) ? "star.fill" : "star")
+                if session.isATalk {
+                    Image(systemName: viewModel.favoriteSessions.contains(session.uid) ? "star.fill" : "star")
                         .foregroundColor(.yellow)
                         .padding(8)
-                        .onTapGesture { self.viewModel.toggleFavorite(ofTalk: self.talk) }
+                        .onTapGesture { self.viewModel.toggleFavorite(ofSession: self.session) }
                 }
-                if talk.state != .none {
+                if session.state != .none {
                     Spacer()
-                    Text(talk.state.localizedDescription)
+                    Text(session.state.localizedDescription)
                         .font(.footnote)
                         .bold()
                 }
@@ -50,7 +53,7 @@ struct AgendaCellView: View {
     }
 }
 
-extension AgendaDayListViewModel.Content.Talk.State {
+extension AgendaDayListViewModel.Content.Session.State {
     var localizedDescription: String {
         switch self {
         case .current:  return L10n.Agenda.Detail.State.current
@@ -65,7 +68,7 @@ struct AgendaCellView_Previews: PreviewProvider {
     static var previews: some View {
         injectMockModel()
         return Group {
-            AgendaCellView(talk: AgendaDayListViewModel.Content.Talk(
+            AgendaCellView(session: AgendaDayListViewModel.Content.Session(
                 uid: "1",
                 title: "The infinite loop", duration: 25 * 60,
                 speakers: [Speaker(

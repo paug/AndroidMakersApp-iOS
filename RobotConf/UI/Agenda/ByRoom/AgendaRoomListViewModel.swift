@@ -7,15 +7,15 @@ import Combine
 
 class AgendaRoomListViewModel: ObservableObject {
     struct Content {
-        struct Session: Hashable {
-            let data: Talk
+        struct SessionContent: Hashable {
+            let data: Session
             let startDateIdx: Int
             let duration: Int
             let rooms: ClosedRange<Int>
         }
         let rooms: [String]
         let hours: [Date]
-        let sessions: [Session]
+        let sessions: [SessionContent]
 
         func keepSessions(_ sessionUids: Set<String>) -> Self {
             let filteredSessions = sessions.filter { sessionUids.contains($0.data.uid) }
@@ -25,24 +25,24 @@ class AgendaRoomListViewModel: ObservableObject {
 
     @Published private(set) var content = Content(rooms: [], hours: [], sessions: [])
     @Published private(set) var days = [Date]()
-    @Published var favoriteTalks: Set<String> = []
+    @Published var favoriteSessions: Set<String> = []
     @Published var selectedDay = Date.distantFuture
 
-    private var talkRepo: TalkRepository
+    private var sessionRepo: SessionRepository
     private var isDisplayed = false
     private var disposables = Set<AnyCancellable>()
 
-    init(talkRepo: TalkRepository = model.talkRepository) {
-        self.talkRepo = talkRepo
+    init(sessionRepo: SessionRepository = model.sessionRepository) {
+        self.sessionRepo = sessionRepo
 
-        talkRepo.getFavoriteTalks().sink { [unowned self] in
+        sessionRepo.getFavoriteSessions().sink { [unowned self] in
             // only update when view is displayed otherwise it will redisplay the list when the favorite state changes
             if self.isDisplayed {
-                self.favoriteTalks = $0
+                self.favoriteSessions = $0
             }
         }.store(in: &disposables)
 
-        talkRepo.getTalks().sink { [unowned self] sessions in
+        sessionRepo.getSessions().sink { [unowned self] sessions in
             var allDates = Set<DateComponents>()
             let calendar = Calendar.current
             sessions.forEach { allDates.insert(calendar.dateComponents([.day, .month, .year], from: $0.startTime)) }
@@ -63,33 +63,33 @@ class AgendaRoomListViewModel: ObservableObject {
             }.store(in: &disposables)
 
         Publishers.CombineLatest(
-            talkRepo.getTalks(),
+            sessionRepo.getSessions(),
             $selectedDay)
         .sink { [unowned self] in
-            talksChanged(talks: $0, selectedDay: $1)
+            sessionsChanged(sessions: $0, selectedDay: $1)
         }.store(in: &disposables)
     }
 
     func viewAppeared() {
         isDisplayed = true
 
-        // recompute talks in case status have changed
-        talksChanged(talks: talkRepo.talks, selectedDay: selectedDay)
-        favoriteTalks = talkRepo.favoriteTalks
+        // recompute sessions in case status have changed
+        sessionsChanged(sessions: sessionRepo.sessions, selectedDay: selectedDay)
+        favoriteSessions = sessionRepo.favoriteSessions
     }
 
     func viewDisappeared() {
         isDisplayed = false
     }
 
-    private func talksChanged(talks: [Talk], selectedDay: Date) {
+    private func sessionsChanged(sessions: [Session], selectedDay: Date) {
         let calendar = Calendar.current
-        let talksToConsider = talks.filter {
+        let sessionsToConsider = sessions.filter {
             calendar.isDate($0.startTime, inSameDayAs: selectedDay)
         }
 
         var allRooms = Set<Room>()
-        talksToConsider.forEach {
+        sessionsToConsider.forEach {
             // only consider rooms of the talks as the non talks are expanded on all rooms
             if $0.isATalk {
                 allRooms.insert($0.room)
@@ -99,7 +99,7 @@ class AgendaRoomListViewModel: ObservableObject {
         let roomsIndexes = Dictionary(uniqueKeysWithValues: rooms.map { ($0.uid, Int(rooms.firstIndex(of: $0)!)) })
 
         var allTimes = Set<Date>()
-        talksToConsider.forEach {
+        sessionsToConsider.forEach {
             allTimes.insert($0.startTime)
             allTimes.insert($0.startTime.addingTimeInterval($0.duration))
         }
@@ -120,11 +120,11 @@ class AgendaRoomListViewModel: ObservableObject {
             ($0, Int(filteredTimes.firstIndex(of: $0)!))
         })
 
-        var sessions = [Content.Session]()
+        var sessions = [Content.SessionContent]()
         let roomMinIdx = roomsIndexes.values.min() ?? 0
         let roomMaxIdx = roomsIndexes.values.max() ?? 0
         // sort by non talks first in order to have the breaks below the talks
-        for session in talksToConsider.sorted(by: { !$0.isATalk && $1.isATalk }) {
+        for session in sessionsToConsider.sorted(by: { !$0.isATalk && $1.isATalk }) {
             let endTime = session.startTime + session.duration
             guard let startDateIdx = timesIndex[session.startTime],
                   let roomIdx = roomsIndexes[session.room.uid],
@@ -132,10 +132,11 @@ class AgendaRoomListViewModel: ObservableObject {
                 continue
             }
 
-            let contentSession = Content.Session(data: session,
-                                                 startDateIdx: startDateIdx,
-                                                 duration: nearestEndTimeIdx - startDateIdx,
-                                                 rooms: session.isATalk ? roomIdx...roomIdx : roomMinIdx...roomMaxIdx)
+            let contentSession = Content.SessionContent(
+                data: session,
+                startDateIdx: startDateIdx,
+                duration: nearestEndTimeIdx - startDateIdx,
+                rooms: session.isATalk ? roomIdx...roomIdx : roomMinIdx...roomMaxIdx)
             sessions.append(contentSession)
         }
         content = Content(rooms: rooms.map { $0.name }, hours: filteredTimes, sessions: sessions)

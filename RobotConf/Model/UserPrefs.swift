@@ -6,13 +6,13 @@ import Foundation
 
 class UserPrefs {
 
-    private let favoriteTalksKey = "favoriteTalks"
+    private let favoriteSessionsKey = "favoriteSessions"
 
-    func getFavoriteTalks() -> [String] {
-        return UserDefaults.standard.stringArray(forKey: favoriteTalksKey) ?? []
+    func getFavoriteSessions() -> [String] {
+        return UserDefaults.standard.stringArray(forKey: favoriteSessionsKey) ?? []
     }
 
-    func setFavoriteTalks(_ favoriteTalks: [String]) {
-        UserDefaults.standard.set(favoriteTalks, forKey: favoriteTalksKey)
+    func setFavoriteSessions(_ favoriteSessions: [String]) {
+        UserDefaults.standard.set(favoriteSessions, forKey: favoriteSessionsKey)
     }
 }
