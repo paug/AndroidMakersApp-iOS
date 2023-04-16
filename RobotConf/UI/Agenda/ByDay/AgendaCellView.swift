@@ -24,7 +24,8 @@ struct AgendaCellView: View {
                     .padding(.bottom, 4)
                 Spacer()
                 // swiftlint:disable:next line_length
-                Text("\(durationFormatter.string(from: talk.duration)!) / \(talk.room) / \(talk.language.flagDescription)")
+                Text([durationFormatter.string(from: talk.duration)!, talk.room, talk.language?.flagDescription]
+                    .compactMap { $0 }.joined(separator: " / "))
                     .font(.footnote)
                 Text(talk.speakers.map { $0.name }.joined(separator: ", "))
                     .font(.footnote)

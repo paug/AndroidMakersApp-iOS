@@ -84,7 +84,7 @@ struct NonEmptyContentView: View {
                     ForEach(0...(content.rooms.count+1), id: \.self) { index in
                         HStack {
                             Divider()
-                                .frame(height: geometry.size.height)
+                                .frame(height: roomsHeight)
                         }.offset(x: hourWidth + columnWidth * CGFloat(index) - 0.25)
                     }
                     VStack(spacing: 0) {
@@ -146,15 +146,26 @@ private struct SessionView: View {
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
                 Spacer()
-                Text(session.speakers.map { $0.name }.joined(separator: ", "))
-                    .foregroundColor(Color(UIColor.label))
-                    .font(.subheadline)
-                    .multilineTextAlignment(.leading)
+                HStack(alignment: .bottom) {
+                    Text(session.speakers.map { $0.name }.joined(separator: ", "))
+                        .foregroundColor(Color(UIColor.label))
+                        .font(.subheadline)
+                        .multilineTextAlignment(.leading)
+                    Spacer()
+                    if session.isATalk {
+                        Text(session.language.flagDescription)
+                            .font(.caption2)
+                    }
+                }
             }
             .padding(6)
             .frame(width: size.width, height: size.height, alignment: .topLeading)
             .background(Color(UIColor.secondarySystemGroupedBackground))
             .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color(Asset.Colors.amBlue.color), lineWidth: 1)
+            )
         }
     }
 }

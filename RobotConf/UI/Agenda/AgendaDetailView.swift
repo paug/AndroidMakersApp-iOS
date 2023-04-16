@@ -41,10 +41,12 @@ struct AgendaDetailView: View {
                         .font(.title)
                         .padding(.bottom, 8)
                         .padding(.top, 16)
-                    Text(L10n.Agenda.Detail.summary(fullDateFormatter.string(from: content.startDate),
-                                                    timeFormatter.string(from: content.startDate),
-                                                    timeFormatter.string(from: content.endDate),
-                                                    content.room))
+                    Text([L10n.Agenda.Detail.summary(fullDateFormatter.string(from: content.startDate),
+                                                     timeFormatter.string(from: content.startDate),
+                                                     timeFormatter.string(from: content.endDate)),
+                          content.room]
+                        .compactMap { $0 }
+                        .joined(separator: ", "))
                         .bold()
                         .font(.headline)
                         .padding(.bottom, 8)

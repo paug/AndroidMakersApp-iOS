@@ -32,13 +32,12 @@
 		4538D0DE29CA2DB600BB94DB /* SchemaMetadata.graphql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4538D0CD29CA2DB600BB94DB /* SchemaMetadata.graphql.swift */; };
 		4567FB1229D9D04F00724187 /* View+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1129D9D04F00724187 /* View+Utils.swift */; };
 		4567FB1529D9D95B00724187 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1429D9D95B00724187 /* Room.swift */; };
-		4595148E29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4595148D29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift */; };
-		45DAAD7A29E49D430085977B /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 45DAAD7929E49D430085977B /* Apollo */; };
-		45DAAD7C29E49D430085977B /* ApolloSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 45DAAD7B29E49D430085977B /* ApolloSQLite */; };
 		4567FB1729D9E08000724187 /* AgendaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1629D9E08000724187 /* AgendaListView.swift */; };
 		4567FB1B29D9E13100724187 /* AgendaRoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FB1A29D9E13100724187 /* AgendaRoomListView.swift */; };
 		4595148E29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4595148D29C0FE4D003F7B4F /* GraphQLVenuesProvider.swift */; };
 		45DAAD7729E4867B0085977B /* AgendaRoomListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DAAD7629E4867B0085977B /* AgendaRoomListViewModel.swift */; };
+		45DAAD7A29E49D430085977B /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 45DAAD7929E49D430085977B /* Apollo */; };
+		45DAAD7C29E49D430085977B /* ApolloSQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 45DAAD7B29E49D430085977B /* ApolloSQLite */; };
 		45EC5A9E29C254A500ABBB7F /* GraphQLTalksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5A9D29C254A500ABBB7F /* GraphQLTalksProvider.swift */; };
 		45EC5AC229C26DCE00ABBB7F /* GraphQLDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5AC129C26DCE00ABBB7F /* GraphQLDataProvider.swift */; };
 		45EC5AC429C2701400ABBB7F /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EC5AC329C2701400ABBB7F /* SessionData.swift */; };
@@ -385,6 +384,7 @@
 			children = (
 				B2CD275E234D079B0016AA02 /* AgendaDayListView.swift */,
 				B2CD276D234D18450016AA02 /* AgendaDayListViewModel.swift */,
+				B2CD2762234D08820016AA02 /* AgendaCellView.swift */,
 			);
 			path = ByDay;
 			sourceTree = "<group>";
@@ -582,7 +582,6 @@
 				4567FB1829D9E0DB00724187 /* ByDay */,
 				4567FB1929D9E10600724187 /* ByRoom */,
 				B207015F2353372800F8E2AF /* AgendaDetailViewModel.swift */,
-				B2CD2762234D08820016AA02 /* AgendaCellView.swift */,
 				B207015D2353324400F8E2AF /* AgendaDetailView.swift */,
 				B225421E23FB22C200C5A83E /* Feedback */,
 			);

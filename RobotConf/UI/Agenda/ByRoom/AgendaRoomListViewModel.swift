@@ -89,7 +89,12 @@ class AgendaRoomListViewModel: ObservableObject {
         }
 
         var allRooms = Set<Room>()
-        talksToConsider.forEach { allRooms.insert($0.room) }
+        talksToConsider.forEach {
+            // only consider rooms of the talks as the non talks are expanded on all rooms
+            if $0.isATalk {
+                allRooms.insert($0.room)
+            }
+        }
         let rooms = allRooms.sorted { $0.index < $1.index }
         let roomsIndexes = Dictionary(uniqueKeysWithValues: rooms.map { ($0.uid, Int(rooms.firstIndex(of: $0)!)) })
 
@@ -111,10 +116,15 @@ class AgendaRoomListViewModel: ObservableObject {
                 filteredTimes.append(time)
             }
         }
-        let timesIndex = Dictionary(uniqueKeysWithValues: filteredTimes.map { ($0, Int(filteredTimes.firstIndex(of: $0)!)) })
+        let timesIndex = Dictionary(uniqueKeysWithValues: filteredTimes.map {
+            ($0, Int(filteredTimes.firstIndex(of: $0)!))
+        })
 
         var sessions = [Content.Session]()
-        for session in talksToConsider {
+        let roomMinIdx = roomsIndexes.values.min() ?? 0
+        let roomMaxIdx = roomsIndexes.values.max() ?? 0
+        // sort by non talks first in order to have the breaks below the talks
+        for session in talksToConsider.sorted(by: { !$0.isATalk && $1.isATalk }) {
             let endTime = session.startTime + session.duration
             guard let startDateIdx = timesIndex[session.startTime],
                   let roomIdx = roomsIndexes[session.room.uid],
@@ -125,7 +135,7 @@ class AgendaRoomListViewModel: ObservableObject {
             let contentSession = Content.Session(data: session,
                                                  startDateIdx: startDateIdx,
                                                  duration: nearestEndTimeIdx - startDateIdx,
-                                                 rooms: roomIdx...roomIdx)
+                                                 rooms: session.isATalk ? roomIdx...roomIdx : roomMinIdx...roomMaxIdx)
             sessions.append(contentSession)
         }
         content = Content(rooms: rooms.map { $0.name }, hours: filteredTimes, sessions: sessions)

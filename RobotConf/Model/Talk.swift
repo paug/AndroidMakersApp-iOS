@@ -23,4 +23,6 @@ struct Talk: Hashable {
     let questionUrl: URL?
     let youtubeUrl: URL?
     let slidesUrl: URL?
+
+    var isATalk: Bool { return !speakers.isEmpty }
 }

@@ -3,8 +3,8 @@
 "agenda.tabTitle" = "Agenda";
 "agenda.navTitle" = "RobotConf 23";
 
-/* Info about the session. It is `date` at `start time` - `end time`, `room` */
-"agenda.detail.summary" = "%@ à %@ - %@, %@";
+/* Info about the session. It is `date` at `start time` - `end time` */
+"agenda.detail.summary" = "%@ à %@ - %@";
 "agenda.detail.state.isComing" = "Bientot";
 "agenda.detail.state.current" = "En cours";
 "agenda.detail.youtube" = "Regarder sur Youtube";

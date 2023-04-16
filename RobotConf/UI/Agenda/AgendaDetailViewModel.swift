@@ -15,7 +15,7 @@ class AgendaDetailViewModel: ObservableObject, Identifiable {
         let tags: [String]
         let complexity: Talk.Complexity?
         let speakers: [Speaker]
-        let room: String
+        let room: String?
         let language: Language
         let questionUrl: URL?
         let youtubeUrl: URL?
@@ -64,7 +64,7 @@ private extension AgendaDetailViewModel.Content {
                   tags: [], // talk.tags is set to empty because it is all Android Development
                   complexity: talk.complexity,
                   speakers: talk.speakers,
-                  room: talk.room.name,
+                  room: talk.isATalk ? talk.room.name : nil,
                   language: talk.language,
                   questionUrl: nil, // talk.questionUrl, set it to nil for this year, to deactivate questions
                   youtubeUrl: talk.youtubeUrl,

@@ -17,8 +17,8 @@ class AgendaDayListViewModel: ObservableObject, Identifiable {
             let title: String
             let duration: TimeInterval
             let speakers: [Speaker]
-            let room: String
-            let language: Language
+            let room: String?
+            let language: Language?
             let state: State
 
             var isATalk: Bool { return !speakers.isEmpty }
@@ -109,8 +109,8 @@ extension AgendaDayListViewModel.Content.Talk {
                   title: talk.title,
                   duration: talk.duration,
                   speakers: talk.speakers,
-                  room: talk.room.name,
-                  language: talk.language,
+                  room: talk.isATalk ? talk.room.name : nil,
+                  language: talk.isATalk ? talk.language : nil,
                   state: State(from: talk))
     }
 }
