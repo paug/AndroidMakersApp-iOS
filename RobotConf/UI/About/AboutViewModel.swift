@@ -35,7 +35,7 @@ class AboutViewModel: ObservableObject, Identifiable {
 
     func openHashtagPage() {
         let screenName = L10n.About.Social.twitterHashtag
-            .addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+            .addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         
         let appURL = URL(string: "twitter://search?query=\(screenName)")!
         let webURL = URL(string: "https://twitter.com/search?q=\(screenName)")!
