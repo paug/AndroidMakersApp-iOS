@@ -42,7 +42,7 @@ struct AboutView: View {
                                 Button(action: {
                                     self.viewModel.openHashtagPage()
                                 }) {
-                                    Text("#AndroidMakers")
+                                    Text(L10n.About.Social.twitterHashtag)
                                         .foregroundColor(Color(Asset.Colors.link.color))
                                 }
                                 HStack(spacing: 16) {

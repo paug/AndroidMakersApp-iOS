@@ -35,6 +35,10 @@ internal enum L10n {
     internal static let sponsors = L10n.tr("Localizable", "about.sponsors")
     /// About
     internal static let tabTitle = L10n.tr("Localizable", "about.tabTitle")
+    internal enum Social {
+      /// #AMxDC23
+      internal static let twitterHashtag = L10n.tr("Localizable", "about.social.twitterHashtag")
+    }
   }
 
   internal enum Agenda {
