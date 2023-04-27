@@ -35,6 +35,7 @@ All the talks will be recorded, and uploaded on the Youtube channel.";
 "about.coc" = "Code of conduct";
 "about.social" = "Social";
 "about.sponsors" = "Sponsors";
+"about.social.twitterHashtag" = "#AMxDC23";
 
 "talk.complexity.beginner" = "Beginner";
 "talk.complexity.intermediate" = "Intermediate";
